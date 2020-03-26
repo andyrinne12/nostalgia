@@ -4,7 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 
-export default function LinksScreen() {
+export default class LinksScreen extends React.Component{
+  render(){
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       <OptionButton
@@ -27,6 +28,7 @@ export default function LinksScreen() {
       />
     </ScrollView>
   );
+}
 }
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
