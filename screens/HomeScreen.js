@@ -16,6 +16,8 @@ import LinksScreen from './LinksScreen.js';
 import Settings from './Settings.js';
 import Credits from './Credits.js';
 
+import titleGif from '../assets/images/nostalgia.gif';
+
 export default class HomeScreen extends React.Component {
   render() {
     return (<View style={styles.container}>
@@ -24,7 +26,7 @@ export default class HomeScreen extends React.Component {
           justifyContent: 'center',
           allignItems: 'center'
         }}>
-        <Text style={styles.title}>Nostalgia</Text>
+        <Image source={titleGif} />
       </View>
       <View style={{
           flex: 4,
@@ -32,13 +34,25 @@ export default class HomeScreen extends React.Component {
           justifyContent: 'center',
           allignItems: 'center'
         }}>
-        <TouchableOpacity style={[styles.button,{width:'60%'}]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
+        <TouchableOpacity style={[
+            styles.button, {
+              width: '60%'
+            }
+          ]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
           <Text>Joaca</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button,{width:'50%'}]} onPress={() => this.props.navigation.navigate(Settings)}>
+        <TouchableOpacity style={[
+            styles.button, {
+              width: '50%'
+            }
+          ]} onPress={() => this.props.navigation.navigate(Settings)}>
           <Text>Setari</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button,{width:'40%'}]} onPress={() => this.props.navigation.navigate(Credits)}>
+        <TouchableOpacity style={[
+            styles.button, {
+              width: '40%'
+            }
+          ]} onPress={() => this.props.navigation.navigate(Credits)}>
           <Text>Despre noi</Text>
         </TouchableOpacity>
       </View>
@@ -57,12 +71,10 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#fff',
     height: '100%',
-    backgroundColor: '#cc725e'
+    backgroundColor: 'white'
   },
   title: {
-    fontSize: 40,
-    alignSelf: 'center',
-    color: '#f22b11'
+    alignSelf: 'center'
   },
   button: {
     alignSelf: 'center',
