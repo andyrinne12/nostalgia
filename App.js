@@ -8,7 +8,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from './screens/HomeScreen';
 import LinksScreen from './screens/LinksScreen';
-
+import Settings from './screens/Settings';
+import Credits from './screens/Credits';
 const Stack = createStackNavigator();
 
 export default function App(){
@@ -19,6 +20,8 @@ export default function App(){
   }}>
       <Stack.Screen name="HomeScreen" component={HomeScreen}/>
       <Stack.Screen name="LinksScreen" component={LinksScreen}/>
+      <Stack.Screen name="Settings" component={Settings}/>
+      <Stack.Screen name="Credits" component={Credits}/>
     </Stack.Navigator>
   </NavigationContainer>
 );

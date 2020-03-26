@@ -13,6 +13,8 @@ import * as WebBrowser from 'expo-web-browser';
 import {MonoText} from '../components/StyledText';
 
 import LinksScreen from './LinksScreen.js';
+import Settings from './Settings.js';
+import Credits from './Credits.js';
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -33,10 +35,10 @@ export default class HomeScreen extends React.Component {
         <TouchableOpacity style={[styles.button,{width:'60%'}]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
           <Text>Joaca</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button,{width:'50%'}]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
+        <TouchableOpacity style={[styles.button,{width:'50%'}]} onPress={() => this.props.navigation.navigate(Settings)}>
           <Text>Setari</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button,{width:'40%'}]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
+        <TouchableOpacity style={[styles.button,{width:'40%'}]} onPress={() => this.props.navigation.navigate(Credits)}>
           <Text>Despre noi</Text>
         </TouchableOpacity>
       </View>
