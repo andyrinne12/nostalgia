@@ -3,15 +3,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
+import FuzzySet from 'fuzzyset';
+import Emoji from 'react-native-emoji';
 
 export default class Settings extends React.Component{
   render(){
   return (
     <View>
-          <Text> SETARI </Text>
+          <Text> <Emoji name="coffee" style={{fontSize: 50}} /></Text>
     </View>
   );
 }
+}
+
+function fuzzyMatch(pattern, str) {
+  var a = FuzzySet([str]);
+  return a.get(pattern);
 }
 
 function OptionButton({ icon, label, onPress, isLastOption }) {
