@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import * as WebBrowser from 'expo-web-browser';
 
 import { MonoText } from '../components/StyledText';
-
+import LinksScreen from '../screens/LinksScreen';
 export default class HomeScreen extends React.Component {
   render(){
     return(
@@ -35,6 +35,5 @@ const styles = StyleSheet.create({
     borderWidth: 2.5,
     borderRadius: 7,
     opacity: 0.6,
-    transition: 0.3,
   },
 });
