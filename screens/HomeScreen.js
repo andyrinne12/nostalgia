@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Image,
+  ImageBackground,
   Platform,
   StyleSheet,
   Text,
@@ -17,75 +18,94 @@ import Settings from './Settings.js';
 import Credits from './Credits.js';
 
 import titleGif from '../assets/images/nostalgia.gif';
+import robot from '../assets/images/robot-dev.png';
 
 export default class HomeScreen extends React.Component {
   render() {
-    return (<View style={styles.container}>
-      <View style={{
-          flex: 1,
-          justifyContent: 'center',
-          allignItems: 'center'
-        }}>
-        <Image source={titleGif} />
-      </View>
-      <View style={{
-          flex: 4,
-          width: '100%',
-          justifyContent: 'center',
-          allignItems: 'center'
-        }}>
-        <TouchableOpacity style={[
-            styles.button, {
-              width: '60%'
-            }
-          ]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
-          <Text>Joaca</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[
-            styles.button, {
-              width: '50%'
-            }
-          ]} onPress={() => this.props.navigation.navigate(Settings)}>
-          <Text>Setari</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={[
-            styles.button, {
-              width: '40%'
-            }
-          ]} onPress={() => this.props.navigation.navigate(Credits)}>
-          <Text>Despre noi</Text>
-        </TouchableOpacity>
+    return (<View style={{
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#40dbe3'
+      }}>
+      <View style={styles.container}>
+        <View style={{
+            flex: 2,
+            justifyContent: 'center',
+            allignItems: 'center'
+          }}>
+          <Image style={styles.title} source={titleGif}/>
+        </View>
+        <View style={{
+              flex: 4,
+              width: '100%',
+              justifyContent:'center',
+              alignItems:'center'
+          }}>
+          <View style={{
+              width: '100%',
+              height: '35%',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+            <TouchableOpacity style={[
+                styles.button, {
+                  width: '40%'
+                }
+              ]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
+              <Text style={styles.buttonText}>Joaca</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[
+                styles.button, {
+                  width: '40%'
+                }
+              ]} onPress={() => this.props.navigation.navigate(Settings)}>
+              <Text style={styles.buttonText}>Setari</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[
+                styles.button, {
+                  width: '40%'
+                }
+              ]} onPress={() => this.props.navigation.navigate(Credits)}>
+              <Text style={styles.buttonText}>Despre noi</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </View>
     </View>)
   }
 }
-
 HomeScreen.navigationOptions = {
   header: null
 };
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: '#fff',
+    alignSelf: 'center',
     height: '100%',
-    backgroundColor: 'white'
+    width: '100%'
   },
   title: {
-    alignSelf: 'center'
+    alignSelf: 'center',
+    width: 300,
+    height: 100,
+    backgroundColor: 'transparent'
   },
   button: {
     alignSelf: 'center',
     alignItems: 'center',
     padding: 15,
     margin: 10,
-    backgroundColor: 'white',
-    borderColor: 'cyan',
-    borderWidth: 2.5,
-    borderRadius: 7,
+    backgroundColor: 'transparent',
+    borderColor: 'white',
+    borderWidth: 3,
+    borderRadius: 15,
     opacity: 1
+  },
+  buttonText: {
+    fontSize: 20,
+    color: '#ed34b3'
   },
   buttonOnPress: {
     padding: 10,
