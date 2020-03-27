@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as Font from 'expo-font';
 import {
   Image,
   ImageBackground,
@@ -36,10 +37,10 @@ export default class HomeScreen extends React.Component {
           <Image style={styles.title} source={titleGif}/>
         </View>
         <View style={{
-              flex: 4,
-              width: '100%',
-              justifyContent:'center',
-              alignItems:'center'
+            flex: 4,
+            width: '100%',
+            justifyContent: 'center',
+            alignItems: 'center'
           }}>
           <View style={{
               width: '100%',
@@ -52,21 +53,21 @@ export default class HomeScreen extends React.Component {
                   width: '40%'
                 }
               ]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
-              <Text style={styles.buttonText}>Joaca</Text>
+              <Text style={styles.buttonText}>JOACA</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[
                 styles.button, {
                   width: '40%'
                 }
               ]} onPress={() => this.props.navigation.navigate(Settings)}>
-              <Text style={styles.buttonText}>Setari</Text>
+              <Text style={styles.buttonText}>SETARI</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[
                 styles.button, {
                   width: '40%'
                 }
               ]} onPress={() => this.props.navigation.navigate(Credits)}>
-              <Text style={styles.buttonText}>Despre noi</Text>
+              <Text style={styles.buttonText}>DESPRE NOI</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -105,7 +106,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 20,
-    color: '#ed34b3'
+    color: '#ed34b3',
+    fontFamily: 'ArcadeClassic'
   },
   buttonOnPress: {
     padding: 10,

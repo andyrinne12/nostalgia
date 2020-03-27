@@ -1,4 +1,4 @@
-node_modules/**/*
+node_modules
 .expo/*
 npm-debug.*
 *.jks
@@ -10,9 +10,8 @@ npm-debug.*
 web-build/
 web-report/
 __tests__
-.expo-shared/**
-node_modules
-template
+.expo-shared
+components
 
 # macOS
 .DS_Store
