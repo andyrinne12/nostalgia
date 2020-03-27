@@ -26,6 +26,16 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "androidNavigationBar": {
+      "visible": false,
+      "barStyle": "light-content",
+      "backgroundColor": "#40dbe3"
+    },
+    "androidStatusBar": {
+      "visible": false,
+      "barStyle": "light-content",
+      "backgroundColor": "#40dbe3"
     }
-  }
+  },
 }

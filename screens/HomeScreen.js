@@ -9,17 +9,12 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
 
-import {MonoText} from '../components/StyledText';
-
-import LinksScreen from './LinksScreen.js';
-import Settings from './Settings.js';
-import Credits from './Credits.js';
+//import {MonoText} from '../components/StyledText';
 
 import titleGif from '../assets/images/nostalgia.gif';
-import robot from '../assets/images/robot-dev.png';
+
+import {containerStyle} from '../styles/Containers.js'
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -32,7 +27,8 @@ export default class HomeScreen extends React.Component {
         <View style={{
             flex: 2,
             justifyContent: 'center',
-            allignItems: 'center'
+            allignItems: 'center',
+            width: '100%'
           }}>
           <Image style={styles.title} source={titleGif}/>
         </View>
@@ -52,22 +48,22 @@ export default class HomeScreen extends React.Component {
                 styles.button, {
                   width: '40%'
                 }
-              ]} onPress={() => this.props.navigation.navigate(LinksScreen)}>
-              <Text style={styles.buttonText}>JOACA</Text>
+              ]} onPress={() => this.props.navigation.navigate("ChapterScreen")}>
+              <Text style={styles.buttonText}>> JOACA</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[
                 styles.button, {
                   width: '40%'
                 }
-              ]} onPress={() => this.props.navigation.navigate(Settings)}>
-              <Text style={styles.buttonText}>SETARI</Text>
+              ]} onPress={() => this.props.navigation.navigate("Settings")}>
+              <Text style={styles.buttonText}>> SETARI</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[
                 styles.button, {
                   width: '40%'
                 }
-              ]} onPress={() => this.props.navigation.navigate(Credits)}>
-              <Text style={styles.buttonText}>DESPRE NOI</Text>
+              ]} onPress={() => this.props.navigation.navigate("Credits")}>
+              <Text style={styles.buttonText}>> DESPRE</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -89,8 +85,8 @@ const styles = StyleSheet.create({
   },
   title: {
     alignSelf: 'center',
-    width: 300,
-    height: 100,
+    width: '90%',
+    height: '30%',
     backgroundColor: 'transparent'
   },
   button: {
@@ -107,7 +103,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     color: '#ed34b3',
-    fontFamily: 'ArcadeClassic'
+    fontFamily: 'ArcadeClassic',
+    opacity: 1
   },
   buttonOnPress: {
     padding: 10,

@@ -6,10 +6,10 @@ import {Ionicons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import HomeScreen from './screens/HomeScreen';
-import LinksScreen from './screens/LinksScreen';
-import Settings from './screens/Settings';
-import Credits from './screens/Credits';
+import HomeScreen from './screens/HomeScreen.js';
+import ChapterScreen from './screens/ChapterScreen.js';
+import Settings from './screens/Settings.js';
+import Credits from './screens/Credits.js';
 
 import useLinking from './navigation/useLinking';
 
@@ -56,7 +56,7 @@ export default function App(props) {
           headerShown: false
         }}>
         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
-        <Stack.Screen name="LinksScreen" component={LinksScreen}/>
+        <Stack.Screen name="ChapterScreen" component={ChapterScreen}/>
         <Stack.Screen name="Settings" component={Settings}/>
         <Stack.Screen name="Credits" component={Credits}/>
       </Stack.Navigator>
