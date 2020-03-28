@@ -9,6 +9,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen.js';
 import ChapterScreen from './screens/ChapterScreen.js';
 import SongSelectScreen from './screens/SongSelectScreen.js';
+import PlayScreen from './screens/PlayScreen.js';
 import Settings from './screens/Settings.js';
 import Credits from './screens/Credits.js';
 
@@ -60,6 +61,7 @@ export default function App(props) {
         <Stack.Screen name="HomeScreen" component={HomeScreen}/>
         <Stack.Screen name="ChapterScreen" component={ChapterScreen}/>
         <Stack.Screen name="SongSelectScreen" component={SongSelectScreen}/>
+        <Stack.Screen name="PlayScreen" component={PlayScreen}/>
         <Stack.Screen name="Settings" component={Settings}/>
         <Stack.Screen name="Credits" component={Credits}/>
       </Stack.Navigator>
