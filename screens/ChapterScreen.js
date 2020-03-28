@@ -60,15 +60,15 @@ export default class ChapterScreen extends React.Component {
       }
       <View style={[
           containerStyle(100, 20), {
-            justifyContent: 'flex-start',
+            justifyContent: 'flex-start'
           }
         ]}>
         <View style={[
             containerStyle(100, 50), {
-              backgroundColor: 'purple'
+              backgroundColor: 'transparent'
             }
           ]}>
-          <GameStatusBar />
+          <GameStatusBar/>
         </View>
       </View>
       {
