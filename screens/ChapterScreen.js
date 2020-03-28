@@ -17,7 +17,6 @@ import {
   StatusBar
 } from 'react-native';
 
-
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
@@ -31,7 +30,25 @@ export default class ChapterScreen extends React.Component {
     this.state = {
       albumThumbRotHolder: new Animated.Value(0),
       albumAnimationStop: false,
-      albumTitle: 'title'
+      currentAlbum: 0,
+      albums: {
+        1: {
+          title: 'album 1'
+        },
+        2: {
+          title: 'album 2'
+        },
+        3: {
+          title: 'album 3'
+        },
+        4: {
+          title: 'album 4'
+        },
+        5: {
+          title: 'album 5'
+        }
+      },
+      albumTitle: '404'
     };
   }
 
@@ -51,8 +68,8 @@ export default class ChapterScreen extends React.Component {
     });
   }
 
-  albumClick(){
-    this.setState({albumTitle:'puya'})
+  albumClick() {
+    this.setState({albumTitle: 'puya'})
   }
 
   render() {
@@ -85,12 +102,26 @@ export default class ChapterScreen extends React.Component {
           }
         ]}>
         <View style={containerStyle(100, 60)}>
-          <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false}>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'tatae'})}}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'sisu'})}}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'puya'})}}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'john zis cutit'})}}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'error 404'})}}/>
+          <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} onMomentumScrollEnd={(event) => {
+              this.setState({
+                currentAlbum: event.nativeEvent.contentOffset.x / screenWidth
+              })
+            }}>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
+                this.setState({albumTitle: 'tatae'})
+              }}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
+                this.setState({albumTitle: 'sisu'})
+              }}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
+                this.setState({albumTitle: 'puya'})
+              }}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
+                this.setState({albumTitle: 'john zis cutit'})
+              }}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
+                this.setState({albumTitle: 'error 404'})
+              }}/>
           </ScrollView>
         </View>
         <View style={containerStyle(100, 40)}>
@@ -104,22 +135,33 @@ export default class ChapterScreen extends React.Component {
               fontSize: screenWidth * 0.17,
               fontFamily: 'ArcadeClassic',
               color: 'white'
-            }}>{this.state.albumTitle}</Text>
+            }}>
+            {this.state.albums[this.state.currentAlbum + 1].title}</Text>
         </View>
+      </View >
+      <View style={containerStyle(100, 10)}>
+        <Text style={{
+            width: '80%',
+            height: '100%',
+            padding: 20,
+            margin: 20,
+            textAlignVertical: "center",
+            textAlign: "center",
+            fontSize: screenWidth * 0.09,
+            fontFamily: 'ArcadeClassic',
+            color: 'white'
+          }}>{this.state.albumTitle}</Text>
       </View>
-
-      <View style={containerStyle(100, 10)}></View>
     </View>);
   }
 }
-
 function AlbumThumbnail({title, thumbnail, rotation, press}) {
   return (<View style={{
       width: screenWidth,
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-    <TouchableOpacity onPress={press}>
+    <TouchableOpacity onPress={press} activeOpacity={0.5}>
       <Animated.Image style={[
           styles.vinylThumbnail, {
             transform: [
