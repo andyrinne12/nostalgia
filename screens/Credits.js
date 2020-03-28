@@ -5,7 +5,7 @@ import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import { containerStyle } from '../styles/Containers.js';
 import * as Font from 'expo-font';
-import { Avatar, Button, SocialIcon } from 'react-native-elements';
+import { Avatar, Button, SocialIcon, ListItem, Badge } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -36,7 +36,7 @@ export default class Credits extends React.Component {
 
         <View style={[
           containerStyle(100, 15), {
-            backgroundColor: 'green'
+            //   backgroundColor: 'green'
           }]}>
           {//title 
           }
@@ -49,28 +49,64 @@ export default class Credits extends React.Component {
             textAlign: "center",
             fontSize: screenWidth * 0.15,
             fontFamily: 'ArcadeClassic',
-            color: 'pink'
+            color: '#ed34b3'
           }}>Despre noi</Text>
         </View>
 
 
         <View style={[
           containerStyle(100, 70), {
-            backgroundColor: 'purple',
-            flexDirection: 'row'
+            //   backgroundColor: 'purple',
+            flexDirection: 'column'
           }]}>
 
-          <SocialIcon
-            type='instagram'
-          />
 
-          <SocialIcon
-            type='facebook'
-          />
-          <SocialIcon
-            type='twitter'
-          />
-<Text>Mai vedem.</Text>
+          <View style={[
+            containerStyle(100, 15), {
+              backgroundColor: 'red',
+              flexDirection: 'row',
+
+            }]}>
+
+            <Text>Spatiu</Text>
+          </View>
+
+
+
+          {// SOCIAL MEDIA
+          }
+          <View style={[
+            containerStyle(100, 20), {
+              // backgroundColor: 'blue',
+              flexDirection: 'row',
+
+            }]}>
+
+            <SocialIcon
+              type='instagram'
+            />
+
+            <SocialIcon
+              type='facebook'
+            />
+            <SocialIcon
+              type='twitter'
+            />
+
+          </View>
+          
+
+          {//DESPRE CREATORI
+          }
+
+          <View style={[
+            containerStyle(100, 75), {
+              backgroundColor: 'yellow',
+              flexDirection: 'row',
+
+            }]}>
+            <Text>CEVA</Text>
+          </View>
 
         </View>
 

@@ -15,7 +15,6 @@ import {
   Dimensions,
   StatusBar
 } from 'react-native';
-import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 
 import vinylImage from '../assets/images/vinyl.png';
