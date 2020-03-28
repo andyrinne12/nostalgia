@@ -1,35 +1,37 @@
 import * as React from 'react';
 import * as Font from 'expo-font';
-import {StyleSheet, Text, View, Dimensions,FlatList} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, FlatList, KeyboardAvoidingView} from 'react-native';
 
 //import Checkbox from '@material-ui/core/Checkbox';
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
 
-import{ Avatar, Button, SocialIcon, ListItem,Badge,CheckBox}from'react-native-elements';
+import {
+  Avatar,
+  Button,
+  SocialIcon,
+  ListItem,
+  Badge,
+  CheckBox
+} from 'react-native-elements';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-
 
 const list = [
   {
     name: 'De ce plang chitarele',
     tick: true,
-    emojis: '😭 🎸🎸',
-
-  },
-  {
+    emojis: '😭 🎸🎸'
+  }, {
     name: 'Dragostea din tei',
     tick: false,
-    emojis: '🛸❤️🌿',
-  },
-  {
+    emojis: '🛸❤️🌿'
+  }, {
     name: 'Beau beau',
     tick: false,
-    emojis: '🍺🍺👧🏩🛏️🇪🇸💃',
-  },
-
+    emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
+  }
 ]
 
 export default class SongSelectscreen extends React.Component {
@@ -38,22 +40,14 @@ export default class SongSelectscreen extends React.Component {
     this.state = {};
   }
 
-    keyExtractor = (item, index) => index.toString()
+  keyExtractor = (item, index) => index.toString()
 
-     renderItem = ({ item }) => (
-       <ListItem
-                                 
-         title={item.emojis}
-         leftElement={
-                      <CheckBox
-                      checked={item.tick}
-                      />
-                      }
-         
-         bottomDivider
-       />
-     )
-    
+  renderItem = ({item}) => (<ListItem title={item.emojis} leftElement={<CheckBox
+    checked = {
+      item.tick
+    }
+    />} bottomDivider="bottomDivider"/>)
+
   componentDidMount() {}
 
   render() {
@@ -73,18 +67,15 @@ export default class SongSelectscreen extends React.Component {
         </View>
       </View>
 
-        <View style={[
-            containerStyle(100, 75), {
+      <View style={[
+          containerStyle(100, 75), {
 
-            flexDirection: 'row',
-            }]}>
-            
-        <FlatList
-          keyExtractor={this.keyExtractor}
-          data={list}
-          renderItem={this.renderItem}
-        />
-            
+            flexDirection: 'row'
+          }
+        ]}>
+
+        <FlatList keyExtractor={this.keyExtractor} data={list} renderItem={this.renderItem}/>
+
       </View>
     </View>);
   }

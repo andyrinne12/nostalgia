@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Font from 'expo-font';
-import {StyleSheet, Text, View, Dimensions, TextInput} from 'react-native';
+import {StyleSheet, Text, View, Dimensions, TextInput,KeyboardAvoidingView} from 'react-native';
 
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
@@ -17,7 +17,8 @@ export default class ChapterScreen extends React.Component {
   componentDidMount() {}
 
   render() {
-    return (<View style={[
+    return (
+      <View style={[
         styles.mainContainer, {
           justifyContent: 'flex-start'
         }
@@ -36,18 +37,24 @@ export default class ChapterScreen extends React.Component {
           <GameStatusBar/>
         </View>
       </View>
-      <View style={[containerStyle(100,15),{backgroundColor:'transparent'}]}>
-        <Text style={styles.titleText}>TITLE !!!      AUTHOR !!!</Text>
+      <View style={[
+          containerStyle(100, 20), {
+            backgroundColor: 'transparent'
+          }
+        ]}>
+        <Text style={styles.titleText}>TITLE: ! AUTHOR: !</Text>
       </View>
 
-      <View style={styles.emojiScreen}></View>
+      <View style={styles.emojiScreen}>
+          </View>
+      <View style={containerStyle(100,15)}>
+          <TextInput style={styles.textInput} allowFontScalling={true}/></View>
 
       <View style={[
           containerStyle(100, 25), {
-      //      backgroundColor: 'cyan'
+            //      backgroundColor: 'cyan'
           }
         ]}>
-        <TextInput style={styles.textInput} allowFontScalling={true}/>
       </View>
     </View>);
   }
@@ -65,18 +72,18 @@ const styles = StyleSheet.create({
     width: '60%',
     borderRadius: 9,
     textAlign: 'center',
-    height:35,
+    height: 35,
     fontSize: 22,
     fontFamily: 'ArcadeClassic'
   },
   titleText: {
     fontFamily: 'ArcadeClassic',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 35,
     color: 'white'
   },
   emojiScreen: {
-    ...containerStyle(96,40),
+    ...containerStyle(96, 15),
     borderRadius: 8,
     borderWidth: 3.5,
     borderColor: '#ed34b3',
