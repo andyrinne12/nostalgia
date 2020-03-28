@@ -1,19 +1,59 @@
 import * as React from 'react';
 import * as Font from 'expo-font';
-import {StyleSheet, Text, View, Dimensions} from 'react-native';
+import {StyleSheet, Text, View, Dimensions,FlatList} from 'react-native';
 
+//import Checkbox from '@material-ui/core/Checkbox';
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
+
+import{ Avatar, Button, SocialIcon, ListItem,Badge,CheckBox}from'react-native-elements';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-export default class ChapterScreen extends React.Component {
+
+const list = [
+  {
+    name: 'De ce plang chitarele',
+    tick: true,
+    emojis: '😭 🎸🎸',
+
+  },
+  {
+    name: 'Dragostea din tei',
+    tick: false,
+    emojis: '🛸❤️🌿',
+  },
+  {
+    name: 'Beau beau',
+    tick: false,
+    emojis: '🍺🍺👧🏩🛏️🇪🇸💃',
+  },
+
+]
+
+export default class SongSelectscreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
+    keyExtractor = (item, index) => index.toString()
+
+     renderItem = ({ item }) => (
+       <ListItem
+                                 
+         title={item.emojis}
+         leftElement={
+                      <CheckBox
+                      checked={item.tick}
+                      />
+                      }
+         
+         bottomDivider
+       />
+     )
+    
   componentDidMount() {}
 
   render() {
@@ -33,12 +73,18 @@ export default class ChapterScreen extends React.Component {
         </View>
       </View>
 
-      <View style={[
-          containerStyle(100, 80), {
-            justifyContent: 'flex-start'
-          }
-        ]}>
-        <Text>TODO</Text>
+        <View style={[
+            containerStyle(100, 75), {
+
+            flexDirection: 'row',
+            }]}>
+            
+        <FlatList
+          keyExtractor={this.keyExtractor}
+          data={list}
+          renderItem={this.renderItem}
+        />
+            
       </View>
     </View>);
   }
