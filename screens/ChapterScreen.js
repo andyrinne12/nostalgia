@@ -108,7 +108,7 @@ export default class ChapterScreen extends React.Component {
               })
             }}>
             <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.setState({albumTitle: 'tatae'})
+                this.props.navigation.navigate('SongSelectScreen')
               }}/>
             <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
                 this.setState({albumTitle: 'sisu'})
