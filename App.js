@@ -61,14 +61,6 @@ export default function App(props) {
         <Stack.Screen name="Settings" component={Settings}/>
         <Stack.Screen name="Credits" component={Credits}/>
       </Stack.Navigator>
-    </NavigationContainer>
-    /*  <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </View>*/);
+    </NavigationContainer>);
   }
 }

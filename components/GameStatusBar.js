@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {StyleSheet, Text, View, Image, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity
+} from 'react-native';
 
 import {containerStyle} from '../styles/Containers.js';
 import musicNoteImage from '../assets/images/musical-note.png';
@@ -31,7 +38,9 @@ export default class Credits extends React.Component {
 function CurrencyShow({ammount}) {
   return (<View style={styles.currencyContainer}>
     <View style={containerStyle(70, 100)}>
-      <Text style={styles.currencyFont} allowFontScaling={true} adjustsFontSizeToFit={true}>{ammount}</Text>
+      <TouchableOpacity style={styles.currencyFontContainer}>
+        <Text style={styles.currencyFont}>{ammount}</Text>
+      </TouchableOpacity>
     </View>
     <View style={containerStyle(30, 100)}>
       <Image style={styles.icon} source={musicNoteImage}/>
@@ -45,27 +54,39 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignContent: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+//    backgroundColor: 'green'
   },
   currencyContainer: {
     width: '90%',
-    height: '70%',
+    height: '60%',
     flexDirection: 'row',
+    textAlign: 'center',
     alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+//    backgroundColor: 'black'
+  },
+  currencyFontContainer: {
+    fontFamily: 'ArcadeClassic',
+    color: 'white',
+    fontSize: 40,
+    width: '100%',
+    height: '100%',
+//    backgroundColor: 'blue',
     justifyContent: 'center'
   },
   currencyFont: {
-    width: '100%',
-    height: '100%',
     fontFamily: 'ArcadeClassic',
-    textAlign: 'right',
-    textAlignVertical: "center",
     color: 'white',
-    fontSize: 27
+    fontSize: screenWidth*0.085,
+//    backgroundColor: 'blue',
+    alignSelf: 'flex-end'
   },
   icon: {
     width: '80%',
     height: '80%',
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+//    backgroundColor: 'gold'
   }
 });
