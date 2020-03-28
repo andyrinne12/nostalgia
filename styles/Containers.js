@@ -5,7 +5,6 @@ export function containerStyle(width, height) {
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    alignSelf: 'center',
     height: height.toString().concat("%"),
     width: width.toString().concat("%")
   }

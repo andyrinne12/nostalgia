@@ -15,6 +15,8 @@ import {
   Dimensions,
   StatusBar
 } from 'react-native';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
 
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
@@ -55,9 +57,8 @@ export default class ChapterScreen extends React.Component {
     });
 
     return (<View style={styles.mainContainer}>
-      {
-        // Top container
-      }
+
+
       <View style={[
           containerStyle(100, 20), {
             justifyContent: 'flex-start'
@@ -71,9 +72,8 @@ export default class ChapterScreen extends React.Component {
           <GameStatusBar/>
         </View>
       </View>
-      {
-        // Middle container
-      }
+
+
       <View style={[
           containerStyle(100, 70), {
             justifyContent: 'flex-start'
@@ -101,9 +101,9 @@ export default class ChapterScreen extends React.Component {
             }}>{StatusBar.currentHeight}</Text>
         </View>
       </View>
-      {
-        // Footer
-      }
+
+
+
       <View style={containerStyle(100, 10)}></View>
     </View>)
   }
