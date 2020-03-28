@@ -71,7 +71,7 @@ export default class Credits extends React.Component {
           containerStyle(100, 15), {
             //   backgroundColor: 'green'
           }]}>
-          {//title 
+          {//title
           }
           <Text style={{
             width: '100%',
@@ -161,7 +161,7 @@ export default class Credits extends React.Component {
               containerStyle(100, 25), {
               //  backgroundColor: 'red',
                 flexDirection: 'column',
-                
+
               }]}>
 
 <Image style={styles.title} source={nerdAlert} />
@@ -170,7 +170,7 @@ export default class Credits extends React.Component {
             {//CADRAN 2 CREATORI
             }
             <View style={[
-              containerStyle(100, 60), {
+              containerStyle(100, 75), {
               //  backgroundColor: 'blue',
                 flexDirection: 'row',
               }]}>
@@ -195,8 +195,8 @@ export default class Credits extends React.Component {
         <View style={[
           containerStyle(100, 15), {
          //   backgroundColor: 'red',
-            justifyContent:"flex-start"
-            
+            justifyContent:"center",
+
           }]}>
           <Button
             icon={
