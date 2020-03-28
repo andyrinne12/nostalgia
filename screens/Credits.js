@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions,FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, FlatList, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
@@ -7,7 +7,9 @@ import { containerStyle } from '../styles/Containers.js';
 import * as Font from 'expo-font';
 import { Avatar, Button, SocialIcon, ListItem, Badge } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { Linking } from 'expo';
+import subTitleGif from '../assets/images/sd.gif';
+import nerdAlert from '../assets/images/spongeBob.gif';
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -16,39 +18,38 @@ const screenHeight = Dimensions.get('window').height;
 const list = [
   {
     name: 'Vlad Andrei Bucur',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: 'http://info1cup.com/resources/img/sefu.png',
     subtitle: 'Student at University of Bristol',
-              
+
   },
   {
     name: 'Andrei Oliviu Sologon',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    avatar_url: 'http://info1cup.com/resources/img/solo2.png',
     subtitle: 'Student at Imperial College London'
   },
-    {
-      name: 'George Edward Nechitoaia',
-      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+  {
+    name: 'George Edward Nechitoaia',
+    avatar_url: 'http://info1cup.com/resources/img/cristea.png',
     subtitle: 'Student at University of Bristol'
-      },
-  
+  },
+
 ]
 
 export default class Credits extends React.Component {
-    
-    keyExtractor = (item, index) => index.toString()
 
-    renderItem = ({ item }) => (
-      <ListItem
-        title={item.name}
-        subtitle={item.subtitle}
-        leftAvatar={{
-          source: item.avatar_url && { uri: item.avatar_url },
-          title: item.name[0]
-        }}
-        bottomDivider
-        chevron
-      />
-    )
+  keyExtractor = (item, index) => index.toString()
+
+  renderItem = ({ item }) => (
+    <ListItem
+      title={item.name}
+      subtitle={item.subtitle}
+      leftAvatar={{
+        source: item.avatar_url && { uri: item.avatar_url },
+        title: item.name[0]
+      }}
+      bottomDivider
+    />
+  )
 
 
   render() {
@@ -93,14 +94,15 @@ export default class Credits extends React.Component {
           }]}>
 
 
+          {//Social Distance
+          }
           <View style={[
-            containerStyle(100, 15), {
-              backgroundColor: 'red',
+            containerStyle(100, 20), {
+              //   backgroundColor: 'red',
               flexDirection: 'row',
 
             }]}>
-
-            <Text>Spatiu</Text>
+            <Image style={styles.title} source={subTitleGif} />
           </View>
 
 
@@ -108,7 +110,7 @@ export default class Credits extends React.Component {
           {// SOCIAL MEDIA
           }
           <View style={[
-            containerStyle(100, 20), {
+            containerStyle(100, 15), {
               // backgroundColor: 'blue',
               flexDirection: 'row',
 
@@ -116,34 +118,74 @@ export default class Credits extends React.Component {
 
             <SocialIcon
               type='instagram'
+              onPress={() => {
+                //Action to perform onPress of the Icon
+                Linking.openURL('https://expo.io');
+              }}
             />
 
             <SocialIcon
               type='facebook'
+              onPress={() => {
+                //Action to perform onPress of the Icon
+                Linking.openURL('https://expo.io');
+              }}
             />
             <SocialIcon
               type='twitter'
-            />
-            
-          </View>
-        
+              onPress={() => {
+                //Action to perform onPress of the Icon
+                Linking.openURL('https://expo.io');
 
-          {//DESPRE CREATORI
-            
+              }}
+            />
+
+          </View>
+
+
+          {//DESPRE CREATORI: 2 cadrane
+
           }
 
           <View style={[
             containerStyle(100, 75), {
-              backgroundColor: 'yellow',
-              flexDirection: 'row',
-                
+             // backgroundColor: 'yellow',
+              flexDirection: 'column',
+              //s alignContent:'flex-start',
+
             }]}>
-            <FlatList
-              scrollEnabled={false}
-              keyExtractor={this.keyExtractor}
-              data={list}
-              renderItem={this.renderItem}
-            />
+
+            {// CADRAN 1 subTITLU
+            }
+            <View style={[
+              containerStyle(100, 25), {
+              //  backgroundColor: 'red',
+                flexDirection: 'column',
+                
+              }]}>
+
+<Image style={styles.title} source={nerdAlert} />
+            </View>
+
+            {//CADRAN 2 CREATORI
+            }
+            <View style={[
+              containerStyle(100, 60), {
+              //  backgroundColor: 'blue',
+                flexDirection: 'row',
+              }]}>
+
+              <FlatList
+                scrollEnabled={false}
+                keyExtractor={this.keyExtractor}
+                data={list}
+                renderItem={this.renderItem}
+              />
+
+            </View>
+
+
+
           </View>
 
         </View>
@@ -152,17 +194,19 @@ export default class Credits extends React.Component {
 
         <View style={[
           containerStyle(100, 15), {
-            backgroundColor: 'blue'
+         //   backgroundColor: 'red',
+            justifyContent:"flex-start"
+            
           }]}>
           <Button
             icon={
               <Icon
                 name="arrow-right"
-                size={15}
-                color="yellow"
+                size={35}
+                color="#ed34b3"
               />
             }
-            title="da si tu un leu"
+            title="DONAM SI NOI AZI?"
           />
         </View>
 
@@ -191,6 +235,12 @@ const styles = StyleSheet.create({
   mainContainer: {
     ...containerStyle(100, 100),
     backgroundColor: '#40dbe3'
+  },
+  title: {
+    alignSelf: 'center',
+    width: '23%',
+    height: '60%',
+    backgroundColor: 'transparent'
   },
   container: {
     flex: 1,
