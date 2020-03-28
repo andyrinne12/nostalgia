@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Dimensions,FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
@@ -13,10 +13,42 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-
+const list = [
+  {
+    name: 'Vlad Andrei Bucur',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Student at University of Bristol',
+              
+  },
+  {
+    name: 'Andrei Oliviu Sologon',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Student at Imperial College London'
+  },
+    {
+      name: 'George Edward Nechitoaia',
+      avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Student at University of Bristol'
+      },
+  
+]
 
 export default class Credits extends React.Component {
+    
+    keyExtractor = (item, index) => index.toString()
 
+    renderItem = ({ item }) => (
+      <ListItem
+        title={item.name}
+        subtitle={item.subtitle}
+        leftAvatar={{
+          source: item.avatar_url && { uri: item.avatar_url },
+          title: item.name[0]
+        }}
+        bottomDivider
+        chevron
+      />
+    )
 
 
   render() {
@@ -92,20 +124,26 @@ export default class Credits extends React.Component {
             <SocialIcon
               type='twitter'
             />
-
+            
           </View>
-          
+        
 
           {//DESPRE CREATORI
+            
           }
 
           <View style={[
             containerStyle(100, 75), {
               backgroundColor: 'yellow',
               flexDirection: 'row',
-
+                
             }]}>
-            <Text>CEVA</Text>
+            <FlatList
+              scrollEnabled={false}
+              keyExtractor={this.keyExtractor}
+              data={list}
+              renderItem={this.renderItem}
+            />
           </View>
 
         </View>
