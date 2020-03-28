@@ -16,6 +16,7 @@ import useLinking from './navigation/useLinking';
 const Stack = createStackNavigator();
 
 export default function App(props) {
+  StatusBar.setHidden(true);
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
   const containerRef = React.useRef();

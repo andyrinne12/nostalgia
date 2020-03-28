@@ -28,12 +28,12 @@
       "supportsTablet": true
     },
     "androidNavigationBar": {
-      "visible": true,
+      "visible": false,
       "barStyle": "light-content",
       "backgroundColor": "#40dbe3"
     },
     "androidStatusBar": {
-      "visible": true,
+      "visible": false,
       "barStyle": "light-content",
       "backgroundColor": "#40dbe3"
     }

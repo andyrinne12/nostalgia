@@ -12,11 +12,12 @@ import {
   TouchableOpacity,
   View,
   ScrollView,
-  Dimensions
+  Dimensions,
+  StatusBar
 } from 'react-native';
 
 import vinylImage from '../assets/images/vinyl.png';
-
+import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
 
 const screenWidth = Dimensions.get('window').width;
@@ -36,7 +37,7 @@ export default class ChapterScreen extends React.Component {
   startAlbumThumbRot() {
     this.state.albumThumbRotHolder.setValue(0);
     Animated.timing(this.state.albumThumbRotHolder, {
-      toValue: 360,
+      toValue: 1,
       duration: 2000,
       easing: Easing.linear
     }).start(() => {
@@ -48,13 +49,31 @@ export default class ChapterScreen extends React.Component {
   render() {
     const albumThumbnailRotation = this.state.albumThumbRotHolder.interpolate({
       inputRange: [
-        0, 360
+        0, 1
       ],
       outputRange: ['0deg', '360deg']
     });
 
     return (<View style={styles.mainContainer}>
-      <View style={containerStyle(100, 25)}></View>
+      {
+        // Top container
+      }
+      <View style={[
+          containerStyle(100, 20), {
+            justifyContent: 'flex-start',
+          }
+        ]}>
+        <View style={[
+            containerStyle(100, 50), {
+              backgroundColor: 'purple'
+            }
+          ]}>
+          <GameStatusBar />
+        </View>
+      </View>
+      {
+        // Middle container
+      }
       <View style={[
           containerStyle(100, 70), {
             justifyContent: 'flex-start'
@@ -76,12 +95,16 @@ export default class ChapterScreen extends React.Component {
               margin: 20,
               textAlignVertical: "center",
               textAlign: "center",
-              fontSize: screenWidth*0.2,
-              fontFamily: 'ArcadeClassic'
-            }}>{this.state.albumTitle}</Text>
+              fontSize: screenWidth * 0.2,
+              fontFamily: 'ArcadeClassic',
+              color: 'white'
+            }}>{StatusBar.currentHeight}</Text>
         </View>
       </View>
-      <View style={containerStyle(100, 15)}></View>
+      {
+        // Footer
+      }
+      <View style={containerStyle(100, 10)}></View>
     </View>)
   }
 }
