@@ -10,6 +10,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   View,
   ScrollView,
   Dimensions,
@@ -25,14 +26,17 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 export default class ChapterScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      albumThumbRotHolder: new Animated.Value(0),
+      albumAnimationStop: false,
+      albumTitle: 'title'
+    };
+  }
 
   componentDidMount() {
     this.startAlbumThumbRot();
-  }
-  state = {
-    albumThumbRotHolder: new Animated.Value(0),
-    albumAnimationStop: false,
-    albumTitle: "Title"
   }
 
   startAlbumThumbRot() {
@@ -47,6 +51,10 @@ export default class ChapterScreen extends React.Component {
     });
   }
 
+  albumClick(){
+    this.setState({albumTitle:'puya'})
+  }
+
   render() {
     const albumThumbnailRotation = this.state.albumThumbRotHolder.interpolate({
       inputRange: [
@@ -56,7 +64,6 @@ export default class ChapterScreen extends React.Component {
     });
 
     return (<View style={styles.mainContainer}>
-
 
       <View style={[
           containerStyle(100, 20), {
@@ -72,7 +79,6 @@ export default class ChapterScreen extends React.Component {
         </View>
       </View>
 
-
       <View style={[
           containerStyle(100, 70), {
             justifyContent: 'flex-start'
@@ -80,10 +86,11 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={containerStyle(100, 60)}>
           <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false}>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'tatae'})}}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'sisu'})}}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'puya'})}}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'john zis cutit'})}}/>
+            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {this.setState({albumTitle:'error 404'})}}/>
           </ScrollView>
         </View>
         <View style={containerStyle(100, 40)}>
@@ -94,35 +101,35 @@ export default class ChapterScreen extends React.Component {
               margin: 20,
               textAlignVertical: "center",
               textAlign: "center",
-              fontSize: screenWidth * 0.2,
+              fontSize: screenWidth * 0.17,
               fontFamily: 'ArcadeClassic',
               color: 'white'
-            }}>{StatusBar.currentHeight}</Text>
+            }}>{this.state.albumTitle}</Text>
         </View>
       </View>
 
-
-
       <View style={containerStyle(100, 10)}></View>
-    </View>)
+    </View>);
   }
 }
 
-function AlbumThumbnail({title, thumbnail, rotation}) {
+function AlbumThumbnail({title, thumbnail, rotation, press}) {
   return (<View style={{
       width: screenWidth,
       justifyContent: 'center',
       alignItems: 'center'
     }}>
-    <Animated.Image style={[
-        styles.vinylThumbnail, {
-          transform: [
-            {
-              rotate: rotation
-            }
-          ]
-        }
-      ]} resizeMode="contain" source={thumbnail}/>
+    <TouchableOpacity onPress={press}>
+      <Animated.Image style={[
+          styles.vinylThumbnail, {
+            transform: [
+              {
+                rotate: rotation
+              }
+            ]
+          }
+        ]} resizeMode="contain" source={thumbnail}/>
+    </TouchableOpacity>
   </View>);
 }
 
@@ -135,7 +142,7 @@ const styles = StyleSheet.create({
     padding: 20,
     margin: 20,
     height: '80%',
-    width: '80%',
+    aspectRatio: 1,
     alignSelf: 'center'
   }
 });
