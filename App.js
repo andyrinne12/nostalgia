@@ -33,6 +33,9 @@ export default function App(props) {
         // Load our initial navigation state
         setInitialNavigationState(await getInitialState());
 
+        global.Score = 100;
+        global.Currency = 420;
+
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,

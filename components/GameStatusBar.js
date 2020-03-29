@@ -15,21 +15,17 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 export default class Credits extends React.Component {
-  state = {
-    score: 2020,
-    currency: 69420
-  }
 
   render() {
     return (<View style={styles.mainContainer}>
       <View style={containerStyle(40, 100)}>
-        <CurrencyShow ammount={this.state.currency}/>
+        <CurrencyShow ammount={global.Currency}/>
       </View>
       <View style={containerStyle(20, 100)}></View>
       <View style={[
           containerStyle(40, 100), {}
         ]}>
-        <CurrencyShow ammount={this.state.score}/>
+        <CurrencyShow ammount={global.Score}/>
       </View>
     </View>);
   }

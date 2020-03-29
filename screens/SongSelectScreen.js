@@ -9,7 +9,7 @@ import {
   KeyboardAvoidingView
 } from 'react-native';
 
-//import Checkbox from '@material-ui/core/Checkbox';
+import SongLibrary from '../constants/SongLibrary.js';
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
 
@@ -22,105 +22,45 @@ import {
   CheckBox
 } from 'react-native-elements';
 
+const library = SongLibrary();
+
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-const list = {
-  title: 'Vara manelelor 2011',
-  tracks: [
-    {
-      name: 'De ce plang chitarele',
-      tick: true,
-      emojis: '😭 🎸🎸',
-      author: 'Nicolae Guta'
-    }, {
-      name: 'Dragostea din tei',
-      tick: false,
-      emojis: '🛸❤️🌿'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }, {
-      name: 'Beau beau',
-      tick: false,
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
-    }
-  ]
-}
 export default class SongSelectscreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
 
-  keyExtractor = (item, index) => index.toString()
-
-  renderItem = ({item}) => (<ListItem containerStyle={styles.listItem} titleStyle={{
-      textAlign: 'center'
-    }} title={item.emojis} bottomDivider={true}/>)
+  keyExtractor = (track) => track.title
 
   renderItem = ({item}) => {
     if (!item.tick) {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           textAlign: 'center'
-        }} title={item.emojis} bottomDivider={true}/>)
+        }} title={item.emojis} bottomDivider={true} onPress={() => {
+          this.props.navigation.navigate('PlayScreen', {item});
+        }}/>)
     } else {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           fontFamily: 'ArcadeClassic',
           fontSize: 18,
           color: 'white'
-        }} leftElement={<Tick tick='*'/>} title={item.name} subtitleStyle={{
+        }} leftElement={<Tick tick = '*' />} title={item.title} subtitleStyle={{
           fontFamily: 'ArcadeClassic',
           fontSize: 17,
           color: 'white'
-        }} subtitle={item.author} bottomDivider={true}/>)
+        }} subtitle={item.author} bottomDivider={true} onPress={() => {
+          this.props.navigation.navigate('PlayScreen', {item});
+        }}/>)
     }
   }
 
   componentDidMount() {}
 
   render() {
+    console.log(this.props.route.params.album.tracks);
     return (<View style={[
         styles.mainContainer, {
           justifyContent: 'flex-start'
@@ -144,17 +84,17 @@ export default class SongSelectscreen extends React.Component {
       <View style={[
           containerStyle(100, 10), {}
         ]}>
-        <ListHeader title={list.title}/></View>
+        <ListHeader title={this.props.route.params.album.albumName}/></View>
       <View style={[
           containerStyle(95, 80), {
             flexDirection: 'row'
           }
         ]}>
-        <FlatList showsVerticalScrollIndicator={false} keyExtractor={this.keyExtractor} style={{
+        <FlatList pagingEnabled={true} showsVerticalScrollIndicator={false} keyExtractor={this.keyExtractor} style={{
             borderColor: 'white',
             borderVertical: 2,
             width: '95%'
-          }} data={list.tracks} renderItem={this.renderItem}/>
+          }} data={this.props.route.params.album.tracks} renderItem={this.renderItem}/>
       </View>
     </View>);
   }

@@ -13,6 +13,7 @@ import {
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
 
+
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
@@ -22,9 +23,7 @@ const emoji1 = ['1f439', '1f422', '1f456'];
 export default class ChapterScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      progress: 20
-    };
+    this.state = {};
   }
   componentDidMount() {}
 
@@ -90,16 +89,15 @@ export default class ChapterScreen extends React.Component {
         </View>
       </View>
       <View style={styles.emojiScreen}>
-        <Text style={styles.emoji}>{this.emojisPrint(emoji1)}</Text>
+        <Text style={styles.emoji}>{this.props.route.params.item.emojis}</Text>
       </View>
       <View style={containerStyle(100, 15)}>
         <TextInput style={styles.textInput} allowFontScalling={true}/></View>
 
       <View style={[
-          containerStyle(100, 20), {
-          }
+          containerStyle(100, 20), {}
         ]}>
-        <Text style={styles.titleText}>Title:{"\n"}!!!</Text>
+        <Text style={styles.titleText}>{this.props.route.params.item.title}</Text>
       </View>
       <View style={[
           containerStyle(100, 20), {
@@ -180,7 +178,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   hintButton: {
-    ...containerStyle(80,50),
+    ...containerStyle(80, 50),
     borderColor: '#ed34b3',
     borderWidth: 1,
     borderRadius: 7

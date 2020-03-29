@@ -4,12 +4,10 @@ import {Ionicons} from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
 import {RectButton, ScrollView} from 'react-native-gesture-handler';
 import FuzzySet from 'fuzzyset';
-import Emoji from 'react-native-emoji';
 
 export default class Settings extends React.Component {
   render() {
     return (<View>
-      <AnimatedCircularProgress size={120} width={15} fill={100} tintColor="#00e0ff" backgroundColor="#3d5875"/>
     </View>);
   }
 }

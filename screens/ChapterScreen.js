@@ -21,8 +21,12 @@ import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
 import {containerStyle} from '../styles/Containers.js';
 
+import SongLibrary from '../constants/SongLibrary.js';
+
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
+
+const library = SongLibrary();
 
 export default class ChapterScreen extends React.Component {
   constructor(props) {
@@ -30,30 +34,18 @@ export default class ChapterScreen extends React.Component {
     this.state = {
       albumThumbRotHolder: new Animated.Value(0),
       albumAnimationStop: false,
-      currentAlbum: 0,
-      albums: {
-        1: {
-          title: 'album 1'
-        },
-        2: {
-          title: 'album 2'
-        },
-        3: {
-          title: 'album 3'
-        },
-        4: {
-          title: 'album 4'
-        },
-        5: {
-          title: 'album 5'
-        }
-      },
-      albumTitle: '404'
-    };
+      currentAlbum: 0
+    }
   }
 
   componentDidMount() {
     this.startAlbumThumbRot();
+  }
+
+  AlbumList = ({rotation}) => {
+    return (library.map((album, index) => <AlbumThumbnail key={album.albumID} title='album.albumTitle' thumbnail={vinylImage} rotation={rotation} press={() => {
+        this.props.navigation.navigate('SongSelectScreen', {album})
+      }}/>));
   }
 
   startAlbumThumbRot() {
@@ -79,6 +71,8 @@ export default class ChapterScreen extends React.Component {
       ],
       outputRange: ['0deg', '360deg']
     });
+
+    console.log(typeof(SongLibrary().library));
 
     return (<View style={styles.mainContainer}>
 
@@ -107,21 +101,7 @@ export default class ChapterScreen extends React.Component {
                 currentAlbum: event.nativeEvent.contentOffset.x / screenWidth
               })
             }}>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.props.navigation.navigate('SongSelectScreen')
-              }}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.props.navigation.navigate('PlayScreen')
-              }}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.setState({albumTitle: 'puya'})
-              }}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.setState({albumTitle: 'john zis cutit'})
-              }}/>
-            <AlbumThumbnail title='bla' thumbnail={vinylImage} rotation={albumThumbnailRotation} press={() => {
-                this.setState({albumTitle: 'error 404'})
-              }}/>
+            <this.AlbumList rotation={albumThumbnailRotation}/>
           </ScrollView>
         </View>
         <View style={containerStyle(100, 40)}>
@@ -132,13 +112,13 @@ export default class ChapterScreen extends React.Component {
               margin: 20,
               textAlignVertical: "center",
               textAlign: "center",
-              fontSize: screenWidth * 0.17,
+              fontSize: screenWidth * 0.1,
               fontFamily: 'ArcadeClassic',
               color: 'white'
             }}>
-            {this.state.albums[this.state.currentAlbum + 1].title}</Text>
+            {library[this.state.currentAlbum].albumName}</Text>
         </View>
-      </View >
+      </View>
       <View style={containerStyle(100, 10)}>
         <Text style={{
             width: '80%',
@@ -147,7 +127,7 @@ export default class ChapterScreen extends React.Component {
             margin: 20,
             textAlignVertical: "center",
             textAlign: "center",
-            fontSize: screenWidth * 0.09,
+            fontSize: screenWidth * 0.07,
             fontFamily: 'ArcadeClassic',
             color: 'white'
           }}>{this.state.albumTitle}</Text>
