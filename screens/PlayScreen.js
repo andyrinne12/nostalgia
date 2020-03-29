@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
   hintButton: {
     ...containerStyle(80,50),
     borderColor: '#ed34b3',
-    borderWidth: 2,
+    borderWidth: 1,
     borderRadius: 7
   },
   hintButtonText: {
