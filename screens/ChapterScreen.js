@@ -42,7 +42,7 @@ export default class ChapterScreen extends React.Component {
 
    onShare = async () => {
     try {
-      const result = 
+      const result =
       await Share.share(
       {
         message:
@@ -124,8 +124,6 @@ export default class ChapterScreen extends React.Component {
       outputRange: ['0deg', '360deg']
     });
 
-    console.log(typeof(SongLibrary().library));
-
     return (<View style={styles.mainContainer}>
 
       <View style={[
@@ -171,10 +169,10 @@ export default class ChapterScreen extends React.Component {
       </View>
       <View style={[containerStyle(100, 20),{flexDirection:'row'}]}>
         <View style={containerStyle(50,100)}>
-        <RewardButton title='Share' ammount={'+5'} onPress={this.onShare}/>
+        <RewardButton title='Share' ammount={'+5'} used={false} onPress={this.onShare}/>
         </View>
         <View style={containerStyle(50,100)}>
-        <RewardButton title='Video   Ads' ammount={'+10'} onPress={() => {}}/>
+        <RewardButton title='Video   Ads' ammount={'+10'} used={false} onPress={() => {}}/>
         </View>
       </View>
     </View>);

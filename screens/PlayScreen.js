@@ -13,13 +13,10 @@ import {
 import GameStatusBar from '../components/GameStatusBar.js';
 import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
-
+import {saveUserData} from '../util/UserData.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
-
-// max 22 emojis
-const emoji1 = ['1f439', '1f422', '1f456'];
 
 export default class ChapterScreen extends React.Component {
   constructor(props) {
@@ -34,12 +31,67 @@ export default class ChapterScreen extends React.Component {
     return ("rgb(" + red + "," + green + ",0)");
   }
 
-  unicodify(code) {
-    return String.fromCodePoint(parseInt(code, 16));
+  titleText() {
+    return (
+      global.songProgress[this.props.route.params.item.songID].done
+      ? 'Title' + '\n' + this.props.route.params.item.title
+      : '');
   }
 
-  emojisPrint(list) {
-    return list.map(code => this.unicodify(code))
+  yearText() {
+    return 'Year\n' + (
+      global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done
+      ? this.props.route.params.item.year
+      : '!!!');
+  }
+
+  authorText() {
+    return 'Author\n' + (
+      global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done
+      ? this.props.route.params.item.author
+      : '!!!');
+  }
+
+  revealYear(ammount) {
+    if(global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done){
+      return;
+    }
+    if (global.currency < ammount) {
+      alert();
+    } else {
+      global.currency -= ammount;
+      global.songProgress[this.props.route.params.item.songID].year = true;
+      saveUserData();
+    }
+    this.forceUpdate();
+  }
+
+  revealAuthor(ammount) {
+    if(global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done){
+      return;
+    }
+    if (global.currency < ammount) {
+      Alert.alert();
+    } else {
+      global.currency -= ammount;
+      global.songProgress[this.props.route.params.item.songID].author = true;
+      saveUserData();
+    }
+    this.forceUpdate();
+  }
+
+  revealSong(ammount) {
+    if(global.songProgress[this.props.route.params.item.songID].done){
+      return;
+    }
+    if (global.currency < ammount) {
+      Alert.alert();
+    } else {
+      global.currency -= ammount;
+      global.songProgress[this.props.route.params.item.songID].done = true;
+      saveUserData();
+    }
+    this.forceUpdate();
   }
 
   render() {
@@ -74,7 +126,7 @@ export default class ChapterScreen extends React.Component {
                 backgroundColor: 'transparent'
               }
             ]}>
-            <Text style={styles.headerText}>Year:{"\n"}!!!</Text>
+            <Text style={styles.headerText}>{this.yearText()}</Text>
           </View>
         </View>
         <View style={containerStyle(20, 100)}></View>
@@ -85,7 +137,7 @@ export default class ChapterScreen extends React.Component {
               justifyContent: 'center',
               backgroundColor: 'transparent'
             }}>
-            <Text style={styles.headerText}>Author:{"\n"}!!!</Text>
+            <Text style={styles.headerText}>{this.authorText()}</Text>
           </View>
         </View>
       </View>
@@ -98,7 +150,7 @@ export default class ChapterScreen extends React.Component {
       <View style={[
           containerStyle(100, 20), {}
         ]}>
-        <Text style={styles.titleText}>{this.props.route.params.item.title}</Text>
+        <Text style={styles.titleText}>{this.titleText()}</Text>
       </View>
       <View style={[
           containerStyle(100, 20), {
@@ -108,19 +160,13 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='Year' ammount={5} onPress={() => {
-        console.log(3)
-      }}/></View>
+          ]}><RewardButton title='Year' ammount={5} onPress={() => {this.revealYear(5);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
-          ]}><RewardButton title='Song' ammount={20} onPress={() => {
-        console.log(3)
-      }}/></View>
+          ]}><RewardButton title='Song' ammount={20} onPress={() => {this.revealSong(20);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='Author' ammount={10} onPress={() => {
-        console.log(3)
-      }}/></View>
+          ]}><RewardButton title='Author' ammount={10} onPress={() => {this.revealAuthor(10);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done}/></View>
       </View>
     </View>);
   }
@@ -170,4 +216,5 @@ const styles = StyleSheet.create({
     fontFamily: 'ArcadeClassic',
     fontSize: 20,
     color: 'white'
-  }});
+  }
+});

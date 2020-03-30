@@ -19,13 +19,13 @@ export default class GameStatusBar extends React.Component {
   render() {
     return (<View style={styles.mainContainer}>
       <View style={containerStyle(40, 100)}>
-        <CurrencyShow ammount={global.Currency}/>
+        <CurrencyShow ammount={global.currency}/>
       </View>
       <View style={containerStyle(20, 100)}></View>
       <View style={[
           containerStyle(40, 100), {}
         ]}>
-        <CurrencyShow ammount={global.Score}/>
+        <CurrencyShow ammount={global.score}/>
       </View>
     </View>);
   }

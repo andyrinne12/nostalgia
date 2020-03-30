@@ -36,7 +36,7 @@ export default class SongSelectscreen extends React.Component {
   keyExtractor = (track) => track.title
 
   renderItem = ({item}) => {
-    if (!item.tick) {
+    if (!global.songProgress[item.songID].done) {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           textAlign: 'center'
         }} title={item.emojis} bottomDivider={true} onPress={() => {
@@ -60,7 +60,6 @@ export default class SongSelectscreen extends React.Component {
   componentDidMount() {}
 
   render() {
-    console.log(this.props.route.params.album.tracks);
     return (<View style={[
         styles.mainContainer, {
           justifyContent: 'flex-start'

@@ -8,15 +8,20 @@ export default function SongLibrary() {
       songID: 1,
       title: 'De ce plang chitarele',
       emojis: '😭 🎸🎸',
-      author: 'Nicolae Guta'
+      author: 'Nicolae Guta',
+      year: 2008
     }, {
       songID: 2,
       title: 'Dragostea din tei',
-      emojis: '🛸❤️🌿'
+      author: 'Florin Salam',
+      emojis: '🛸❤️🌿',
+      year: 2007
     }, {
       songID: 3,
       title: 'Beau beau',
-      emojis: '🍺🍺👧🏩🛏️🇪🇸💃'
+      emojis: '🍺🍺👧🏩🛏️🇪🇸💃',
+      author: 'Florin Cercel',
+      year: 2020
     }]
   }, {
     albumID: 2,

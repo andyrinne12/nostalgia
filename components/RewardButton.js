@@ -8,8 +8,8 @@ import {
   containerStyle
 } from '../styles/Containers.js';
 
-export default function RewardButton({title,ammount,onPress}) {
-    return (<TouchableOpacity style={styles.hintButton} onPress={onPress}>
+export default function RewardButton({title,ammount,onPress,used}) {
+    return (<TouchableOpacity style={[styles.hintButton,used ? {opacity: 0.3} : {opacity: 1}]} onPress={onPress}>
       <Text style={styles.hintButtonText}>{title}</Text>
       <Text style={styles.hintButtonText}>{ammount}💸</Text>
     </TouchableOpacity>);
