@@ -14,7 +14,8 @@ import {
   View,
   ScrollView,
   Dimensions,
-  StatusBar
+  StatusBar,
+  Share
 } from 'react-native';
 
 import vinylImage from '../assets/images/vinyl.png';
@@ -38,6 +39,56 @@ export default class ChapterScreen extends React.Component {
       currentAlbum: 0
     }
   }
+
+   onShare = async () => {
+    try {
+      const result = 
+      await Share.share(
+      {
+        message:
+          'Mare joc aici cu melodii frumoase',
+      },
+      {
+        excludedActivityTypes: [
+
+           //'com.facebook.Messenger.ShareExtension',
+           //"com.apple.UIKit.activity.PostToTwitter",
+           //"com.apple.UIKit.activity.Mail",
+           //'com.apple.UIKit.activity.Print',
+           //'com.apple.UIKit.activity.CopyToPasteboard',
+           //'com.apple.UIKit.activity.AssignToContact',
+           //'com.apple.UIKit.activity.SaveToCameraRoll',
+           //  'com.apple.UIKit.activity.AddToReadingList',
+           //  'com.apple.UIKit.activity.PostToFlickr',
+           //  'com.apple.UIKit.activity.PostToVimeo',
+           //  'com.apple.UIKit.activity.PostToTencentWeibo',
+           //  'com.apple.UIKit.activity.AirDrop',
+          //  'com.apple.UIKit.activity.OpenInIBooks',
+          //  'com.apple.UIKit.activity.MarkupAsPDF',
+          //  'com.apple.reminders.RemindersEditorExtension',
+          //  'com.apple.mobilenotes.SharingExtension',
+          //  'com.apple.mobileslideshow.StreamShareService',
+          //  'com.linkedin.LinkedIn.ShareExtension',
+          //  'pinterest.ShareExtension',
+          //  'com.google.GooglePlus.ShareExtension',
+          //  'com.tumblr.tumblr.Share-With-Tumblr',
+          //  'net.whatsapp.WhatsApp.ShareExtension',
+        ],
+      }
+      );
+
+
+      if (result.action === Share.sharedAction && result.activityType !='com.facebook.Messenger.ShareExtension') {
+        //AICI DACA S A REUSIT SHARE UL
+        console.log(result.activityType);
+      } else if (result.action === Share.dismissedAction) {
+        //AICI DACA S A OPRIT
+      }
+    } catch (error) {
+       //AICI DACA A DAT EROARE
+      alert(error.message);
+    }
+  };
 
   componentDidMount() {
     this.startAlbumThumbRot();
@@ -120,7 +171,7 @@ export default class ChapterScreen extends React.Component {
       </View>
       <View style={[containerStyle(100, 20),{flexDirection:'row'}]}>
         <View style={containerStyle(50,100)}>
-        <RewardButton title='Share' ammount={'+5'} onPress={() => {}}/>
+        <RewardButton title='Share' ammount={'+5'} onPress={this.onShare}/>
         </View>
         <View style={containerStyle(50,100)}>
         <RewardButton title='Video   Ads' ammount={'+10'} onPress={() => {}}/>
