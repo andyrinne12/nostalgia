@@ -14,7 +14,7 @@ import musicNoteImage from '../assets/images/musical-note.png';
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
-export default class Credits extends React.Component {
+export default class GameStatusBar extends React.Component {
 
   render() {
     return (<View style={styles.mainContainer}>

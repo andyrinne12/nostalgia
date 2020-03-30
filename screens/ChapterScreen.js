@@ -19,6 +19,7 @@ import {
 
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
+import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 
 import SongLibrary from '../constants/SongLibrary.js';
@@ -77,12 +78,12 @@ export default class ChapterScreen extends React.Component {
     return (<View style={styles.mainContainer}>
 
       <View style={[
-          containerStyle(100, 20), {
+          containerStyle(100, 10), {
             justifyContent: 'flex-start'
           }
         ]}>
         <View style={[
-            containerStyle(100, 50), {
+            containerStyle(100, 100), {
               backgroundColor: 'transparent'
             }
           ]}>
@@ -95,7 +96,7 @@ export default class ChapterScreen extends React.Component {
             justifyContent: 'flex-start'
           }
         ]}>
-        <View style={containerStyle(100, 60)}>
+        <View style={containerStyle(100, 80)}>
           <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} onMomentumScrollEnd={(event) => {
               this.setState({
                 currentAlbum: event.nativeEvent.contentOffset.x / screenWidth
@@ -104,12 +105,10 @@ export default class ChapterScreen extends React.Component {
             <this.AlbumList rotation={albumThumbnailRotation}/>
           </ScrollView>
         </View>
-        <View style={containerStyle(100, 40)}>
+        <View style={containerStyle(100, 20)}>
           <Text style={{
               width: '80%',
               height: '100%',
-              padding: 20,
-              margin: 20,
               textAlignVertical: "center",
               textAlign: "center",
               fontSize: screenWidth * 0.1,
@@ -119,18 +118,13 @@ export default class ChapterScreen extends React.Component {
             {library[this.state.currentAlbum].albumName}</Text>
         </View>
       </View>
-      <View style={containerStyle(100, 10)}>
-        <Text style={{
-            width: '80%',
-            height: '100%',
-            padding: 20,
-            margin: 20,
-            textAlignVertical: "center",
-            textAlign: "center",
-            fontSize: screenWidth * 0.07,
-            fontFamily: 'ArcadeClassic',
-            color: 'white'
-          }}>{this.state.albumTitle}</Text>
+      <View style={[containerStyle(100, 20),{flexDirection:'row'}]}>
+        <View style={containerStyle(50,100)}>
+        <RewardButton title='Share' ammount={'+5'} onPress={() => {}}/>
+        </View>
+        <View style={containerStyle(50,100)}>
+        <RewardButton title='Video   Ads' ammount={'+10'} onPress={() => {}}/>
+        </View>
       </View>
     </View>);
   }
@@ -158,7 +152,8 @@ function AlbumThumbnail({title, thumbnail, rotation, press}) {
 const styles = StyleSheet.create({
   mainContainer: {
     ...containerStyle(100, 100),
-    backgroundColor: '#40dbe3'
+    backgroundColor: '#40dbe3',
+    justifyContent: 'flex-start'
   },
   vinylThumbnail: {
     padding: 20,

@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import GameStatusBar from '../components/GameStatusBar.js';
+import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 
 
@@ -107,29 +108,22 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><HintButton title='Year' ammount={5} onPress={() => {
+          ]}><RewardButton title='Year' ammount={5} onPress={() => {
         console.log(3)
       }}/></View>
         <View style={[
             containerStyle(34, 100), {}
-          ]}><HintButton title='Song' ammount={20} onPress={() => {
+          ]}><RewardButton title='Song' ammount={20} onPress={() => {
         console.log(3)
       }}/></View>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><HintButton title='Author' ammount={10} onPress={() => {
+          ]}><RewardButton title='Author' ammount={10} onPress={() => {
         console.log(3)
       }}/></View>
       </View>
     </View>);
   }
-}
-
-function HintButton({title, ammount, onPress}) {
-  return (<TouchableOpacity style={styles.hintButton}>
-    <Text style={styles.hintButtonText}>{title}</Text>
-    <Text style={styles.hintButtonText}>{ammount}💸</Text>
-  </TouchableOpacity>);
 }
 
 const styles = StyleSheet.create({
@@ -176,17 +170,4 @@ const styles = StyleSheet.create({
     fontFamily: 'ArcadeClassic',
     fontSize: 20,
     color: 'white'
-  },
-  hintButton: {
-    ...containerStyle(80, 50),
-    borderColor: '#ed34b3',
-    borderWidth: 1,
-    borderRadius: 7
-  },
-  hintButtonText: {
-    fontFamily: 'ArcadeClassic',
-    color: 'white',
-    textAlign: 'center',
-    fontSize: 20
-  }
-});
+  }});
