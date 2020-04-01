@@ -36,8 +36,11 @@ export default function App(props) {
           'ArcadeClassic': require('./assets/fonts/ArcadeClassic.ttf')
         });
 
-        // Load user progress
+        await clearAll();
+
         await loadUserData();
+
+        saveUserData();
 
       } catch (e) {
         // We might want to provide this error information to an error reporting service

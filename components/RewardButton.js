@@ -2,18 +2,29 @@ import * as React from 'react';
 import {
   StyleSheet,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  View
 } from 'react-native';
 import {
   containerStyle
 } from '../styles/Containers.js';
 
 export default function RewardButton({title,ammount,onPress,used}) {
-    return (<TouchableOpacity style={[styles.hintButton,used ? {opacity: 0.3} : {opacity: 1}]} onPress={onPress}>
+    return (
+      <View style={buttonStyle(used)}>
+      <TouchableOpacity style={containerStyle(100,100)} onPress={onPress}>
       <Text style={styles.hintButtonText}>{title}</Text>
       <Text style={styles.hintButtonText}>{ammount}💸</Text>
-    </TouchableOpacity>);
+    </TouchableOpacity>
+  </View>);
   }
+
+function buttonStyle(used){
+  return {
+    ...styles.hintButton,
+    opacity: used ? 0.3 : 1
+  }
+}
 
 const styles = StyleSheet.create({
   hintButton: {

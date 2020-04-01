@@ -33,7 +33,7 @@ export default class SongSelectscreen extends React.Component {
     this.state = {};
   }
 
-  keyExtractor = (track) => track.title
+  keyExtractor = (track) => track.title;
 
   renderItem = ({item}) => {
     if (!global.songProgress[item.songID].done) {
@@ -41,7 +41,7 @@ export default class SongSelectscreen extends React.Component {
           textAlign: 'center'
         }} title={item.emojis} bottomDivider={true} onPress={() => {
           this.props.navigation.navigate('PlayScreen', {item});
-        }}/>)
+        }}/>);
     } else {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           fontFamily: 'ArcadeClassic',
@@ -53,11 +53,15 @@ export default class SongSelectscreen extends React.Component {
           color: 'white'
         }} subtitle={item.author} bottomDivider={true} onPress={() => {
           this.props.navigation.navigate('PlayScreen', {item});
-        }}/>)
+        }}/>);
     }
-  }
+  };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.navigation.addListener('focus', () => {
+      this.forceUpdate();
+    });
+  };
 
   render() {
     return (<View style={[

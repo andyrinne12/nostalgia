@@ -7,57 +7,94 @@ import {
   Dimensions,
   TextInput,
   KeyboardAvoidingView,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 
+import {Icon} from 'react-native-elements';
 import GameStatusBar from '../components/GameStatusBar.js';
 import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 import {saveUserData} from '../util/UserData.js';
+import FuzzySet from 'fuzzyset';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
+const guessThreshold = 0.75;
+
 export default class ChapterScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      progress: 0
+    };
   }
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.navigation.addListener('focus', () => {
+      this.forceUpdate();
+      console.log('play');
+      this.state.toGuess = FuzzySet([this.props.route.params.item.title]);
+    });
+  };
+
+  updateText(text) {
+    if (this.state.toGuess == null || (typeof this.state.toGuess === 'undefined')) {
+      this.state.toGUess = FuzzySet([this.props.route.params.item.title]);
+    }
+    const res = this.state.toGuess.get(text);
+    if (res == null) {
+      return;
+    }
+    this.state.progress = parseInt((res[0][0] / guessThreshold) * 100);
+    if (this.state.progress > 100) {
+      this.state.progress = 100;
+    }
+    if (this.state.progress == 100) {
+      this.guessed();
+    }
+    this.forceUpdate();
+  }
+
+  guessed() {
+    global.songProgress[this.props.route.params.item.songID].done = true;
+  };
 
   rgbPercent(percent) {
-    var red = (percent) / 100 * 255;
-    var green = (100 - percent) / 100 * 255;
-    return ("rgb(" + red + "," + green + ",0)");
+    if (percent < 50) {
+      return ("rgb(" + 255 + "," + percent / 50 * 255 + ",0)");
+    } else {
+      return ("rgb(" + 255 * (100 - percent) / 50 + "," + 255 + ",0)");
+    }
   }
 
   titleText() {
     return (
       global.songProgress[this.props.route.params.item.songID].done
-      ? 'Title' + '\n' + this.props.route.params.item.title
+      ? 'Titlu' + '\n' + this.props.route.params.item.title
       : '');
   }
 
   yearText() {
-    return 'Year\n' + (
+    return 'An\n' + (
       global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done
       ? this.props.route.params.item.year
-      : '!!!');
+      : '???');
   }
 
   authorText() {
-    return 'Author\n' + (
+    return 'Autor\n' + (
       global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done
       ? this.props.route.params.item.author
-      : '!!!');
+      : '???');
   }
 
   revealYear(ammount) {
-    if(global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done){
+    if (global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done) {
       return;
     }
     if (global.currency < ammount) {
-      alert();
+      this.noMoneyAlert();
     } else {
       global.currency -= ammount;
       global.songProgress[this.props.route.params.item.songID].year = true;
@@ -67,11 +104,11 @@ export default class ChapterScreen extends React.Component {
   }
 
   revealAuthor(ammount) {
-    if(global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done){
+    if (global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done) {
       return;
     }
     if (global.currency < ammount) {
-      Alert.alert();
+      this.noMoneyAlert();
     } else {
       global.currency -= ammount;
       global.songProgress[this.props.route.params.item.songID].author = true;
@@ -81,16 +118,28 @@ export default class ChapterScreen extends React.Component {
   }
 
   revealSong(ammount) {
-    if(global.songProgress[this.props.route.params.item.songID].done){
+    if (global.songProgress[this.props.route.params.item.songID].done) {
       return;
     }
     if (global.currency < ammount) {
-      Alert.alert();
+      this.noMoneyAlert();
     } else {
       global.currency -= ammount;
       global.songProgress[this.props.route.params.item.songID].done = true;
       saveUserData();
     }
+    this.forceUpdate();
+  }
+
+  noMoneyAlert() {
+    Alert.alert('Hopa', 'Nu mai ai bani', [
+      {
+        text: 'Bag un video'
+      }, {
+        text: 'Raman sarac',
+        style: 'cancel'
+      }
+    ], {cancelable: false});
     this.forceUpdate();
   }
 
@@ -129,7 +178,15 @@ export default class ChapterScreen extends React.Component {
             <Text style={styles.headerText}>{this.yearText()}</Text>
           </View>
         </View>
-        <View style={containerStyle(20, 100)}></View>
+        <View style={containerStyle(20, 100)}>{
+            globa.songProgress[this.props.route.params.item.songID].done
+              ? <Icon raised={true} name='music' type='font-awesome' color={this.rgbPercent(this.state.progress)} style={{
+                    backgrundColor: 'transparent'
+                  }}/>
+              : <Icon raised={true} name='play' type='font-awesome' color='green' style={{
+                    backgrundColor: 'transparent'
+                  }}/>
+          }</View>
         <View style={containerStyle(40, 100)}>
           <View style={{
               width: '90%',
@@ -145,7 +202,11 @@ export default class ChapterScreen extends React.Component {
         <Text style={styles.emoji}>{this.props.route.params.item.emojis}</Text>
       </View>
       <View style={containerStyle(100, 15)}>
-        <TextInput style={styles.textInput} allowFontScalling={true}/></View>
+        {
+          global.songProgress[this.props.route.params.item.songID].done == false && <TextInput style={styles.textInput} allowFontScalling={true} onChangeText={(text) => {
+                this.updateText(text);
+              }}/>
+        }</View>
 
       <View style={[
           containerStyle(100, 20), {}
@@ -160,13 +221,19 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='Year' ammount={5} onPress={() => {this.revealYear(5);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done}/></View>
+          ]}><RewardButton title='An' ammount={5} onPress={() => {
+        this.revealYear(5);
+      }} used={global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
-          ]}><RewardButton title='Song' ammount={20} onPress={() => {this.revealSong(20);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].done}/></View>
+          ]}><RewardButton title='Piesa' ammount={20} onPress={() => {
+        this.revealSong(20);
+      }} used={global.songProgress[this.props.route.params.item.songID].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='Author' ammount={10} onPress={() => {this.revealAuthor(10);this.forceUpdate();}} used={global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done}/></View>
+          ]}><RewardButton title='Autor' ammount={10} onPress={() => {
+        this.revealAuthor(10);
+      }} used={global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done}/></View>
       </View>
     </View>);
   }

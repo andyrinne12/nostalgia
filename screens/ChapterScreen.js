@@ -17,10 +17,7 @@ import {
   StatusBar,
   Share
 } from 'react-native';
-
-import {
-  AdMobRewarded,
-} from 'expo'
+import {AdMobRewarded} from 'expo-ads-admob';
 
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
@@ -47,29 +44,25 @@ export default class ChapterScreen extends React.Component {
     }
   }
 
-   onShare = async () => {
+  onShare = async () => {
     try {
-      const result =
-      await Share.share(
-      {
-        message:
-          'Mare joc aici cu melodii frumoase',
-      },
-      {
+      const result = await Share.share({
+        message: 'Mare joc aici cu melodii frumoase'
+      }, {
         excludedActivityTypes: [
 
-           //'com.facebook.Messenger.ShareExtension',
-           //"com.apple.UIKit.activity.PostToTwitter",
-           //"com.apple.UIKit.activity.Mail",
-           //'com.apple.UIKit.activity.Print',
-           //'com.apple.UIKit.activity.CopyToPasteboard',
-           //'com.apple.UIKit.activity.AssignToContact',
-           //'com.apple.UIKit.activity.SaveToCameraRoll',
-           //  'com.apple.UIKit.activity.AddToReadingList',
-           //  'com.apple.UIKit.activity.PostToFlickr',
-           //  'com.apple.UIKit.activity.PostToVimeo',
-           //  'com.apple.UIKit.activity.PostToTencentWeibo',
-           //  'com.apple.UIKit.activity.AirDrop',
+          //'com.facebook.Messenger.ShareExtension',
+          //"com.apple.UIKit.activity.PostToTwitter",
+          //"com.apple.UIKit.activity.Mail",
+          //'com.apple.UIKit.activity.Print',
+          //'com.apple.UIKit.activity.CopyToPasteboard',
+          //'com.apple.UIKit.activity.AssignToContact',
+          //'com.apple.UIKit.activity.SaveToCameraRoll',
+          //  'com.apple.UIKit.activity.AddToReadingList',
+          //  'com.apple.UIKit.activity.PostToFlickr',
+          //  'com.apple.UIKit.activity.PostToVimeo',
+          //  'com.apple.UIKit.activity.PostToTencentWeibo',
+          //  'com.apple.UIKit.activity.AirDrop',
           //  'com.apple.UIKit.activity.OpenInIBooks',
           //  'com.apple.UIKit.activity.MarkupAsPDF',
           //  'com.apple.reminders.RemindersEditorExtension',
@@ -80,25 +73,34 @@ export default class ChapterScreen extends React.Component {
           //  'com.google.GooglePlus.ShareExtension',
           //  'com.tumblr.tumblr.Share-With-Tumblr',
           //  'net.whatsapp.WhatsApp.ShareExtension',
-        ],
-      }
-      );
+        ]
+      });
 
-
-      if (result.action === Share.sharedAction && result.activityType !='com.facebook.Messenger.ShareExtension') {
+      if (result.action === Share.sharedAction && result.activityType != 'com.facebook.Messenger.ShareExtension') {
         //AICI DACA S A REUSIT SHARE UL
         console.log(result.activityType);
       } else if (result.action === Share.dismissedAction) {
         //AICI DACA S A OPRIT
       }
     } catch (error) {
-       //AICI DACA A DAT EROARE
+      //AICI DACA A DAT EROARE
       alert(error.message);
     }
   };
 
+  openRewarded = async () => {
+    try {
+      await AdMobRewarded.requestAdAsync()
+      await AdMobRewarded.showAdAsync()
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
   componentDidMount() {
-    this.startAlbumThumbRot();
+    this.props.navigation.addListener('focus', () => {
+      this.forceUpdate();
+    });
   }
 
   AlbumList = ({rotation}) => {
@@ -121,15 +123,6 @@ export default class ChapterScreen extends React.Component {
 
   albumClick() {
     this.setState({albumTitle: 'puya'})
-  }
-
-  _openRewarded = async () => {
-    try {
-      await AdMobRewarded.requestAdAsync()
-      await AdMobRewarded.showAdAsync()
-    } catch (error) {
-      console.error(error)
-    } 
   }
 
   render() {
@@ -183,12 +176,20 @@ export default class ChapterScreen extends React.Component {
             {library[this.state.currentAlbum].albumName}</Text>
         </View>
       </View>
-      <View style={[containerStyle(100, 20),{flexDirection:'row'}]}>
-        <View style={containerStyle(50,100)}>
-        <RewardButton title='Share' ammount={'+5'} used={false} onPress={this.onShare}/>
+      <View style={[
+          containerStyle(100, 20), {
+            flexDirection: 'row'
+          }
+        ]}>
+        <View style={containerStyle(50, 100)}>
+          <RewardButton title='Share' ammount={'+5'} used={false} onPress={() => {
+              this.onShare();
+            }}/>
         </View>
-        <View style={containerStyle(50,100)}>
-        <RewardButton title='Video   Ads' ammount={'+10'} used={false} onPress={() => {this._openRewarded}}/>
+        <View style={containerStyle(50, 100)}>
+          <RewardButton title='Video Ad' ammount={'+10'} used={false} onPress={() => {
+              this.openRewarded();
+            }}/>
         </View>
       </View>
     </View>);
