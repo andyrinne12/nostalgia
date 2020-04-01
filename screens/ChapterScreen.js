@@ -104,7 +104,7 @@ export default class ChapterScreen extends React.Component {
   }
 
   AlbumList = ({rotation}) => {
-    return (library.map((album, index) => <AlbumThumbnail key={album.albumID} title='album.albumTitle' thumbnail={vinylImage} rotation={rotation} press={() => {
+    return (library.albums.map((album, index) => <AlbumThumbnail key={album.id} title={album.title} thumbnail={vinylImage} rotation={rotation} press={() => {
         this.props.navigation.navigate('SongSelectScreen', {album})
       }}/>));
   }
@@ -173,7 +173,7 @@ export default class ChapterScreen extends React.Component {
               fontFamily: 'ArcadeClassic',
               color: 'white'
             }}>
-            {library[this.state.currentAlbum].albumName}</Text>
+            {library.albums[this.state.currentAlbum].title}</Text>
         </View>
       </View>
       <View style={[

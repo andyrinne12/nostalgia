@@ -15,6 +15,7 @@ import Credits from './screens/Credits.js';
 
 import {saveUserData,loadUserData} from './util/UserData.js';
 import {loadData,storeData,clearAll} from './util/DataStorage.js';
+import {loadSongLibrary,unloadSongLibrary} from './util/SoundResources.js';
 
 const Stack = createStackNavigator();
 
@@ -36,11 +37,13 @@ export default function App(props) {
           'ArcadeClassic': require('./assets/fonts/ArcadeClassic.ttf')
         });
 
+        await loadSongLibrary();
+
         await clearAll();
 
         await loadUserData();
 
-        saveUserData();
+        await saveUserData();
 
       } catch (e) {
         // We might want to provide this error information to an error reporting service

@@ -33,26 +33,28 @@ export default class SongSelectscreen extends React.Component {
     this.state = {};
   }
 
-  keyExtractor = (track) => track.title;
+  keyExtractor = (song) => song.id;
 
   renderItem = ({item}) => {
-    if (!global.songProgress[item.songID].done) {
+    const id = item.id;
+    const track = library.tracks[id];
+    if (!global.songProgress[id].done) {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           textAlign: 'center'
-        }} title={item.emojis} bottomDivider={true} onPress={() => {
-          this.props.navigation.navigate('PlayScreen', {item});
+        }} title={track.emojis} bottomDivider={true} onPress={() => {
+          this.props.navigation.navigate('PlayScreen', {track});
         }}/>);
     } else {
       return (<ListItem containerStyle={styles.listItem} titleStyle={{
           fontFamily: 'ArcadeClassic',
           fontSize: 18,
           color: 'white'
-        }} leftElement={<Tick tick = '*' />} title={item.title} subtitleStyle={{
+        }} leftElement={<Tick tick = '*' />} title={track.title} subtitleStyle={{
           fontFamily: 'ArcadeClassic',
           fontSize: 17,
           color: 'white'
-        }} subtitle={item.author} bottomDivider={true} onPress={() => {
-          this.props.navigation.navigate('PlayScreen', {item});
+        }} subtitle={track.author} bottomDivider={true} onPress={() => {
+          this.props.navigation.navigate('PlayScreen', {track});
         }}/>);
     }
   };
@@ -87,7 +89,7 @@ export default class SongSelectscreen extends React.Component {
       <View style={[
           containerStyle(100, 10), {}
         ]}>
-        <ListHeader title={this.props.route.params.album.albumName}/></View>
+        <ListHeader title={this.props.route.params.album.title}/></View>
       <View style={[
           containerStyle(95, 80), {
             flexDirection: 'row'

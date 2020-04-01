@@ -11,7 +11,6 @@ export async function loadUserData() {
   const library = SongLibrary();
 
   const currency = await loadData('currency');
-  console.log(currency);
   if (currency === null) {
     global.currency = 0;
   } else {
@@ -26,34 +25,30 @@ export async function loadUserData() {
   }
 
   const songProgressData = JSON.parse(await loadData('songProgress'));
+  global.songProgress = {};
+
   if (songProgressData === null) {
-    library.map((album) => {
-      global.songProgress = {};
-      album.tracks.map((track) => {
-        global.songProgress[track.songID] = {};
-        global.songProgress[track.songID].done = false;
-        global.songProgress[track.songID].year = false;
-        global.songProgress[track.songID].author = false;
-      })
-    });
+    library.tracks.map(((track) => {
+      global.songProgress[track.id] = {};
+      global.songProgress[track.id].done = false;
+      global.songProgress[track.id].year = false;
+      global.songProgress[track.id].author = false;
+    }));
   } else {
-    library.map((album) => {
-      global.songProgress = {};
-      album.tracks.map((track) => {
-        if (track === null) {
-          global.songProgress[track.songID] = {};
-          global.songProgress[track.songID].done = false;
-          global.songProgress[track.songID].year = false;
-          global.songProgress[track.songID].author = false;
-        } else {
-          const song = songProgressData[track.songID];
-          global.songProgress[track.songID] = {};
-          global.songProgress[track.songID].done = (song.done == true);
-          global.songProgress[track.songID].year = (song.year == true);
-          global.songProgress[track.songID].author = (song.author == true);
-        }
-      })
-    })
+    library.tracks.map((track) => {
+      if (track === null) {
+        global.songProgress[track.id] = {};
+        global.songProgress[track.id].done = false;
+        global.songProgress[track.id].year = false;
+        global.songProgress[track.id].author = false;
+      } else {
+        const song = songProgressData[track.id];
+        global.songProgress[track.id] = {};
+        global.songProgress[track.id].done = (song.done == true);
+        global.songProgress[track.id].year = (song.year == true);
+        global.songProgress[track.id].author = (song.author == true);
+      }
+    });
   }
 }
 

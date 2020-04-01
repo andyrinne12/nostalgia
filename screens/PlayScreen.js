@@ -8,8 +8,10 @@ import {
   TextInput,
   KeyboardAvoidingView,
   TouchableOpacity,
-  Alert
+  Alert,
+  BackHandler
 } from 'react-native';
+import {Audio} from 'expo-av';
 
 import {Icon} from 'react-native-elements';
 import GameStatusBar from '../components/GameStatusBar.js';
@@ -33,14 +35,14 @@ export default class ChapterScreen extends React.Component {
   componentDidMount() {
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
-      console.log('play');
-      this.state.toGuess = FuzzySet([this.props.route.params.item.title]);
+      this.state.toGuess = FuzzySet([this.props.route.params.track.title]);
     });
+    BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
   };
 
   updateText(text) {
     if (this.state.toGuess == null || (typeof this.state.toGuess === 'undefined')) {
-      this.state.toGUess = FuzzySet([this.props.route.params.item.title]);
+      this.state.toGUess = FuzzySet([this.props.route.params.track.title]);
     }
     const res = this.state.toGuess.get(text);
     if (res == null) {
@@ -57,8 +59,17 @@ export default class ChapterScreen extends React.Component {
   }
 
   guessed() {
-    global.songProgress[this.props.route.params.item.songID].done = true;
+    global.songProgress[this.props.route.params.track.id].done = true;
+    this.playSong();
   };
+
+  async playSong() {
+    const status = await global.songFiles[this.props.route.params.track.id].getStatusAsync();
+    global.songFiles[this.props.route.params.track.id].stopAsync();
+    if (status.isPlaying == false) {
+      global.songFiles[this.props.route.params.track.id].playAsync();
+    }
+  }
 
   rgbPercent(percent) {
     if (percent < 50) {
@@ -70,62 +81,62 @@ export default class ChapterScreen extends React.Component {
 
   titleText() {
     return (
-      global.songProgress[this.props.route.params.item.songID].done
-      ? 'Titlu' + '\n' + this.props.route.params.item.title
+      global.songProgress[this.props.route.params.track.id].done
+      ? 'Titlu' + '\n' + this.props.route.params.track.title
       : '');
   }
 
   yearText() {
     return 'An\n' + (
-      global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done
-      ? this.props.route.params.item.year
+      global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done
+      ? this.props.route.params.track.year
       : '???');
   }
 
   authorText() {
     return 'Autor\n' + (
-      global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done
-      ? this.props.route.params.item.author
+      global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done
+      ? this.props.route.params.track.author
       : '???');
   }
 
   revealYear(ammount) {
-    if (global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done) {
+    if (global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
       global.currency -= ammount;
-      global.songProgress[this.props.route.params.item.songID].year = true;
+      global.songProgress[this.props.route.params.track.id].year = true;
       saveUserData();
     }
     this.forceUpdate();
   }
 
   revealAuthor(ammount) {
-    if (global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done) {
+    if (global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
       global.currency -= ammount;
-      global.songProgress[this.props.route.params.item.songID].author = true;
+      global.songProgress[this.props.route.params.track.id].author = true;
       saveUserData();
     }
     this.forceUpdate();
   }
 
   revealSong(ammount) {
-    if (global.songProgress[this.props.route.params.item.songID].done) {
+    if (global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
       global.currency -= ammount;
-      global.songProgress[this.props.route.params.item.songID].done = true;
+      global.songProgress[this.props.route.params.track.id].done = true;
       saveUserData();
     }
     this.forceUpdate();
@@ -179,13 +190,13 @@ export default class ChapterScreen extends React.Component {
           </View>
         </View>
         <View style={containerStyle(20, 100)}>{
-            globa.songProgress[this.props.route.params.item.songID].done
+            global.songProgress[this.props.route.params.track.id].done == false
               ? <Icon raised={true} name='music' type='font-awesome' color={this.rgbPercent(this.state.progress)} style={{
                     backgrundColor: 'transparent'
                   }}/>
               : <Icon raised={true} name='play' type='font-awesome' color='green' style={{
                     backgrundColor: 'transparent'
-                  }}/>
+                  }} onPress={() => this.playSong()}/>
           }</View>
         <View style={containerStyle(40, 100)}>
           <View style={{
@@ -199,11 +210,11 @@ export default class ChapterScreen extends React.Component {
         </View>
       </View>
       <View style={styles.emojiScreen}>
-        <Text style={styles.emoji}>{this.props.route.params.item.emojis}</Text>
+        <Text style={styles.emoji}>{this.props.route.params.track.emojis}</Text>
       </View>
       <View style={containerStyle(100, 15)}>
         {
-          global.songProgress[this.props.route.params.item.songID].done == false && <TextInput style={styles.textInput} allowFontScalling={true} onChangeText={(text) => {
+          global.songProgress[this.props.route.params.track.id].done == false && <TextInput style={styles.textInput} allowFontScalling={true} onChangeText={(text) => {
                 this.updateText(text);
               }}/>
         }</View>
@@ -223,17 +234,17 @@ export default class ChapterScreen extends React.Component {
             containerStyle(33, 100), {}
           ]}><RewardButton title='An' ammount={5} onPress={() => {
         this.revealYear(5);
-      }} used={global.songProgress[this.props.route.params.item.songID].year || global.songProgress[this.props.route.params.item.songID].done}/></View>
+      }} used={global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
           ]}><RewardButton title='Piesa' ammount={20} onPress={() => {
         this.revealSong(20);
-      }} used={global.songProgress[this.props.route.params.item.songID].done}/></View>
+      }} used={global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
           ]}><RewardButton title='Autor' ammount={10} onPress={() => {
         this.revealAuthor(10);
-      }} used={global.songProgress[this.props.route.params.item.songID].author || global.songProgress[this.props.route.params.item.songID].done}/></View>
+      }} used={global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done}/></View>
       </View>
     </View>);
   }
