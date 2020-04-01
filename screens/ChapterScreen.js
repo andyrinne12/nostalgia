@@ -18,6 +18,10 @@ import {
   Share
 } from 'react-native';
 
+import {
+  AdMobRewarded,
+} from 'expo'
+
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
 import RewardButton from '../components/RewardButton.js';
@@ -29,6 +33,9 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 const library = SongLibrary();
+
+AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
+AdMobRewarded.setTestDeviceID('EMULATOR');
 
 export default class ChapterScreen extends React.Component {
   constructor(props) {
@@ -116,6 +123,15 @@ export default class ChapterScreen extends React.Component {
     this.setState({albumTitle: 'puya'})
   }
 
+  _openRewarded = async () => {
+    try {
+      await AdMobRewarded.requestAdAsync()
+      await AdMobRewarded.showAdAsync()
+    } catch (error) {
+      console.error(error)
+    } 
+  }
+
   render() {
     const albumThumbnailRotation = this.state.albumThumbRotHolder.interpolate({
       inputRange: [
@@ -172,7 +188,7 @@ export default class ChapterScreen extends React.Component {
         <RewardButton title='Share' ammount={'+5'} used={false} onPress={this.onShare}/>
         </View>
         <View style={containerStyle(50,100)}>
-        <RewardButton title='Video   Ads' ammount={'+10'} used={false} onPress={() => {}}/>
+        <RewardButton title='Video   Ads' ammount={'+10'} used={false} onPress={() => {this._openRewarded}}/>
         </View>
       </View>
     </View>);
