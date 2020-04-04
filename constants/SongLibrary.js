@@ -336,113 +336,526 @@ export default function SongLibrary() {
       id: 47,
       title: 'Am bani de dat', //folosit
       emojis: '🙋‍♂️💵➡️💵🧑‍🤝‍🧑🏛️',
-      authors: 'Smiley',
+      author: 'Smiley',
       year: 2008,
       audio: require('../assets/music/song47.mp3')
     }, {
       id: 48, //folosit
       title: 'Super femei',
       emojis: '👈👩👀👉👩👐🦸‍♀️🦸‍♀️',
-      authors: 'Body & Soul',
+      author: 'Body & Soul',
       year: 2000,
       audio: require('../assets/music/song48.mp3')
     }, {
       id: 49,
       title: 'Banii si fetele', //folosit
       emojis: '💰➕👩👩🍽️📅',
-      authors: 'Valahia',
+      author: 'Valahia',
       year: 1999,
       audio: require('../assets/music/song49.mp3')
     }, {
       id: 50,
       title: 'La mare la soare', //folosit
       emojis: '🏖️☀️👩‍👧‍👧🚫👙',
-      authors: 'Valahia',
+      author: 'Valahia',
       year: 1999,
       audio: require('../assets/music/song50.mp3')
     }, {
       id: 51,
       title: 'Aprinde dragostea',
       emojis: '🙋‍♀️🚫👈🔥', //merge modificata
-      authors: 'Alexandra Ungureanu, Crush',
+      author: 'Alexandra Ungureanu, Crush',
       year: 2005,
       audio: require('../assets/music/song51.mp3')
     }, {
       id: 52,
       title: 'Cu tine in rai',
       emojis: '🤟🌎➡️🙋‍♀️😌👼', //mai merge pus un TOP langa pamant poate
-      authors: 'Alexandra Ungureanu, Crush',
+      author: 'Alexandra Ungureanu, Crush',
       year: 2007,
       audio: require('../assets/music/song52.mp3')
     }, {
       id: 53,
       title: 'Doar cu tine',
       emojis: '🚶🙋‍♀️🤗➡️1️⃣2️⃣3️⃣',
-      authors: 'Activ',
+      author: 'Activ',
       year: 2004,
       audio: require('../assets/music/song53.mp3')
     }, {
       id: 54, //folosit
       title: 'Cred ca m-am indragostit',
       emojis: '❤️🤷😃👊💓',
-      authors: 'Latin Express',
+      author: 'Latin Express',
       year: 1999,
       audio: require('../assets/music/song54.mp3')
     }, {
       id: 55,
       title: 'Visez',
       emojis: '🙋‍♀️👈🌎➕💭👦',
-      authors: 'Activ',
+      author: 'Activ',
       year: 2004,
       audio: require('../assets/music/song55.mp3')
     }, {
       id: 56,
       title: 'Ploaia',
       emojis: '🌧️😈🛁😡↔️❤️',
-      authors:'El Negro',
+      author:'El Negro',
       year: 2005,
       audio: require('../assets/music/song56.mp3')
     }, {
       id: 57,
       title: 'Oficial imi merge bine', //folosit
       emojis: '❤️➡️😡➡️😡➡️❤️🤷',
-      authors: 'Simplu',
+      author: 'Simplu',
       year: 2006,
       audio: require('../assets/music/song57.mp3')
     }, {
       id: 58,
       title: 'Lasa-ma papa la mare', //folosit
       emojis: '👴🙋‍♀️➡️🎉☀️',
-      authors: 'Andre',
+      author: 'Andre',
       year: 2000,
       audio: require('../assets/music/song58.mp3')
     }, {
       id: 59, //folosit
       title: 'Despre tine',
       emojis: '🌊😵👀➕🧑‍🤝‍🧑😭😭',
-      authors: 'O-Zone',
+      author: 'O-Zone',
       year: 2002,
       audio: require('../assets/music/song59.mp3')
     }, {
       id: 60,
       title: 'Vino la mine',
       emojis: '🙋‍♀️❓🏃‍♂️➡️💑💗♾️',
-      authors: 'N&D',
+      author: 'N&D',
       year: 1999,
       audio: require('../assets/music/song60.mp3')
     }, {
       id: 61,
       title: 'Nu din prima seara',
       emojis: '🚫1️⃣🌃', //grea ca dracu
-      authors: 'Cream, CRBL',
+      author: 'Cream, CRBL',
       year: 2005,
       audio: require('../assets/music/song61.mp3')
     }, {
       id: 62,
       title: 'Oops eroare',
       emojis: '🚫👩↔️🙋‍♀️➕🚫💗',
-      authors: 'Andreea Balan',
+      author: 'Andreea Balan',
       year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 63,
+      title: 'Jumatatea ta',
+      emojis: '🚪👊🔓🙋‍♂️🌓',
+      author: 'Simplu, Cream',
+      year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 64,
+      title: 'Vreau sarutarea ta',
+      emojis: '🚫🤔💭🌃🚫👩‍❤️‍👨',
+      author: 'Andra',
+      year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 65,
+      title: 'Veta',
+      emojis: '🗣️👧🔨💥🛀',
+      author: 'Stefan Banica Jr',
+      year: 2003,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 66,
+      title: 'Noi doi',
+      emojis: '🤲💧🙋‍♀️👀🙏👂🗣️',
+      author: 'Corina, Pacha, Moga',
+      year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 67,
+      title: 'Un lucru sa-mi dai',
+      emojis: '👀🔎📖➡️🙋‍♀️❤️',
+      author: 'Andra',
+      year: 2007,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 68,
+      title: 'Ti-am promis',
+      emojis: '🤞👐🙋‍♂️🚶‍♂️🧳',
+      author: 'Akcent',
+      year: 2002,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 69,
+      title: 'Ca la inceput',
+      emojis: '😑🙋‍♂️😎➡️🚫👀➡️❤️',
+      author: 'Animal X, Corina',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 70,
+      title: 'Burning love',
+      emojis: '❤️🔥↔️☀️📅',
+      author: 'Connect-R',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 71,
+      title: 'Still',
+      emojis: '🙋‍♂️🙋‍♂️🥵🔥➕🙋‍♂️🙋‍♂️🧗🔝',
+      author: 'Connect-R, Chris Mayer',
+      year: 2010,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 72,
+      title: 'In lipsa mea',
+      emojis: '🧑➡️🚪➕👀➡️👧➕👋🙏🚫🚶‍♂️',
+      author: 'Smiley, Uzzi',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 73,
+      title: 'Imi place la tine tot',
+      emojis: '🙋‍♀️❤️👆♾️💋🔥',
+      author: 'Corina, Don Baxter',
+      year: 2005,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 74,
+      title: 'Cine, cine',
+      emojis: '👆🕯️⭐⭐🌃🌃🥵🤗',
+      author: 'Pepe',
+      year: 2002,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 75,
+      title: 'Doar ea',
+      emojis: '👧👐🙋‍♂️🤫⏹️🔇',
+      author: 'Alex Velea',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 76,
+      title: 'Mr. originality',
+      emojis: '⚽👨‍💼👋🌃🛏️🙋‍♀️',
+      author: 'Simplu',
+      year: 2007,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 77,
+      title: 'Ce ti-as face',
+      emojis: '4️⃣🧱5️⃣0️⃣0️⃣0️⃣🇼💥🥵🚶‍♀️',
+      author: 'Anda Adam',
+      year: 2007,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 78,
+      title: 'Jokero',
+      emojis: '🤫🎶🕺💃1️⃣ 2️⃣💋',
+      author: 'Akcent',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 79,
+      title: 'Vreau sa te sun',
+      emojis: '📞📞😔😔',
+      author: 'Fely, Puya',
+      year: 2010,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 80,
+      title: 'Preocupat cu gura ta', // ar merge modificat
+      emojis: '✋🙋‍♂🤲🤝✋👆',
+      author: 'Smiley',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 81,
+      title: 'If you feel my love',
+      emojis: '👆🤥👆👀🚫🚶‍♂️🔙😭',
+      author: 'Blaxy Girls',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 82,
+      title: 'Sus pe bar',
+      emojis: '🙋‍♂👀👧👧🔝🍫🍷🍺', //lipsesc pepenii
+      author: 'Puya, Alex Velea',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 83,
+      title: 'Yamasha',
+      emojis: '🏃‍♂️🏃‍♀️🌎🗺️👩‍❤️‍👨👔',
+      author: 'Alex Velea',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 84,
+      title: 'Dincolo de noapte e zi',
+      emojis: '🌃⏭️🌅🌧️⏭️☀️👩‍❤️‍👨🤞',
+      author: 'Nicola',
+      year: 2003,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 85,
+      title: 'Tot mai sus',
+      emojis: '🗣️🏃‍♂️🚫🙁👀⏲️👋 💭💭🧳🚆 🔝🔝',
+      author: 'Guess Who, Moga',
+      year: 2011,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 86,
+      title: 'Libera din nou',
+      emojis: '🆓😌👇🌃🙋‍♀️',
+      author: 'Andreea Balan',
+      year:  2002,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 87,
+      title: 'Kboom',
+      emojis: '',  //n-am emoji
+      author: 'CRBL, Helen',
+      year: 2011,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 88,
+      title: 'Ecou',
+      emojis: '🔝❤️🗣️💨', //cam slab
+      author: 'Elena, Glance',
+      year: 2013,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 89,
+      title: 'Defectul tau sunt eu',
+      emojis: '', //n-am emoji
+      author: 'Alex Velea',
+      year: 2014,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 90,
+      title: 'Ring the alarm',
+      emojis: '', //n-am emoji
+      autor: 'Connect-R',
+      year: 2011,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 91,
+      title: 'Locul potrivit',
+      emojis: '🚫🤰👶🌎✔️',
+      author: 'Guess Who',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 92,
+      title: 'Romanul nu are noroc',
+      emojis: '🇷🇴🚫🍀',
+      author: 'CRBL',
+      year: 2010,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 93,
+      title: 'Si ce',
+      emojis: '🤷‍♂️🔝☁️👐🏻❓',
+      author: 'Voltaj',
+      year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 94,
+      title: 'Asa-s prietenii',
+      emojis: '', //n-am emoji
+      author: 'Hi-Q',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 95,
+      title: 'Ya Bb',
+      emojis: '🌃🔜🏙👩‍❤️‍👨🏃‍♂️🌎',
+      author: 'Play&Win',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 96,
+      title: 'Cand noaptea vine',
+      emojis: '🔜🌃🤔👆',
+      author: 'Alex Velea',
+      year: 2012,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 97,
+      title: 'French kiss',
+      emojis: '👅😘',
+      author: 'Akcent',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 98,
+      title: 'Stay with me',
+      emojis: '🆖1️⃣🛌🙋‍♂️❤️🙋‍♂️👨',
+      author: 'Akcent',
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 99,
+      title: 'De ma vei chema',
+      emojis: '🤙📅💆',
+      author: 'Nicola',
+      year: 2005,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 100,
+      title: 'Vorbe care dor',
+      emojis: '🌃🚶‍♂️🚫🍃😔🛏️❄️🗣️🔊',
+      author: '3 Sud Est',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 101,
+      title: 'De la capat',
+      emojis: '⏭️🌃🚫🤲⭐💨👆🔄',
+      author: 'Voltaj',
+      year: 2015,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 102,
+      title: 'Alladin',
+      emojis: '🙋‍♂️🧞🧞👉👧✊✊💡',
+      author: 'Bairam',
+      year: 2000,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 103,
+      title: 'Iubire',
+      emojis: '❤️✊🚫😴⏭️🌃❤️🚫😴',
+      author: '3 Sud Est',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 104,
+      title: 'Soapte',
+      emojis: '🤫👂🌃',
+      author: 'Celia',
+      year: 2008,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 105,
+      title: 'Dragostea ramane',
+      emojis: '❤️✅💨🌧️',
+      author: 'Andra',
+      year: 2007,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 106,
+      title: 'Ajutor',
+      emojis: ' 🤷‍♀️❓9️⃣1️⃣1️⃣🆘', //nu e 5 gang, merge schimbat
+      author: 'Anda Adam',
+      year: 2005,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 107,
+      title: '2 in 1',
+      emojis: '', //n-am emoji
+      author: 'RACLA',
+      year: 2005,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 108,
+      title: '18 ani',
+      emojis: ' 1️⃣8️⃣🎉🤪❤️🚫💸',
+      author: 'Vama Veche',
+      year: 2002,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 109,
+      title: 'Vara asta',
+      emojis: '☀😍☀😍👆🌊⏱️',
+      author: 'Vama Veche',
+      year: 1999,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 110,
+      title: 'Razna',
+      emojis: '🤷‍♂️🤷‍♀️🔊🔝🚫🚶‍♂️',
+      author: 'Hi-Q',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 111,
+      title: 'Asalt raggafonic',
+      emojis: '🙋🙋👍📝👍👉👧👍👂🔈',
+      author: 'M&G, Tataee',
+      year: 2004,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 112,
+      title: 'Inima mea bate',
+      emojis: '🙋‍♀️❤️👊👊👆',
+      author: 'Cristina Rus',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 113,
+      title: 'Basu si cu toba mare',
+      emojis: '🎸➕🥁🔝',
+      author: 'Vita de vie',
+      year: 1999,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 114,
+      title: 'Soundcheck',
+      emojis: '🔊✔️🔊✔️🎤❓',
+      author: 'Vita de vie',
+      year: 2010,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 115,
+      title: 'Doar o clipa',
+      emojis: ' 1️⃣⏳💤💭🤗💔➡️❤️',
+      author: 'Andra',
+      year: 2005,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 116,
+      title: 'Parfum de fericire',
+      emojis: '🤲1️⃣🌃❤️🤲',
+      author: 'Delia',
+      year: 2006,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 117,
+      title: 'Ai gresit',
+      emojis: '❌🚫🤔👆1️⃣❤️',
+      author: 'Blondy',
+      year: 2001,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 118,
+      title: 'Un 2 si trei de 0',
+      emojis: '🚫🌏⏸🏘',
+      author: 'BUG Mafia',
+      year: 2000,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 119,
+      title: 'Change',
+      emojis: '👶🔝🤩🤓',
+      author: 'Puya', //G hora, kamelia
+      year: 2009,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 120,
+      title: 'Inima mea',
+      emojis: '🤲❤️🙈👜',
+      author: 'ASIA',
+      year: 2000,
+      audio: require('../assets/music/song62.mp3')
+    }, {
+      id: 121,
+      title: 'Crazy loop',
+      emojis: '🚫🔙🚫🔙❓❤️🚫🔙🔙🔙',
+      author: 'Crazy loop',
+      year: 2007,
       audio: require('../assets/music/song62.mp3')
     }],
 
