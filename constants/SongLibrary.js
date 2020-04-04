@@ -11,7 +11,7 @@ export default function SongLibrary() {
       year: 2008,
       audio: require('../assets/music/song0.mp3')
     }, {
-      id: 1,
+      id: 1, //folosit
       title: 'Da-mi noptile inapoi',
       author: 'ASIA',
       emojis: '🤲🌃🌃🔙🌅🌅🔙',
@@ -25,7 +25,7 @@ export default function SongLibrary() {
       year: 2009,
       audio: require('../assets/music/song2.mp3')
     }, {
-      id: 3,
+      id: 3, //folosit
       title: 'Minim doi',
       emojis: '👩‍❤️‍💋‍👨2️⃣➕🤫',
       author: 'Alex Velea',
@@ -47,28 +47,28 @@ export default function SongLibrary() {
       audio: require('../assets/music/song5.mp3')
     }, {
       id: 6,
-      title: 'Dragoste de inchiriat',
+      title: 'Dragoste de inchiriat', //folosit
       emojis: '❤️💵 💵',
       author: 'Akcent',
       year: 2005,
       audio: require('../assets/music/song6.mp3')
     }, {
       id: 7,
-      title: '20 de ani',
+      title: '20 de ani', //folosit
       emojis: '2️⃣0️⃣🎉🚫😧🚫💵',
       author: 'Voltaj',
       year: 2001,
       audio: require('../assets/music/song7.mp3')
     }, {
       id: 8,
-      title: 'Dragostea din tei',
-      emojis: '🛸❤️🌿', //ar merge schimbat
+      title: 'Dragostea din tei', //folosit
+      emojis: '🛸👧❤️🌳🤔💭👀', //ar merge schimbat
       author: 'O-Zone',
       year: 2003,
       audio: require('../assets/music/song8.mp3')
     }, {
       id: 9,
-      title: 'De ce plang chitarele',
+      title: 'De ce plang chitarele', //folosit
       emojis: '❓❓😭 🎸🎸',
       author: 'O-Zone',
       year: 2003,
@@ -89,7 +89,7 @@ export default function SongLibrary() {
       audio: require('../assets/music/song11.mp3')
     }, {
       id: 12,
-      title: 'Secret',
+      title: 'Secret', //folosit
       emojis: '🤐🤫 👩‍❤️‍💋‍👨🎥',
       author: 'Alex Velea',
       year: 2009,
@@ -103,13 +103,13 @@ export default function SongLibrary() {
       audio: require('../assets/music/song13.mp3')
     }, {
       id: 14,
-      title: 'Gasca mea',
-      emojis: '👭👫👬🙋‍♂️', //ar merge schimbat
+      title: 'Gasca mea', //folosit
+      emojis: '👭👫👬🙋‍♂️🚫🤫',
       author: 'Hi-Q',
       year: 2004,
       audio: require('../assets/music/song14.mp3')
     }, {
-      id: 15,
+      id: 15, //folosit
       title: 'Daca dragostea dispare',
       emojis: '1️⃣❓🤔🙋‍♂️',
       author: 'Connect-R, Alex Velea',
@@ -193,7 +193,7 @@ export default function SongLibrary() {
       year: 2012,
       audio: require('../assets/music/song26.mp3')
     }, {
-      id: 27,
+      id: 27, //folosit
       title: 'Raisa',
       emojis: '👩🏻‍🦰🚫🤥',
       author: 'Fly Project',
@@ -235,7 +235,7 @@ export default function SongLibrary() {
       year: 2013,
       audio: require('../assets/music/song32.mp3')
     }, {
-      id: 33,
+      id: 33, //folosit
       title: 'Daca ploaia s-ar opri',
       emojis: '🚫🌧️😢💧💧🌟🌅',
       author: 'Cargo',
@@ -257,7 +257,7 @@ export default function SongLibrary() {
       audio: require('../assets/music/song35.mp3')
     }, {
       id: 36,
-      title: 'O secunda',
+      title: 'O secunda', //folosit
       emojis: '1️⃣⌛️✅🔭👩🏻‍🦰💘',
       author: 'Simplu',
       year: 2005,
@@ -277,7 +277,7 @@ export default function SongLibrary() {
       year: 2006,
       audio: require('../assets/music/song38.mp3')
     }, {
-      id: 39,
+      id: 39, //folosit
       title: 'Pseudofabula',
       emojis: '❓🌃❓☀️❓🏙️❓🛏️',
       author: 'Rosu si negru',
@@ -320,7 +320,7 @@ export default function SongLibrary() {
       audio: require('../assets/music/song44.mp3')
     }, {
       id: 45,
-      title: 'Ani de liceu',
+      title: 'Ani de liceu', //folosit
       emojis: '⏱️🏫😟📚😓📐',
       author: 'Stela Enache',
       year: 1986,
@@ -334,13 +334,13 @@ export default function SongLibrary() {
       audio: require('../assets/music/song46.mp3')
     }, {
       id: 47,
-      title: 'Am bani de dat',
+      title: 'Am bani de dat', //folosit
       emojis: '🙋‍♂️💵➡️💵🧑‍🤝‍🧑🏛️',
       authors: 'Smiley',
       year: 2008,
       audio: require('../assets/music/song47.mp3')
     }, {
-      id: 48,
+      id: 48, //folosit
       title: 'Super femei',
       emojis: '👈👩👀👉👩👐🦸‍♀️🦸‍♀️',
       authors: 'Body & Soul',
@@ -348,14 +348,14 @@ export default function SongLibrary() {
       audio: require('../assets/music/song48.mp3')
     }, {
       id: 49,
-      title: 'Banii si fetele',
+      title: 'Banii si fetele', //folosit
       emojis: '💰➕👩👩🍽️📅',
       authors: 'Valahia',
       year: 1999,
       audio: require('../assets/music/song49.mp3')
     }, {
       id: 50,
-      title: 'La mare la soare',
+      title: 'La mare la soare', //folosit
       emojis: '🏖️☀️👩‍👧‍👧🚫👙',
       authors: 'Valahia',
       year: 1999,
@@ -382,9 +382,9 @@ export default function SongLibrary() {
       year: 2004,
       audio: require('../assets/music/song53.mp3')
     }, {
-      id: 54,
+      id: 54, //folosit
       title: 'Cred ca m-am indragostit',
-      emojis: '❤️🤷😃💓', //mai merge adaugat un pumn "bate"
+      emojis: '❤️🤷😃👊💓',
       authors: 'Latin Express',
       year: 1999,
       audio: require('../assets/music/song54.mp3')
@@ -404,20 +404,20 @@ export default function SongLibrary() {
       audio: require('../assets/music/song56.mp3')
     }, {
       id: 57,
-      title: 'Oficial imi merge bine',
+      title: 'Oficial imi merge bine', //folosit
       emojis: '❤️➡️😡➡️😡➡️❤️🤷',
       authors: 'Simplu',
       year: 2006,
       audio: require('../assets/music/song57.mp3')
     }, {
       id: 58,
-      title: 'Lasa-ma papa la mare',
+      title: 'Lasa-ma papa la mare', //folosit
       emojis: '👴🙋‍♀️➡️🎉☀️',
       authors: 'Andre',
       year: 2000,
       audio: require('../assets/music/song58.mp3')
     }, {
-      id: 59,
+      id: 59, //folosit
       title: 'Despre tine',
       emojis: '🌊😵👀➕🧑‍🤝‍🧑😭😭',
       authors: 'O-Zone',
@@ -448,35 +448,106 @@ export default function SongLibrary() {
 
     albums: [{
         id: 0,
-        title: 'Vara manelelor 2005',
+        title: 'Hiturile anilor 2000',
         tracks: [{
-            id: 22
+            id: 9
           },
           {
-            id: 31
+            id: 7
           },
           {
-            id: 45
-          },
-          {
-            id: 13
+            id: 1
           },
           {
             id: 12
           },
           {
-            id: 41
+            id: 14
+          },
+          {
+            id: 8
+          },
+          {
+            id: 47
+          },
+          {
+            id: 6
+          },
+          {
+            id: 57
+          },
+          {
+            id: 36
           }
         ]
       },
       {
         id: 1,
-        title: 'Toamna manelelor 2000',
+        title: 'Si mai multe hituri',
         tracks: [{
-            id: 2
+            id: 3
           },
           {
-            id: 0
+            id: 15
+          },
+          {
+            id: 27
+          },
+          {
+            id: 58
+          },
+          {
+            id: 59
+          },
+          {
+            id: 39
+          },
+          {
+            id: 33
+          },
+          {
+            id: 5
+          },
+          {
+            id: 48
+          },
+          {
+            id: 54
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: 'Si mai multa nostalgie',
+        tracks: [{
+            id: 45
+          },
+          {
+            id: 49
+          },
+          {
+            id: 50
+          },
+          {
+            id: 58
+          },
+          {
+            id: 59
+          },
+          {
+            id: 39
+          },
+          {
+            id: 33
+          },
+          {
+            id: 5
+          },
+          {
+            id: 48
+          },
+          {
+            id: 54
           }
         ]
       }
