@@ -31,8 +31,8 @@ const screenHeight = Dimensions.get('window').height;
 
 const library = SongLibrary();
 
-AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
-AdMobRewarded.setTestDeviceID('EMULATOR');
+// AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
+// AdMobRewarded.setTestDeviceID('EMULATOR');
 
 export default class ChapterScreen extends React.Component {
   constructor(props) {
@@ -44,7 +44,18 @@ export default class ChapterScreen extends React.Component {
     }
   }
 
-  onShare = async () => {
+  changeCurrentAlbum(offset) {
+    var album = parseInt(offset / screenWidth);
+    if (album < 0) {
+      album = 0;
+    }
+    if (album > library.albums.length - 1) {
+      album = library.albums.length - 1;
+    }
+    this.setState({currentAlbum: album});
+  }
+
+  async onShare() {
     try {
       const result = await Share.share({
         message: 'Mare joc aici cu melodii frumoase'
@@ -88,19 +99,27 @@ export default class ChapterScreen extends React.Component {
     }
   };
 
-  openRewarded = async () => {
+  async openRewardedAd() {
     try {
-      await AdMobRewarded.requestAdAsync()
-      await AdMobRewarded.showAdAsync()
+      await AdMobRewarded.requestAdAsync();
+      await AdMobRewarded.showAdAsync();
     } catch (error) {
       console.error(error)
     }
   };
 
   componentDidMount() {
+    this.startAlbumThumbRot();
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
     });
+    AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => console.log('Rewarded'));
+    AdMobRewarded.addEventListener('rewardedVideoDidLoad', () => console.log('VideoLoaded'));
+    AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', () => console.log('FailedToLoad'));
+    AdMobRewarded.addEventListener('rewardedVideoDidOpen', () => console.log('Opened'));
+    AdMobRewarded.addEventListener('rewardedVideoDidClose', () => console.log('Closed'));
+    AdMobRewarded.addEventListener('rewardedVideoWillLeaveApplication', () => console.log('LeaveApp'));
+    AdMobRewarded.addEventListener('rewardedVideoDidStart', () => console.log('Started'));
   }
 
   AlbumList = ({rotation}) => {
@@ -116,13 +135,8 @@ export default class ChapterScreen extends React.Component {
       duration: 2000,
       easing: Easing.linear
     }).start(() => {
-      if (!this.state.albumAnimationStop)
-        this.startAlbumThumbRot()
+      this.startAlbumThumbRot()
     });
-  }
-
-  albumClick() {
-    this.setState({albumTitle: 'puya'})
   }
 
   render() {
@@ -132,6 +146,7 @@ export default class ChapterScreen extends React.Component {
       ],
       outputRange: ['0deg', '360deg']
     });
+    console.log(albumThumbnailRotation + ' ' + this.state.albumThumbRotHolder);
 
     return (<View style={styles.mainContainer}>
 
@@ -156,10 +171,9 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={containerStyle(100, 80)}>
           <ScrollView horizontal={true} pagingEnabled={true} showsHorizontalScrollIndicator={false} onMomentumScrollEnd={(event) => {
-              this.setState({
-                currentAlbum: event.nativeEvent.contentOffset.x / screenWidth
-              })
-            }}>
+              this.changeCurrentAlbum(event.nativeEvent.contentOffset.x);
+            }
+}>
             <this.AlbumList rotation={albumThumbnailRotation}/>
           </ScrollView>
         </View>
@@ -188,7 +202,7 @@ export default class ChapterScreen extends React.Component {
         </View>
         <View style={containerStyle(50, 100)}>
           <RewardButton title='Video Ad' ammount={'+10'} used={false} onPress={() => {
-              this.openRewarded();
+              this.openRewardedAd
             }}/>
         </View>
       </View>

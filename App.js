@@ -1,5 +1,12 @@
 import * as React from 'react';
-import {Platform, StatusBar, StyleSheet, View, Dimensions,AsyncStorage} from 'react-native';
+import {
+  Platform,
+  StatusBar,
+  StyleSheet,
+  View,
+  Dimensions,
+  AsyncStorage
+} from 'react-native';
 import {SplashScreen} from 'expo';
 import * as Font from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
@@ -13,9 +20,9 @@ import PlayScreen from './screens/PlayScreen.js';
 import Settings from './screens/Settings.js';
 import Credits from './screens/Credits.js';
 
-import {saveUserData,loadUserData} from './util/UserData.js';
-import {loadData,storeData,clearAll} from './util/DataStorage.js';
-import {loadSongLibrary,unloadSongLibrary} from './util/SoundResources.js';
+import {saveUserData, loadUserData} from './util/UserData.js';
+import {loadData, storeData, clearAll} from './util/DataStorage.js';
+import {loadSongLibrary, unloadSongLibrary} from './util/SoundResources.js';
 
 const Stack = createStackNavigator();
 
@@ -39,15 +46,15 @@ export default function App(props) {
 
         await loadSongLibrary();
 
-        await clearAll();
+        console.log('Succes');
 
         await loadUserData();
 
-        await saveUserData();
+        console.log('Data also');
 
       } catch (e) {
         // We might want to provide this error information to an error reporting service
-        console.warn(e);
+        console.log(e);
       } finally {
         setLoadingComplete(true);
         SplashScreen.hide();

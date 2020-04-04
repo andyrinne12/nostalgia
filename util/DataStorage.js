@@ -6,13 +6,13 @@ export async function loadData(key){
     const value = await AsyncStorage.getItem(key);
     return value;
   } catch (error) {
-    // Error retrieving data
+    console.log(error);
   }
 }
 
 export async function storeData(key,value){
   try {
-    await AsyncStorage.setItem(key, value);
+    await AsyncStorage.setItem(key, JSON.stringify(value));
   } catch (error) {
     //Error
   }

@@ -33,7 +33,7 @@ export default class SongSelectscreen extends React.Component {
     this.state = {};
   }
 
-  keyExtractor = (song) => song.id;
+  keyExtractor = (song) => song.id.toString();
 
   renderItem = ({item}) => {
     const id = item.id;
@@ -95,7 +95,7 @@ export default class SongSelectscreen extends React.Component {
             flexDirection: 'row'
           }
         ]}>
-        <FlatList pagingEnabled={true} showsVerticalScrollIndicator={false} keyExtractor={this.keyExtractor} style={{
+        <FlatList pagingEnabled={false} showsVerticalScrollIndicator={false} keyExtractor={this.keyExtractor} style={{
             borderColor: 'white',
             borderVertical: 2,
             width: '95%'

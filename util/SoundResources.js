@@ -9,7 +9,6 @@ export async function loadSong(id, src) {
   try {
     global.songFiles[id] = new Audio.Sound();
     await global.songFiles[id].loadAsync(src);
-    console.log(global.songFiles[id]);
   } catch (error) {
     console.log(error);
   }
@@ -26,9 +25,9 @@ export async function unloadSong(id) {
 export async function loadSongLibrary() {
   const library = SongLibrary();
   global.songFiles = {};
-  library.tracks.map((track) => {
-    console.log(track);
+  await library.tracks.map((track, index) => {
     loadSong(track.id, track.audio);
+    console.log(index);
   });
 }
 

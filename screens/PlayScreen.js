@@ -37,7 +37,7 @@ export default class ChapterScreen extends React.Component {
       this.forceUpdate();
       this.state.toGuess = FuzzySet([this.props.route.params.track.title]);
     });
-    BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
+  //  BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
   };
 
   updateText(text) {
@@ -65,9 +65,9 @@ export default class ChapterScreen extends React.Component {
 
   async playSong() {
     const status = await global.songFiles[this.props.route.params.track.id].getStatusAsync();
-    global.songFiles[this.props.route.params.track.id].stopAsync();
+    await global.songFiles[this.props.route.params.track.id].stopAsync();
     if (status.isPlaying == false) {
-      global.songFiles[this.props.route.params.track.id].playAsync();
+      await global.songFiles[this.props.route.params.track.id].playAsync();
     }
   }
 

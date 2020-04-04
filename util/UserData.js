@@ -17,6 +17,8 @@ export async function loadUserData() {
     global.currency = parseInt(currency);
   }
 
+  console.log('curr');
+
   const score = await loadData('score');
   if (score === null) {
     global.score = 0;
@@ -26,7 +28,7 @@ export async function loadUserData() {
 
   const songProgressData = JSON.parse(await loadData('songProgress'));
   global.songProgress = {};
-
+  console.log(songProgressData);
   if (songProgressData === null) {
     library.tracks.map(((track) => {
       global.songProgress[track.id] = {};
