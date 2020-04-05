@@ -21,7 +21,7 @@ export default function SongLibrary() {
       id: 2,
       title: 'Stereo Love',
       emojis: '📻😍',
-      author: 'Edward Maya & Vika Jigulina',
+      author: 'Edward Maya, Vika Jigulina',
       year: 2009,
       audio: require('../assets/music/song2.mp3')
     }, {
@@ -166,7 +166,7 @@ export default function SongLibrary() {
       audio: require('../assets/music/song22.mp3')
     }, {
       id: 23,
-      title: 'Senorita',
+      title: 'Seniorita',
       emojis: '🍺🍺👧🏩🛏️🇪🇸💃',
       author: 'Dl Problema',
       year: 2006,
@@ -866,7 +866,7 @@ export default function SongLibrary() {
             id: 9
           },
           {
-            id: 7
+            id: 41
           },
           {
             id: 1
@@ -898,71 +898,141 @@ export default function SongLibrary() {
         id: 1,
         title: 'Si mai multe hituri',
         tracks: [{
-            id: 3
+            id: 7
           },
           {
-            id: 15
+            id: 17
+          },
+          {
+            id: 108
+          },
+          {
+            id: 16
           },
           {
             id: 27
           },
           {
-            id: 58
+            id: 72
           },
           {
-            id: 59
+            id: 65
           },
           {
-            id: 39
+            id: 83
           },
           {
-            id: 33
+            id: 119
           },
           {
-            id: 5
-          },
-          {
-            id: 48
-          },
-          {
-            id: 54
+            id: 91
           }
         ]
       },
       {
         id: 2,
-        title: 'Si mai multa nostalgie',
+        title: 'Nostalgia',
         tracks: [{
-            id: 45
-          },
-          {
-            id: 49
-          },
-          {
-            id: 50
-          },
-          {
-            id: 58
-          },
-          {
-            id: 59
-          },
-          {
-            id: 39
-          },
-          {
-            id: 33
-          },
-          {
             id: 5
+          },
+          {
+            id: 13
+          },
+          {
+            id: 19
+          },
+          {
+            id: 44
+          },
+          {
+            id: 43
           },
           {
             id: 48
           },
           {
-            id: 54
+            id: 58
+          },
+          {
+            id: 78
+          },
+          {
+            id: 80
+          },
+          {
+            id: 76
           }
         ]
+      },
+      {
+        id: 3,
+        title: 'Si mai vechi',
+        tracks: [{
+            id: 115
+          },
+          {
+            id: 111
+          },
+          {
+            id: 117
+          },
+          {
+            id: 11
+          },
+          {
+            id: 23
+          },
+          {
+            id: 33
+          },
+          {
+            id: 120
+          },
+          {
+            id: 109
+          },
+          {
+            id: 121
+          },
+          {
+            id: 2
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: 'De pe vremuri',
+        tracks: [{
+            id: 45
+            },
+            {
+              id: 39
+            },
+            {
+              id: 69
+            },
+            {
+              id: 38
+            },
+            {
+              id: 10
+            },
+            {
+              id: 46
+            },
+            {
+              id: 49
+            },
+            {
+              id: 51
+            },
+            {
+              id: 4
+            },
+            {
+              id: 29
+            }
+          ]
       }
     ]
   };
