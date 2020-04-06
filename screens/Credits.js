@@ -120,7 +120,7 @@ export default class Credits extends React.Component {
               type='instagram'
               onPress={() => {
                 //Action to perform onPress of the Icon
-                Linking.openURL('https://expo.io');
+                Linking.openURL('https://www.instagram.com/untitledprojectuleanu/');
               }}
             />
 
@@ -128,17 +128,10 @@ export default class Credits extends React.Component {
               type='facebook'
               onPress={() => {
                 //Action to perform onPress of the Icon
-                Linking.openURL('https://expo.io');
+                Linking.openURL('https://www.facebook.com/untitledprojects20/');
               }}
             />
-            <SocialIcon
-              type='twitter'
-              onPress={() => {
-                //Action to perform onPress of the Icon
-                Linking.openURL('https://expo.io');
 
-              }}
-            />
 
           </View>
 
@@ -198,16 +191,8 @@ export default class Credits extends React.Component {
             justifyContent:"center",
 
           }]}>
-          <Button
-            icon={
-              <Icon
-                name="arrow-right"
-                size={35}
-                color="#ed34b3"
-              />
-            }
-            title="DONAM SI NOI AZI?"
-          />
+          <Button icon={{name:'inbox', type:'font-awesome'}} onPress={() => Linking.openURL('mailto:untitledprojects20@gmail.com') }
+          title="Contacteaza-ne" />
         </View>
 
       </View>
