@@ -41,7 +41,9 @@ export default class ChapterScreen extends React.Component {
     this.props.navigation.addListener('blur', () => {
       global.songFiles[this.props.route.params.track.id].stopAsync();
     })
-    //  BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
+    AdMobRewarded.addEventListener('rewardedVideoDidClose', () => {
+      this.forceUpdate();
+    });
   };
 
   updateText(text) {
