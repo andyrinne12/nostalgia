@@ -44,6 +44,8 @@ export default function App(props) {
           'ArcadeClassic': require('./assets/fonts/ArcadeClassic.ttf')
         });
 
+        await clearAll();
+
         await loadSongLibrary();
 
         console.log('Succes');

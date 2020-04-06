@@ -109,23 +109,21 @@ export default class ChapterScreen extends React.Component {
     }
   };
 
-  rewardUser() {
-    global.currency += 20;
-    saveUserData();
-    this.forceUpdate();
-  }
-
   componentDidMount() {
-//    AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
-//    AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
+    //    AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
+    //    AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
 
-//    AdMobRewarded.requestAdAsync();
+    AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917'); // Test ID, Replace with your-admob-unit-id
+    AdMobRewarded.setTestDeviceID('EMULATOR');
+
+    AdMobRewarded.requestAdAsync();
     this.startAlbumThumbRot();
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => {
-      this.rewardUser();
+      global.currency += 20;
+      this.forceUpdate();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidLoad', () => {
       this.setState({adLoaded: true});
@@ -145,14 +143,13 @@ export default class ChapterScreen extends React.Component {
       }} unlocked={global.albumsUnlocked[album.id]}/>));
   }
 
-  albumClick(id){
-    if(global.albumsUnlocked[id]){
+  albumClick(id) {
+    if (global.albumsUnlocked[id]) {
       const album = library.albums[id];
       this.props.navigation.navigate('SongSelectScreen', {album});
-    }
-    else {
+    } else {
       const ammount = library.albums[id].price;
-      Alert.alert('Esti sigur ca vrei sa deblochezi albumul?', 'Vei cheltui '+ ammount +' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi albumul?', 'Vei cheltui ' + ammount + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
@@ -180,7 +177,7 @@ export default class ChapterScreen extends React.Component {
     });
   }
 
-  songsCompleted(album){
+  songsCompleted(album) {
     const tracks = library.albums[album].tracks;
     return tracks.filter((song) => global.songProgress[song.id].done == true).length;
   }
@@ -222,15 +219,17 @@ export default class ChapterScreen extends React.Component {
                       alignSelf: 'center'
                     }} ammount={library.albums[this.state.currentAlbum].price}/>
                 </View>
-              : <View><Text style={{
-                  width: '80%',
-                  height: '100%',
-                  textAlignVertical: "center",
-                  textAlign: "center",
-                  fontSize: screenWidth * 0.085,
-                  fontFamily: 'ArcadeClassic',
-                  color: 'white'
-                }}>Completed: {this.songsCompleted(this.state.currentAlbum)}/{library.albums[this.state.currentAlbum].tracks.length}</Text></View>
+              : <View>
+                  <Text style={{
+                      width: '80%',
+                      height: '100%',
+                      textAlignVertical: "center",
+                      textAlign: "center",
+                      fontSize: screenWidth * 0.085,
+                      fontFamily: 'ArcadeClassic',
+                      color: 'white'
+                    }}>Completed: {this.songsCompleted(this.state.currentAlbum)}/{library.albums[this.state.currentAlbum].tracks.length}</Text>
+                </View>
 
           }
         </View>
@@ -276,19 +275,23 @@ export default class ChapterScreen extends React.Component {
     </View>);
   }
 }
-function AlbumThumbnail({title, thumbnail, rotation, press,unlocked}) {
+function AlbumThumbnail({title, thumbnail, rotation, press, unlocked}) {
   return (<View style={{
       width: screenWidth,
       justifyContent: 'center',
       alignItems: 'center',
-      opacity: unlocked ? 1 : 0.2
+      opacity: unlocked
+        ? 1
+        : 0.2
     }}>
     <TouchableOpacity onPress={press} activeOpacity={0.5}>
       <Animated.Image style={[
           styles.vinylThumbnail, {
             transform: [
               {
-                rotate: unlocked ? rotation : '0deg'
+                rotate: unlocked
+                  ? rotation
+                  : '0deg'
               }
             ]
           }

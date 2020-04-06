@@ -12,6 +12,7 @@ import {
   BackHandler
 } from 'react-native';
 import {Audio} from 'expo-av';
+import {AdMobRewarded} from 'expo-ads-admob';
 
 import {Icon} from 'react-native-elements';
 import GameStatusBar from '../components/GameStatusBar.js';
@@ -60,6 +61,15 @@ export default class ChapterScreen extends React.Component {
     }
     this.forceUpdate();
   }
+
+  async openRewardedAd() {
+    console.log('pressed');
+    try {
+      await AdMobRewarded.showAdAsync();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   guessed() {
     global.songProgress[this.props.route.params.track.id].done = true;
@@ -195,7 +205,8 @@ export default class ChapterScreen extends React.Component {
   noMoneyAlert() {
     Alert.alert('Hopa', 'Nu mai ai bani', [
       {
-        text: 'Bag un video'
+        text: 'Bag un video',
+        onPress: () => {this.openRewardedAd();}
       }, {
         text: 'Raman sarac',
         style: 'cancel'
