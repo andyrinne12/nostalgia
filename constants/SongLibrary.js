@@ -216,7 +216,7 @@ export default function SongLibrary() {
     }, {
       id: 30,
       title: 'Unde e ea',
-      emojis:'🤔🤷‍♂️🗺️➡️👩🏻‍🦰',
+      emojis: '🤔🤷‍♂️🗺️➡️👩🏻‍🦰',
       author: 'CIA',
       year: 2011,
       audio: require('../assets/music/song30.mp3')
@@ -283,275 +283,44 @@ export default function SongLibrary() {
       author: 'Rosu si negru',
       year: 1984,
       audio: require('../assets/music/song39.mp3')
-    }, {
-      id: 40,
-      title: 'Drumurile noastre',
-      emojis: '🤝🛣️💌💭🤗',
-      author: 'Dan Spataru',
-      year: 1985,
-      audio: require('../assets/music/song40.mp3')
-    }, {
-      id: 41,
-      title: 'Dragoste la prima vedere',
-      emojis: '❤️➡️1️⃣👀',
-      author: 'Alex Velea, Connect-R',
-      year: 2006,
-      audio: require('../assets/music/song41.mp3')
-    }, {
-      id: 42,
-      title: 'Buchet de trandafiri',
-      emojis: '👐💐🌹🌹',
-      author: 'Akcent',
-      year: 2003,
-      audio: require('../assets/music/song42.mp3')
-    }, {
-      id: 43,
-      title: 'Soarele meu',
-      emojis: '☀️🌅🛣️', // ar merge modificat
-      author: 'Mandinga',
-      year: 2005,
-      audio: require('../assets/music/song43.mp3')
-    }, {
-      id: 44,
-      title: 'Ochii tai',
-      emojis: '👀🔙💑',
-      author: 'L.A.',
-      year: 2001,
-      audio: require('../assets/music/song44.mp3')
-    }, {
-      id: 45,
-      title: 'Ani de liceu', //folosit
-      emojis: '⏱️🏫😟📚😓📐',
-      author: 'Stela Enache',
-      year: 1986,
-      audio: require('../assets/music/song45.mp3')
-    }, {
-      id: 46,
-      title: 'Asa-s baietii',
-      emojis: '👦🚶‍♂️👩‍🦰👱‍♀️👩🏽⚫',
-      author: 'Angels',
-      year: 2000,
-      audio: require('../assets/music/song46.mp3')
-    }, {
-      id: 47,
-      title: 'Am bani de dat', //folosit
-      emojis: '🙋‍♂️💵➡️💵🧑‍🤝‍🧑🏛️',
-      authors: 'Smiley',
-      year: 2008,
-      audio: require('../assets/music/song47.mp3')
-    }, {
-      id: 48, //folosit
-      title: 'Super femei',
-      emojis: '👈👩👀👉👩👐🦸‍♀️🦸‍♀️',
-      authors: 'Body & Soul',
-      year: 2000,
-      audio: require('../assets/music/song48.mp3')
-    }, {
-      id: 49,
-      title: 'Banii si fetele', //folosit
-      emojis: '💰➕👩👩🍽️📅',
-      authors: 'Valahia',
-      year: 1999,
-      audio: require('../assets/music/song49.mp3')
-    }, {
-      id: 50,
-      title: 'La mare la soare', //folosit
-      emojis: '🏖️☀️👩‍👧‍👧🚫👙',
-      authors: 'Valahia',
-      year: 1999,
-      audio: require('../assets/music/song50.mp3')
-    }, {
-      id: 51,
-      title: 'Aprinde dragostea',
-      emojis: '🙋‍♀️🚫👈🔥', //merge modificata
-      authors: 'Alexandra Ungureanu, Crush',
-      year: 2005,
-      audio: require('../assets/music/song51.mp3')
-    }, {
-      id: 52,
-      title: 'Cu tine in rai',
-      emojis: '🤟🌎➡️🙋‍♀️😌👼', //mai merge pus un TOP langa pamant poate
-      authors: 'Alexandra Ungureanu, Crush',
-      year: 2007,
-      audio: require('../assets/music/song52.mp3')
-    }, {
-      id: 53,
-      title: 'Doar cu tine',
-      emojis: '🚶🙋‍♀️🤗➡️1️⃣2️⃣3️⃣',
-      authors: 'Activ',
-      year: 2004,
-      audio: require('../assets/music/song53.mp3')
-    }, {
-      id: 54, //folosit
-      title: 'Cred ca m-am indragostit',
-      emojis: '❤️🤷😃👊💓',
-      authors: 'Latin Express',
-      year: 1999,
-      audio: require('../assets/music/song54.mp3')
-    }, {
-      id: 55,
-      title: 'Visez',
-      emojis: '🙋‍♀️👈🌎➕💭👦',
-      authors: 'Activ',
-      year: 2004,
-      audio: require('../assets/music/song55.mp3')
-    }, {
-      id: 56,
-      title: 'Ploaia',
-      emojis: '🌧️😈🛁😡↔️❤️',
-      authors:'El Negro',
-      year: 2005,
-      audio: require('../assets/music/song56.mp3')
-    }, {
-      id: 57,
-      title: 'Oficial imi merge bine', //folosit
-      emojis: '❤️➡️😡➡️😡➡️❤️🤷',
-      authors: 'Simplu',
-      year: 2006,
-      audio: require('../assets/music/song57.mp3')
-    }, {
-      id: 58,
-      title: 'Lasa-ma papa la mare', //folosit
-      emojis: '👴🙋‍♀️➡️🎉☀️',
-      authors: 'Andre',
-      year: 2000,
-      audio: require('../assets/music/song58.mp3')
-    }, {
-      id: 59, //folosit
-      title: 'Despre tine',
-      emojis: '🌊😵👀➕🧑‍🤝‍🧑😭😭',
-      authors: 'O-Zone',
-      year: 2002,
-      audio: require('../assets/music/song59.mp3')
-    }, {
-      id: 60,
-      title: 'Vino la mine',
-      emojis: '🙋‍♀️❓🏃‍♂️➡️💑💗♾️',
-      authors: 'N&D',
-      year: 1999,
-      audio: require('../assets/music/song60.mp3')
-    }, {
-      id: 61,
-      title: 'Nu din prima seara',
-      emojis: '🚫1️⃣🌃', //grea ca dracu
-      authors: 'Cream, CRBL',
-      year: 2005,
-      audio: require('../assets/music/song61.mp3')
-    }, {
-      id: 62,
-      title: 'Oops eroare',
-      emojis: '🚫👩↔️🙋‍♀️➕🚫💗',
-      authors: 'Andreea Balan',
-      year: 2004,
-      audio: require('../assets/music/song62.mp3')
     }],
 
     albums: [{
-        id: 0,
-        title: 'Hiturile anilor 2000',
-        tracks: [{
-            id: 9
-          },
-          {
-            id: 7
-          },
-          {
-            id: 1
-          },
-          {
-            id: 12
-          },
-          {
-            id: 14
-          },
-          {
-            id: 8
-          },
-          {
-            id: 47
-          },
-          {
-            id: 6
-          },
-          {
-            id: 57
-          },
-          {
-            id: 36
-          }
-        ]
-      },
-      {
-        id: 1,
-        title: 'Si mai multe hituri',
-        tracks: [{
-            id: 3
-          },
-          {
-            id: 15
-          },
-          {
-            id: 27
-          },
-          {
-            id: 58
-          },
-          {
-            id: 59
-          },
-          {
-            id: 39
-          },
-          {
-            id: 33
-          },
-          {
-            id: 5
-          },
-          {
-            id: 48
-          },
-          {
-            id: 54
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: 'Si mai multa nostalgie',
-        tracks: [{
-            id: 45
-          },
-          {
-            id: 49
-          },
-          {
-            id: 50
-          },
-          {
-            id: 58
-          },
-          {
-            id: 59
-          },
-          {
-            id: 39
-          },
-          {
-            id: 33
-          },
-          {
-            id: 5
-          },
-          {
-            id: 48
-          },
-          {
-            id: 54
-          }
-        ]
-      }
-    ]
+      id: 0,
+      title: 'Hiturile anilor 2000',
+      price: 60,
+      tracks: [{
+          id: 9
+        },
+        {
+          id: 7
+        },
+        {
+          id: 1
+        },
+        {
+          id: 12
+        },
+        {
+          id: 14
+        },
+        {
+          id: 8
+        },
+        {
+          id: 25
+        },
+        {
+          id: 6
+        },
+        {
+          id: 30
+        },
+        {
+          id: 36
+        }
+      ]
+    }]
   };
   return library;
 }

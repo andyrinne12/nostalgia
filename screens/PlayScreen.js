@@ -37,7 +37,10 @@ export default class ChapterScreen extends React.Component {
       this.forceUpdate();
       this.state.toGuess = FuzzySet([this.props.route.params.track.title]);
     });
-  //  BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
+    this.props.navigation.addListener('blur', () => {
+      global.songFiles[this.props.route.params.track.id].stopAsync();
+    })
+    //  BackHandler.addEventListener('hardwareBackPress', () => {global.songFiles[this.props.route.params.track.id].stopAsync()});
   };
 
   updateText(text) {
@@ -69,6 +72,21 @@ export default class ChapterScreen extends React.Component {
     if (status.isPlaying == false) {
       await global.songFiles[this.props.route.params.track.id].playAsync();
     }
+  }
+
+  async openRewardedAd() {
+    console.log('pressed');
+    try {
+      await AdMobRewarded.showAdAsync();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  rewardUser() {
+    global.currency += 20;
+    saveUserData();
+    this.forceUpdate();
   }
 
   rgbPercent(percent) {
@@ -107,9 +125,20 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      global.currency -= ammount;
-      global.songProgress[this.props.route.params.track.id].year = true;
-      saveUserData();
+      Alert.alert('Esti sigur ca vrei sa deblochezi anul?', 'Vei cheltui '+ammount+' banuti', [
+        {
+          text: 'Da',
+          onPress: () => {
+            global.currency -= ammount;
+            global.songProgress[this.props.route.params.track.id].year = true;
+            saveUserData();
+            this.forceUpdate();
+          }
+        }, {
+          text: 'Nu',
+          style: 'cancel'
+        }
+      ], {cancelable: true});
     }
     this.forceUpdate();
   }
@@ -121,11 +150,21 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      global.currency -= ammount;
-      global.songProgress[this.props.route.params.track.id].author = true;
-      saveUserData();
+      Alert.alert('Esti sigur ca vrei sa deblochezi autorul?', 'Vei cheltui '+ammount+' banuti', [
+        {
+          text: 'Da',
+          onPress: () => {
+            global.currency -= ammount;
+            global.songProgress[this.props.route.params.track.id].author = true;
+            saveUserData();
+            this.forceUpdate();
+          }
+        }, {
+          text: 'Nu',
+          style: 'cancel'
+        }
+      ], {cancelable: true});
     }
-    this.forceUpdate();
   }
 
   revealSong(ammount) {
@@ -135,9 +174,20 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      global.currency -= ammount;
-      global.songProgress[this.props.route.params.track.id].done = true;
-      saveUserData();
+      Alert.alert('Esti sigur ca vrei sa deblochezi piesa?', 'Vei cheltui '+ammount+' banuti', [
+        {
+          text: 'Da',
+          onPress: () => {
+            global.currency -= ammount;
+            global.songProgress[this.props.route.params.track.id].done = true;
+            saveUserData();
+            this.forceUpdate();
+          }
+        }, {
+          text: 'Nu',
+          style: 'cancel'
+        }
+      ], {cancelable: true});
     }
     this.forceUpdate();
   }

@@ -44,6 +44,19 @@ function CurrencyShow({ammount}) {
   </View>);
 }
 
+export function CurrencyShow2({ammount}) {
+  return (<View style={[styles.currencyContainer,{height:'75%'}]}>
+    <View style={containerStyle(70, 100)}>
+      <TouchableOpacity style={styles.currencyFontContainer}>
+        <Text style={[styles.currencyFont,{alignSelf:'center'}]}>{ammount}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={containerStyle(30, 100)}>
+      <Image style={styles.icon} source={musicNoteImage}/>
+    </View>
+  </View>);
+}
+
 const styles = StyleSheet.create({
   mainContainer: {
     width: '100%',
@@ -58,6 +71,7 @@ const styles = StyleSheet.create({
     height: '60%',
     flexDirection: 'row',
     textAlign: 'center',
+    alignSelf: 'center',
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',

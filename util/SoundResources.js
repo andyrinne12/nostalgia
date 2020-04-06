@@ -33,7 +33,7 @@ export async function loadSongLibrary() {
 
 export async function unloadSongLibrary() {
   const library = SongLibrary();
-  library.tracks.map((track) => {
+  await library.tracks.map((track) => {
     unloadSong(track.id)
   });
 }
