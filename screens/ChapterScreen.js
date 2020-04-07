@@ -18,16 +18,17 @@ import {
   Share,
   Alert
 } from 'react-native';
-import {AdMobRewarded} from 'expo-ads-admob';
+import {AdMobRewarded, AdMob} from 'expo-ads-admob';
 
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
-import {CurrencyShow2} from '../components/GameStatusBar.js';
+import {CurrencyShow2,CurrencyShow3} from '../components/GameStatusBar.js';
 import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 
 import SongLibrary from '../constants/SongLibrary.js';
 import {saveUserData} from '../util/UserData.js';
+import {CURRENCY_PER_VIDEO} from '../constants/Currency.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -58,45 +59,16 @@ export default class ChapterScreen extends React.Component {
 
   async onShare() {
     try {
-      const result = await Share.share({
-        message: 'Mare joc aici cu melodii frumoase'
-      }, {
-        excludedActivityTypes: [
-
-          //'com.facebook.Messenger.ShareExtension',
-          //"com.apple.UIKit.activity.PostToTwitter",
-          //"com.apple.UIKit.activity.Mail",
-          //'com.apple.UIKit.activity.Print',
-          //'com.apple.UIKit.activity.CopyToPasteboard',
-          //'com.apple.UIKit.activity.AssignToContact',
-          //'com.apple.UIKit.activity.SaveToCameraRoll',
-          //  'com.apple.UIKit.activity.AddToReadingList',
-          //  'com.apple.UIKit.activity.PostToFlickr',
-          //  'com.apple.UIKit.activity.PostToVimeo',
-          //  'com.apple.UIKit.activity.PostToTencentWeibo',
-          //  'com.apple.UIKit.activity.AirDrop',
-          //  'com.apple.UIKit.activity.OpenInIBooks',
-          //  'com.apple.UIKit.activity.MarkupAsPDF',
-          //  'com.apple.reminders.RemindersEditorExtension',
-          //  'com.apple.mobilenotes.SharingExtension',
-          //  'com.apple.mobileslideshow.StreamShareService',
-          //  'com.linkedin.LinkedIn.ShareExtension',
-          //  'pinterest.ShareExtension',
-          //  'com.google.GooglePlus.ShareExtension',
-          //  'com.tumblr.tumblr.Share-With-Tumblr',
-          //  'net.whatsapp.WhatsApp.ShareExtension',
-        ]
-      });
+      const result = await Share.share({message: 'Mare joc aici cu melodii frumoase'});
 
       if (result.action === Share.sharedAction && result.activityType != 'com.facebook.Messenger.ShareExtension') {
-        //AICI DACA S A REUSIT SHARE UL
+        // Share successful
         console.log(result.activityType);
       } else if (result.action === Share.dismissedAction) {
-        //AICI DACA S A OPRIT
+        // Share failed
       }
     } catch (error) {
-      //AICI DACA A DAT EROARE
-      alert(error.message);
+      console.log(error);
     }
   };
 
@@ -110,19 +82,17 @@ export default class ChapterScreen extends React.Component {
   };
 
   componentDidMount() {
-    //    AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
-    //    AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
+    //  AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
+    //  AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
 
-    AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917'); // Test ID, Replace with your-admob-unit-id
-    AdMobRewarded.setTestDeviceID('EMULATOR');
-
-    AdMobRewarded.requestAdAsync();
+    //    AdMobRewarded.requestAdAsync();
     this.startAlbumThumbRot();
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => {
-      global.currency += 20;
+      global.currency += CURRENCY_PER_VIDEO;
+      saveUserData();
       this.forceUpdate();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidLoad', () => {
@@ -233,10 +203,33 @@ export default class ChapterScreen extends React.Component {
         <View style={containerStyle(100, 15)}>
           {
             global.albumsUnlocked[this.state.currentAlbum] == false
-              ? <View style={containerStyle(30, 100)}>
-                  <CurrencyShow2 style={{
-                      alignSelf: 'center'
-                    }} ammount={library.albums[this.state.currentAlbum].price}/>
+              ? <View style={[
+                    containerStyle(100, 100), {
+                      flexDirection: 'row'
+                    }
+                  ]}>
+                  <View style={containerStyle(40, 100)}>
+                    <Text style={{
+                        fontFamily: 'ArcadeClassic',
+                        fontSize: 28,
+                        color: 'white'
+                      }}>Cerinte:
+                    </Text>
+                  </View>
+                  <View style={containerStyle(30, 100)}>
+                    <View style={containerStyle(100, 100)}>
+                      <CurrencyShow2 style={{
+                          alignSelf: 'center'
+                        }} ammount={library.albums[this.state.currentAlbum].price}/>
+                    </View>
+                  </View>
+                  <View style={containerStyle(30, 100)}>
+                    <View style={containerStyle(100, 100)}>
+                      <CurrencyShow3 style={{
+                          alignSelf: 'center'
+                        }} ammount={library.albums[this.state.currentAlbum].score_price}/>
+                    </View>
+                  </View>
                 </View>
               : <View>
                   <Text style={{
@@ -247,7 +240,7 @@ export default class ChapterScreen extends React.Component {
                       fontSize: screenWidth * 0.085,
                       fontFamily: 'ArcadeClassic',
                       color: 'white'
-                    }}>Completed: {this.songsCompleted(this.state.currentAlbum)}/{library.albums[this.state.currentAlbum].tracks.length}</Text>
+                    }}>Ghicite: {this.songsCompleted(this.state.currentAlbum)}/{library.albums[this.state.currentAlbum].tracks.length}</Text>
                 </View>
 
           }
@@ -279,14 +272,14 @@ export default class ChapterScreen extends React.Component {
           }
         ]}>
         <View style={containerStyle(50, 100)}>
-          <RewardButton title='Share' used={false} onPress={() => {
+          <RewardButton title='Distribuie' ammount={0} used={false} onPress={() => {
               this.onShare();
             }}/>
         </View>
         <View style={containerStyle(50, 100)}>
           <RewardButton title={this.state.adLoaded
               ? 'Video Ad'
-              : 'Se incarca...'} ammount={'+10'} used={!this.state.adLoaded} disabled={!this.state.adLoaded} onPress={() => {
+              : 'Se incarca...'} ammount={CURRENCY_PER_VIDEO} used={!this.state.adLoaded} disabled={!this.state.adLoaded} onPress={() => {
               this.openRewardedAd();
             }}/>
         </View>

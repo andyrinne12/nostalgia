@@ -21,6 +21,9 @@ import {containerStyle} from '../styles/Containers.js';
 import {saveUserData} from '../util/UserData.js';
 import FuzzySet from 'fuzzyset';
 import {loadSong} from '../util/SoundResources.js';
+import SongLibrary from '../constants/SongLibrary.js';
+
+import {COST_PER_AUTHOR_HINT, COST_PER_YEAR_HINT, COST_PER_SONG_HINT} from '../constants/Currency.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -87,6 +90,9 @@ export default class ChapterScreen extends React.Component {
 
   guessed() {
     global.songProgress[this.props.route.params.track.id].done = true;
+    const score = SongLibrary().tracks.filter((song) => global.songProgress[song.id].done == true).length;
+    global.score = score;
+    saveUserData();
     this.playSong();
   };
 
@@ -145,18 +151,18 @@ export default class ChapterScreen extends React.Component {
       : '???');
   }
 
-  revealYear(ammount) {
+  revealYear() {
     if (global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
-    if (global.currency < ammount) {
+    if (global.currency < COST_PER_YEAR_HINT) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi anul?', 'Vei cheltui ' + ammount + ' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi anul?', 'Vei cheltui ' + COST_PER_YEAR_HINT.toString() + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
-            global.currency -= ammount;
+            global.currency -= COST_PER_YEAR_HINT;
             global.songProgress[this.props.route.params.track.id].year = true;
             saveUserData();
             this.forceUpdate();
@@ -170,18 +176,18 @@ export default class ChapterScreen extends React.Component {
     this.forceUpdate();
   }
 
-  revealAuthor(ammount) {
+  revealAuthor() {
     if (global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
-    if (global.currency < ammount) {
+    if (global.currency < COST_PER_AUTHOR_HINT) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi autorul?', 'Vei cheltui ' + ammount + ' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi autorul?', 'Vei cheltui ' + COST_PER_AUTHOR_HINT.toString() + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
-            global.currency -= ammount;
+            global.currency -= COST_PER_AUTHOR_HINT;
             global.songProgress[this.props.route.params.track.id].author = true;
             saveUserData();
             this.forceUpdate();
@@ -194,18 +200,18 @@ export default class ChapterScreen extends React.Component {
     }
   }
 
-  revealSong(ammount) {
+  revealSong() {
     if (global.songProgress[this.props.route.params.track.id].done) {
       return;
     }
-    if (global.currency < ammount) {
+    if (global.currency < COST_PER_SONG_HINT) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi piesa?', 'Vei cheltui ' + ammount + ' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi piesa?', 'Vei cheltui ' + COST_PER_SONG_HINT.toString() + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
-            global.currency -= ammount;
+            global.currency -= COST_PER_SONG_HINT;
             global.songProgress[this.props.route.params.track.id].done = true;
             saveUserData();
             this.forceUpdate();
@@ -316,17 +322,17 @@ export default class ChapterScreen extends React.Component {
         <View style={[
             containerStyle(33, 100), {}
           ]}><RewardButton title='An' ammount={5} onPress={() => {
-        this.revealYear(5);
+        this.revealYear();
       }} used={global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
           ]}><RewardButton title='Piesa' ammount={20} onPress={() => {
-        this.revealSong(20);
+        this.revealSong();
       }} used={global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
           ]}><RewardButton title='Autor' ammount={10} onPress={() => {
-        this.revealAuthor(10);
+        this.revealAuthor();
       }} used={global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done}/></View>
       </View>
     </View>);

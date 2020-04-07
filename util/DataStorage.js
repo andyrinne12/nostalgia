@@ -12,7 +12,7 @@ export async function loadData(key){
 
 export async function storeData(key,value){
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(value));
+    await AsyncStorage.setItem(key, value);
   } catch (error) {
     //Error
   }

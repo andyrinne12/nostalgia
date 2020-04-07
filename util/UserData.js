@@ -17,15 +17,6 @@ export async function loadUserData() {
     global.currency = parseInt(currency);
   }
 
-  console.log('curr');
-
-  const score = await loadData('score');
-  if (score === null) {
-    global.score = 0;
-  } else {
-    global.score = parseInt(score);
-  }
-
   const albumsUnlockedData = JSON.parse(await loadData('albumsUnlocked'));
   global.albumsUnlocked = {};
   if (albumsUnlockedData === null) {
@@ -38,11 +29,10 @@ export async function loadUserData() {
       if (albumUnlocked === null) {
         global.albumsUnlocked[album.id] = false;
       } else {
-        global.albumsUnlocked[album.id] = albumUnlocked;
+        global.albumsUnlocked[album.id] = (albumUnlocked == true);
       }
     });
   }
-  console.log(global.albumsUnlocked);
 
   const songProgressData = JSON.parse(await loadData('songProgress'));
   global.songProgress = {};
@@ -69,11 +59,13 @@ export async function loadUserData() {
       }
     });
   }
+
+  const score = library.tracks.filter((song) => global.songProgress[song.id].done == true).length;
+  global.score = score;
 }
 
 export async function saveUserData() {
   await storeData('currency', global.currency.toString());
-  await storeData('score', global.score.toString());
   await storeData('songProgress', JSON.stringify(global.songProgress));
   await storeData('albumsUnlocked', JSON.stringify(global.albumsUnlocked));
 }

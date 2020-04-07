@@ -14,7 +14,7 @@ export default function RewardButton({title,ammount,onPress,used}) {
       <View style={buttonStyle(used)}>
       <TouchableOpacity style={containerStyle(100,100)} onPress={onPress}>
       <Text style={styles.hintButtonText}>{title}</Text>
-      <Text style={styles.hintButtonText}>{ammount}💸</Text>
+      {ammount > 0 && <Text style={styles.hintButtonText}>+{ammount}💸</Text>}
     </TouchableOpacity>
   </View>);
   }

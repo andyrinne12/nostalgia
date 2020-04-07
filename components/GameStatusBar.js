@@ -10,6 +10,7 @@ import {
 
 import {containerStyle} from '../styles/Containers.js';
 import musicNoteImage from '../assets/images/musical-note.png';
+import moneyImage from '../assets/images/piggy-bank.png';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -19,13 +20,13 @@ export default class GameStatusBar extends React.Component {
   render() {
     return (<View style={styles.mainContainer}>
       <View style={containerStyle(40, 100)}>
-        <CurrencyShow ammount={global.currency}/>
+        <ScoreShow ammount={global.score}/>
       </View>
       <View style={containerStyle(20, 100)}></View>
       <View style={[
           containerStyle(40, 100), {}
         ]}>
-        <CurrencyShow ammount={global.score}/>
+        <CurrencyShow ammount={global.currency}/>
       </View>
     </View>);
   }
@@ -39,20 +40,62 @@ function CurrencyShow({ammount}) {
       </TouchableOpacity>
     </View>
     <View style={containerStyle(30, 100)}>
+      <Image style={styles.icon} source={moneyImage}/>
+    </View>
+  </View>);
+}
+
+function ScoreShow({ammount}) {
+  return (<View style={styles.currencyContainer}>
+    <View style={containerStyle(70, 100)}>
+      <TouchableOpacity style={styles.currencyFontContainer}>
+        <Text style={styles.currencyFont}>{ammount}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={containerStyle(30, 100)}>
       <Image style={styles.icon} source={musicNoteImage}/>
     </View>
   </View>);
 }
 
 export function CurrencyShow2({ammount}) {
-  return (<View style={[styles.currencyContainer,{height:'75%'}]}>
+  return (<View style={[
+      styles.currencyContainer, {
+        height: '75%'
+      }
+    ]}>
     <View style={containerStyle(70, 100)}>
       <TouchableOpacity style={styles.currencyFontContainer}>
-        <Text style={[styles.currencyFont,{alignSelf:'center'}]}>{ammount}</Text>
+        <Text style={[
+            styles.currencyFont, {
+              alignSelf: 'center'
+            }
+          ]}>{ammount}</Text>
       </TouchableOpacity>
     </View>
     <View style={containerStyle(30, 100)}>
       <Image style={styles.icon} source={musicNoteImage}/>
+    </View>
+  </View>);
+}
+
+export function CurrencyShow3({ammount}) {
+  return (<View style={[
+      styles.currencyContainer, {
+        height: '75%'
+      }
+    ]}>
+    <View style={containerStyle(70, 100)}>
+      <TouchableOpacity style={styles.currencyFontContainer}>
+        <Text style={[
+            styles.currencyFont, {
+              alignSelf: 'center'
+            }
+          ]}>{ammount}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={containerStyle(30, 100)}>
+      <Image style={styles.icon} source={moneyImage}/>
     </View>
   </View>);
 }
@@ -64,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     flexDirection: 'row',
-//    backgroundColor: 'green'
+    //    backgroundColor: 'green'
   },
   currencyContainer: {
     width: '90%',
@@ -75,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-//    backgroundColor: 'black'
+    //    backgroundColor: 'black'
   },
   currencyFontContainer: {
     fontFamily: 'ArcadeClassic',
@@ -83,20 +126,20 @@ const styles = StyleSheet.create({
     fontSize: 40,
     width: '100%',
     height: '100%',
-//    backgroundColor: 'blue',
+    //    backgroundColor: 'blue',
     justifyContent: 'center'
   },
   currencyFont: {
     fontFamily: 'ArcadeClassic',
     color: 'white',
-    fontSize: screenWidth*0.085,
-//    backgroundColor: 'blue',
+    fontSize: screenWidth * 0.085,
+    //    backgroundColor: 'blue',
     alignSelf: 'flex-end'
   },
   icon: {
     width: '80%',
     height: '80%',
     resizeMode: 'contain',
-//    backgroundColor: 'gold'
+    //    backgroundColor: 'gold'
   }
 });

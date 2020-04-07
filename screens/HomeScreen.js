@@ -46,21 +46,14 @@ export default class HomeScreen extends React.Component {
             }}>
             <TouchableOpacity style={[
                 styles.button, {
-                  width: '40%'
+                  width: '60%'
                 }
               ]} onPress={() => this.props.navigation.navigate("ChapterScreen")}>
               <Text style={styles.buttonText}>> JOACA</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[
                 styles.button, {
-                  width: '40%'
-                }
-              ]} onPress={() => this.props.navigation.navigate("Settings")}>
-              <Text style={styles.buttonText}>> SETARI</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={[
-                styles.button, {
-                  width: '40%'
+                  width: '60%'
                 }
               ]} onPress={() => this.props.navigation.navigate("Credits")}>
               <Text style={styles.buttonText}>> DESPRE</Text>
@@ -93,7 +86,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     padding: 15,
-    margin: 10,
+    margin: 12,
     backgroundColor: 'transparent',
     borderColor: 'white',
     borderWidth: 3,
@@ -101,7 +94,7 @@ const styles = StyleSheet.create({
     opacity: 1
   },
   buttonText: {
-    fontSize: 20,
+    fontSize: 23,
     color: '#ed34b3',
     fontFamily: 'ArcadeClassic',
     opacity: 1

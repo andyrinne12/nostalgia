@@ -899,6 +899,7 @@ export default function SongLibrary() {
         id: 1,
         title: 'Si mai multe hituri',
         price: 35,
+        score_price: 8,
         tracks: [{
             id: 7
           },
@@ -935,6 +936,7 @@ export default function SongLibrary() {
         id: 2,
         title: 'Nostalgia',
         price: 40,
+        score_price: 18,
         tracks: [{
             id: 5
           },
