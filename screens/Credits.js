@@ -10,6 +10,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Linking } from 'expo';
 import subTitleGif from '../assets/images/sd.gif';
 import nerdAlert from '../assets/images/spongeBob.gif';
+import bmEdi from '../assets/images/edi.png';
+import bmVlad from '../assets/images/vlad.png';
+import bmAndrei from '../assets/images/solo.png'
 
 
 const screenWidth = Dimensions.get('window').width;
@@ -18,18 +21,18 @@ const screenHeight = Dimensions.get('window').height;
 const list = [
   {
     name: 'Vlad Andrei Bucur',
-    avatar_url: 'http://info1cup.com/resources/img/sefu.png',
-    subtitle: 'Student at University of Bristol',
+    avatar_url: bmVlad,
+    subtitle: 'Student at University of Bristol'
 
   },
   {
     name: 'Andrei Oliviu Sologon',
-    avatar_url: 'http://info1cup.com/resources/img/solo2.png',
+    avatar_url: bmAndrei,
     subtitle: 'Student at Imperial College London'
   },
   {
     name: 'George Edward Nechitoaia',
-    avatar_url: 'http://info1cup.com/resources/img/cristea.png',
+    avatar_url: bmEdi,
     subtitle: 'Student at University of Bristol'
   },
 
@@ -44,7 +47,7 @@ export default class Credits extends React.Component {
       title={item.name}
       subtitle={item.subtitle}
       leftAvatar={{
-        source: item.avatar_url && { uri: item.avatar_url },
+        source: item.avatar_url,
         title: item.name[0]
       }}
       bottomDivider
