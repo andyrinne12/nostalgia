@@ -23,7 +23,7 @@ import FuzzySet from 'fuzzyset';
 import {loadSong} from '../util/SoundResources.js';
 import SongLibrary from '../constants/SongLibrary.js';
 
-import {COST_PER_AUTHOR_HINT, COST_PER_YEAR_HINT, COST_PER_SONG_HINT} from '../constants/Currency.js';
+import {COST_PER_AUTHOR_HINT, COST_PER_YEAR_HINT, COST_PER_SONG_HINT, REWARD_PER_SONG} from '../constants/Currency.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -92,6 +92,7 @@ export default class ChapterScreen extends React.Component {
     global.songProgress[this.props.route.params.track.id].done = true;
     const score = SongLibrary().tracks.filter((song) => global.songProgress[song.id].done == true).length;
     global.score = score;
+    global.currency += REWARD_PER_SONG;
     saveUserData();
     this.playSong();
   };
@@ -108,19 +109,12 @@ export default class ChapterScreen extends React.Component {
   }
 
   async openRewardedAd() {
-    console.log('pressed');
     try {
       await AdMobRewarded.showAdAsync();
     } catch (error) {
       console.error(error);
     }
   };
-
-  rewardUser() {
-    global.currency += 20;
-    saveUserData();
-    this.forceUpdate();
-  }
 
   rgbPercent(percent) {
     if (percent < 50) {

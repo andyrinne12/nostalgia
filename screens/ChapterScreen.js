@@ -82,10 +82,21 @@ export default class ChapterScreen extends React.Component {
   };
 
   componentDidMount() {
+    if (Platform.OS === 'ios') {
+      AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/3275562421');
+    }
+    else if (Platform.OS === 'android') {
+      AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
+    }
+
+
     //  AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
     //  AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
 
-    //    AdMobRewarded.requestAdAsync();
+  //   AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
+  // AdMobRewarded.setTestDeviceID("EMULATOR");
+
+    AdMobRewarded.requestAdAsync();
     this.startAlbumThumbRot();
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
@@ -119,12 +130,17 @@ export default class ChapterScreen extends React.Component {
       this.props.navigation.navigate('SongSelectScreen', {album});
     } else {
       const ammount = library.albums[id].price;
+      const score = library.albums[id].score_price;
       Alert.alert('Esti sigur ca vrei sa deblochezi albumul?', 'Vei cheltui ' + ammount + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
             if (global.currency < ammount) {
               this.noMoneyAlert();
+              return;
+            }
+            if (global.score < score) {
+              this.noScoreAlert();
               return;
             }
             global.currency -= ammount;
@@ -165,6 +181,22 @@ export default class ChapterScreen extends React.Component {
     ], {cancelable: false});
     this.forceUpdate();
   }
+
+  noScoreAlert() {
+    Alert.alert('Hopa', 'Nu ai ghicit destule piese', [
+      {
+        text: 'Bag un video',
+        onPress: () => {
+          this.openRewardedAd();
+        }
+      }, {
+        text: 'Inapoi',
+        style: 'cancel'
+      }
+    ], {cancelable: false});
+    this.forceUpdate();
+  }
+
 
   songsCompleted(album) {
     const tracks = library.albums[album].tracks;
@@ -218,14 +250,14 @@ export default class ChapterScreen extends React.Component {
                   </View>
                   <View style={containerStyle(30, 100)}>
                     <View style={containerStyle(100, 100)}>
-                      <CurrencyShow2 style={{
+                      <CurrencyShow3 style={{
                           alignSelf: 'center'
                         }} ammount={library.albums[this.state.currentAlbum].price}/>
                     </View>
                   </View>
                   <View style={containerStyle(30, 100)}>
                     <View style={containerStyle(100, 100)}>
-                      <CurrencyShow3 style={{
+                      <CurrencyShow2 style={{
                           alignSelf: 'center'
                         }} ammount={library.albums[this.state.currentAlbum].score_price}/>
                     </View>

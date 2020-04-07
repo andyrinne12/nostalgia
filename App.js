@@ -48,7 +48,6 @@ export default function App(props) {
 
         await loadUserData();
 
-        global.currency = 100;
       } catch (e) {
         // We might want to provide this error information to an error reporting service
         console.log(e);

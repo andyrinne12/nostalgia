@@ -862,7 +862,8 @@ export default function SongLibrary() {
     albums: [{
         id: 0,
         title: 'Hiturile anilor 2000',
-        price: 20,
+        price: 2000,
+        score_price: 0,
         tracks: [{
             id: 9
           },
@@ -898,7 +899,7 @@ export default function SongLibrary() {
       {
         id: 1,
         title: 'Si mai multe hituri',
-        price: 35,
+        price: 45,
         score_price: 8,
         tracks: [{
             id: 7
@@ -935,8 +936,8 @@ export default function SongLibrary() {
       {
         id: 2,
         title: 'Nostalgia',
-        price: 40,
-        score_price: 18,
+        price: 50,
+        score_price: 16,
         tracks: [{
             id: 5
           },
@@ -972,7 +973,8 @@ export default function SongLibrary() {
       {
         id: 3,
         title: 'Si mai vechi',
-        price: 60,
+        price: 50,
+        score_price: 22,
         tracks: [{
             id: 115
           },
@@ -1008,7 +1010,8 @@ export default function SongLibrary() {
       {
         id: 4,
         title: 'De pe vremuri',
-        price: 80,
+        price: 70,
+        score_price: 26,
         tracks: [{
             id: 45
           },

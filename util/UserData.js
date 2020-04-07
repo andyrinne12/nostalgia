@@ -5,6 +5,7 @@ import {
   storeData
 } from './DataStorage.js';
 import SongLibrary from '../constants/SongLibrary.js';
+import {INITIAL_CURRENCY} from '../constants/Currency.js';
 
 
 export async function loadUserData() {
@@ -12,7 +13,7 @@ export async function loadUserData() {
 
   const currency = await loadData('currency');
   if (currency === null) {
-    global.currency = 0;
+    global.currency = INITIAL_CURRENCY;
   } else {
     global.currency = parseInt(currency);
   }

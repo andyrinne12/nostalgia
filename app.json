@@ -24,7 +24,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-8698887398220178~2796216129"
+      }
     },
     "android": {
       "package": "com.untitledprojects.nostalgia",
