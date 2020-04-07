@@ -24,13 +24,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": true
     },
     "android": {
       "package": "com.untitledprojects.nostalgia",
       "versionCode": 1.0,
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-3940256099942544~1458002511" // sample id, replace with your own
+        "googleMobileAdsAppId": "ca-app-pub-3940256099942544~1458002511"
       }
     }
   }

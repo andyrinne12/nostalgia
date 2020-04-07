@@ -5,10 +5,14 @@ import {
 
 import SongLibrary from '../constants/SongLibrary.js';
 
-export async function loadSong(id, src) {
+const library = SongLibrary();
+
+export async function loadSong(id) {
   try {
-    global.songFiles[id] = new Audio.Sound();
-    await global.songFiles[id].loadAsync(src);
+    const src = library.tracks[id].audio;
+    const audio = new Audio.Sound();
+    await audio.loadAsync(src);
+    return audio;
   } catch (error) {
     console.log(error);
   }

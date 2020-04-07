@@ -22,7 +22,7 @@ import Credits from './screens/Credits.js';
 
 import {saveUserData, loadUserData} from './util/UserData.js';
 import {loadData, storeData, clearAll} from './util/DataStorage.js';
-import {loadSongLibrary, unloadSongLibrary} from './util/SoundResources.js';
+import {loadSong} from './util/SoundResources.js';
 
 const Stack = createStackNavigator();
 
@@ -46,15 +46,7 @@ export default function App(props) {
 
         await clearAll();
 
-        await loadSongLibrary();
-
-        console.log('Succes');
-
         await loadUserData();
-
-        console.log('Data also');
-
-        global.currency = 100;
 
       } catch (e) {
         // We might want to provide this error information to an error reporting service

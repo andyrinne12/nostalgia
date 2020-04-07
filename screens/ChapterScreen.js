@@ -153,6 +153,10 @@ export default class ChapterScreen extends React.Component {
         {
           text: 'Da',
           onPress: () => {
+            if (global.currency < ammount) {
+              this.noMoneyAlert();
+              return;
+            }
             global.currency -= ammount;
             global.albumsUnlocked[id] = true;
             saveUserData();
@@ -175,6 +179,21 @@ export default class ChapterScreen extends React.Component {
     }).start(() => {
       this.startAlbumThumbRot()
     });
+  }
+
+  noMoneyAlert() {
+    Alert.alert('Hopa', 'Nu mai ai bani', [
+      {
+        text: 'Bag un video',
+        onPress: () => {
+          this.openRewardedAd();
+        }
+      }, {
+        text: 'Raman sarac',
+        style: 'cancel'
+      }
+    ], {cancelable: false});
+    this.forceUpdate();
   }
 
   songsCompleted(album) {

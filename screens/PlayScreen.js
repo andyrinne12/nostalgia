@@ -20,6 +20,7 @@ import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 import {saveUserData} from '../util/UserData.js';
 import FuzzySet from 'fuzzyset';
+import {loadSong} from '../util/SoundResources.js';
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -30,21 +31,32 @@ export default class ChapterScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      progress: 0
+      progress: 0,
+      songAvailable: false
     };
   }
   componentDidMount() {
     this.props.navigation.addListener('focus', () => {
       this.forceUpdate();
       this.state.toGuess = FuzzySet([this.props.route.params.track.title]);
+      this.loadSongFile();
     });
     this.props.navigation.addListener('blur', () => {
-      global.songFiles[this.props.route.params.track.id].stopAsync();
-    })
+      if (typeof this.state.songFile !== 'undefined') {
+        this.state.songFile.stopAsync();
+        this.state.songFile.unloadAsync();
+      }
+    });
     AdMobRewarded.addEventListener('rewardedVideoDidClose', () => {
       this.forceUpdate();
     });
   };
+
+  async loadSongFile() {
+    const song = await loadSong(this.props.route.params.track.id);
+    this.setState({songFile: song});
+    this.setState({songAvailable: true});
+  }
 
   updateText(text) {
     if (this.state.toGuess == null || (typeof this.state.toGuess === 'undefined')) {
@@ -79,10 +91,13 @@ export default class ChapterScreen extends React.Component {
   };
 
   async playSong() {
-    const status = await global.songFiles[this.props.route.params.track.id].getStatusAsync();
-    await global.songFiles[this.props.route.params.track.id].stopAsync();
+    if (!this.state.songAvailable) {
+      return;
+    }
+    const status = await this.state.songFile.getStatusAsync();
+    await this.state.songFile.stopAsync();
     if (status.isPlaying == false) {
-      await global.songFiles[this.props.route.params.track.id].playAsync();
+      await this.state.songFile.playAsync();
     }
   }
 
@@ -137,7 +152,7 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi anul?', 'Vei cheltui '+ammount+' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi anul?', 'Vei cheltui ' + ammount + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
@@ -162,7 +177,7 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi autorul?', 'Vei cheltui '+ammount+' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi autorul?', 'Vei cheltui ' + ammount + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
@@ -186,7 +201,7 @@ export default class ChapterScreen extends React.Component {
     if (global.currency < ammount) {
       this.noMoneyAlert();
     } else {
-      Alert.alert('Esti sigur ca vrei sa deblochezi piesa?', 'Vei cheltui '+ammount+' banuti', [
+      Alert.alert('Esti sigur ca vrei sa deblochezi piesa?', 'Vei cheltui ' + ammount + ' banuti', [
         {
           text: 'Da',
           onPress: () => {
@@ -208,7 +223,9 @@ export default class ChapterScreen extends React.Component {
     Alert.alert('Hopa', 'Nu mai ai bani', [
       {
         text: 'Bag un video',
-        onPress: () => {this.openRewardedAd();}
+        onPress: () => {
+          this.openRewardedAd();
+        }
       }, {
         text: 'Raman sarac',
         style: 'cancel'
@@ -258,7 +275,10 @@ export default class ChapterScreen extends React.Component {
                     backgrundColor: 'transparent'
                   }}/>
               : <Icon raised={true} name='play' type='font-awesome' color='green' style={{
-                    backgrundColor: 'transparent'
+                    backgrundColor: 'transparent',
+                    opacity: this.state.songAvailable
+                      ? 1
+                      : 0.3
                   }} onPress={() => this.playSong()}/>
           }</View>
         <View style={containerStyle(40, 100)}>
