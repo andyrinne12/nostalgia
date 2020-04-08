@@ -59,7 +59,9 @@ export default class ChapterScreen extends React.Component {
 
   async onShare() {
     try {
-      const result = await Share.share({message: 'Mare joc aici cu melodii frumoase'});
+      const result = await Share.share({
+        message: 'http://onelink.to/nostalgia'}
+        );
 
       if (result.action === Share.sharedAction && result.activityType != 'com.facebook.Messenger.ShareExtension') {
         // Share successful

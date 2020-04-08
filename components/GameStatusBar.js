@@ -47,7 +47,7 @@ function CurrencyShow({ammount}) {
 
 function ScoreShow({ammount}) {
   return (<View style={styles.currencyContainer}>
-    <View style={containerStyle(70, 100)}>
+    <View style={containerStyle(15, 100)}>
       <TouchableOpacity style={styles.currencyFontContainer}>
         <Text style={styles.currencyFont}>{ammount}</Text>
       </TouchableOpacity>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     flexDirection: 'row',
-    //    backgroundColor: 'green'
+     //  backgroundColor: 'green'
   },
   currencyContainer: {
     width: '90%',
