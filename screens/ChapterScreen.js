@@ -75,7 +75,10 @@ export default class ChapterScreen extends React.Component {
   };
 
   async openRewardedAd() {
-    console.log('pressed');
+    if (!this.state.adLoaded) {
+      return;
+    }
+    
     try {
       await AdMobRewarded.showAdAsync();
     } catch (error) {
