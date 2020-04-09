@@ -47,7 +47,7 @@ function CurrencyShow({ammount}) {
 
 function ScoreShow({ammount}) {
   return (<View style={styles.currencyContainer}>
-    <View style={containerStyle(15, 100)}>
+    <View style={containerStyle(25, 100)}>
       <TouchableOpacity style={styles.currencyFontContainer}>
         <Text style={styles.currencyFont}>{ammount}</Text>
       </TouchableOpacity>
