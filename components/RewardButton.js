@@ -9,15 +9,16 @@ import {
   containerStyle
 } from '../styles/Containers.js';
 
-export default function RewardButton({title,ammount,onPress,used}) {
+export default function RewardButton({tip,title,ammount,onPress,used}) {
     return (
       <View style={buttonStyle(used)}>
       <TouchableOpacity style={containerStyle(100,100)} onPress={onPress}>
       <Text style={styles.hintButtonText}>{title}</Text>
-      {ammount > 0 && <Text style={styles.hintButtonText}>+{ammount}💸</Text>}
+      {ammount > 0 && <Text style={styles.hintButtonText}>{tip}{ammount}💸</Text>}
     </TouchableOpacity>
   </View>);
   }
+
 
 function buttonStyle(used){
   return {

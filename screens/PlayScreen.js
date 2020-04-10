@@ -315,17 +315,17 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='An' ammount={5} onPress={() => {
+          ]}><RewardButton tip = '-' title='An' ammount={5} onPress={() => {
         this.revealYear();
       }} used={global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
-          ]}><RewardButton title='Piesa' ammount={20} onPress={() => {
+          ]}><RewardButton tip = '-' title='Piesa' ammount={20} onPress={() => {
         this.revealSong();
       }} used={global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton title='Autor' ammount={10} onPress={() => {
+          ]}><RewardButton tip = '-' title='Autor' ammount={10} onPress={() => {
         this.revealAuthor();
       }} used={global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done}/></View>
       </View>

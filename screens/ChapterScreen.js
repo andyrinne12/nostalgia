@@ -314,7 +314,7 @@ export default class ChapterScreen extends React.Component {
             }}/>
         </View>
         <View style={containerStyle(50, 100)}>
-          <RewardButton title={this.state.adLoaded
+          <RewardButton tip = '+' title={this.state.adLoaded
               ? 'Video Ad'
               : 'Se incarca...'} ammount={CURRENCY_PER_VIDEO} used={!this.state.adLoaded} disabled={!this.state.adLoaded} onPress={() => {
               this.openRewardedAd();
