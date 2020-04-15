@@ -22,7 +22,7 @@ import {AdMobRewarded, AdMob} from 'expo-ads-admob';
 
 import vinylImage from '../assets/images/vinyl.png';
 import GameStatusBar from '../components/GameStatusBar.js';
-import {CurrencyShow2,CurrencyShow3} from '../components/GameStatusBar.js';
+import {CurrencyShow2, CurrencyShow3} from '../components/GameStatusBar.js';
 import RewardButton from '../components/RewardButton.js';
 import {containerStyle} from '../styles/Containers.js';
 
@@ -59,9 +59,7 @@ export default class ChapterScreen extends React.Component {
 
   async onShare() {
     try {
-      const result = await Share.share({
-        message: 'http://onelink.to/nostalgia'}
-        );
+      const result = await Share.share({message: 'http://onelink.to/nostalgia'});
 
       if (result.action === Share.sharedAction && result.activityType != 'com.facebook.Messenger.ShareExtension') {
         // Share successful
@@ -78,7 +76,7 @@ export default class ChapterScreen extends React.Component {
     if (!this.state.adLoaded) {
       return;
     }
-    
+
     try {
       await AdMobRewarded.showAdAsync();
     } catch (error) {
@@ -89,17 +87,15 @@ export default class ChapterScreen extends React.Component {
   componentDidMount() {
     if (Platform.OS === 'ios') {
       AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/3275562421');
-    }
-    else if (Platform.OS === 'android') {
+    } else if (Platform.OS === 'android') {
       AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
     }
-
 
     //  AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
     //  AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
 
-  //   AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
-  // AdMobRewarded.setTestDeviceID("EMULATOR");
+    //   AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917');
+    // AdMobRewarded.setTestDeviceID("EMULATOR");
 
     AdMobRewarded.requestAdAsync();
     this.startAlbumThumbRot();
@@ -107,9 +103,12 @@ export default class ChapterScreen extends React.Component {
       this.forceUpdate();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidRewardUser', () => {
-      global.currency += CURRENCY_PER_VIDEO;
-      saveUserData();
-      this.forceUpdate();
+      if (this.state.adLoaded) {
+        global.currency += CURRENCY_PER_VIDEO;
+        this.setState({adLoaded: false});
+        saveUserData();
+        this.forceUpdate();
+      }
     });
     AdMobRewarded.addEventListener('rewardedVideoDidLoad', () => {
       this.setState({adLoaded: true});
@@ -119,6 +118,7 @@ export default class ChapterScreen extends React.Component {
       AdMobRewarded.requestAdAsync();
     });
     AdMobRewarded.addEventListener('rewardedVideoDidClose', () => {
+      this.setState({adLoaded: false});
       AdMobRewarded.requestAdAsync();
     });
   }
@@ -201,7 +201,6 @@ export default class ChapterScreen extends React.Component {
     ], {cancelable: false});
     this.forceUpdate();
   }
-
 
   songsCompleted(album) {
     const tracks = library.albums[album].tracks;
@@ -314,7 +313,7 @@ export default class ChapterScreen extends React.Component {
             }}/>
         </View>
         <View style={containerStyle(50, 100)}>
-          <RewardButton tip = '+' title={this.state.adLoaded
+          <RewardButton tip='+' title={this.state.adLoaded
               ? 'Video Ad'
               : 'Se incarca...'} ammount={CURRENCY_PER_VIDEO} used={!this.state.adLoaded} disabled={!this.state.adLoaded} onPress={() => {
               this.openRewardedAd();

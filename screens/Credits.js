@@ -1,17 +1,24 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList, Image } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Dimensions,
+  FlatList,
+  Image,
+  TouchableOpacity
+} from 'react-native';
+import {Ionicons} from '@expo/vector-icons';
 import * as WebBrowser from 'expo-web-browser';
-import { RectButton, ScrollView } from 'react-native-gesture-handler';
-import { containerStyle } from '../styles/Containers.js';
+import {RectButton, ScrollView} from 'react-native-gesture-handler';
+import {containerStyle} from '../styles/Containers.js';
 import * as Font from 'expo-font';
-import { Avatar, Button, SocialIcon, ListItem, Badge } from 'react-native-elements';
+import {Avatar, Button, SocialIcon, ListItem, Badge} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Linking } from 'expo';
+import {Linking} from 'expo';
 import bmEdi from '../assets/images/edi.png';
 import bmVlad from '../assets/images/vlad.png';
 import bmAndrei from '../assets/images/solo.png'
-
 
 const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
@@ -22,59 +29,35 @@ const list = [
     avatar_url: bmVlad,
     subtitle: 'Student at University of Bristol'
 
-  },
-  {
+  }, {
     name: 'Andrei Oliviu Sologon',
     avatar_url: bmAndrei,
     subtitle: 'Student at Imperial College London'
-  },
-  {
+  }, {
     name: 'George Edward Nechitoaia',
     avatar_url: bmEdi,
     subtitle: 'Student at University of Bristol'
-  },
-
+  }
 ]
 
 export default class Credits extends React.Component {
 
   keyExtractor = (item, index) => index.toString()
 
-  renderItem = ({ item }) => (
-    <ListItem
-      title={item.name}
-      subtitle={item.subtitle}
-      leftAvatar={{
-        source: item.avatar_url,
-        title: item.name[0]
-      }}
-      bottomDivider
-    />
-  )
-
+  renderItem = ({item}) => (<ListItem title={item.name} subtitle={item.subtitle} leftAvatar={{
+      source: item.avatar_url,
+      title: item.name[0]
+    }} bottomDivider="bottomDivider"/>)
 
   render() {
 
-    return (
-      <View style={styles.mainContainer}>
-        {
-          // Top container
-
-        }
-
-        <View style={[
-          containerStyle(100, 5), {
-            //navbar
-          }]}>
-        </View>
-
-        <View style={[
-          containerStyle(100, 15), {
+    return (<View style={styles.mainContainer}>
+      <View style={[
+          containerStyle(100, 20), {
             //   backgroundColor: 'green'
-          }]}>
-          {//title
           }
-          <Text style={{
+        ]}>
+        <Text style={{
             width: '100%',
             height: '100%',
             padding: 20,
@@ -85,134 +68,73 @@ export default class Credits extends React.Component {
             fontFamily: 'ArcadeClassic',
             color: '#ed34b3'
           }}>Despre noi</Text>
-        </View>
-
-
-        <View style={[
+      </View>
+      <View style={[
           containerStyle(100, 70), {
-            //   backgroundColor: 'purple',
             flexDirection: 'column'
-          }]}>
-
-
-          {//Social Distance
           }
-          <View style={[
-            containerStyle(100, 20), {
-              //   backgroundColor: 'red',
-              flexDirection: 'row',
-
-            }]}>
-          </View>
-
-
-
-          {// SOCIAL MEDIA
-          }
-          <View style={[
-            containerStyle(100, 15), {
-              // backgroundColor: 'blue',
-              flexDirection: 'row',
-
-            }]}>
-
-            <SocialIcon
-              type='instagram'
-              onPress={() => {
-                //Action to perform onPress of the Icon
-                Linking.openURL('https://www.instagram.com/untitledprojectuleanu/');
-              }}
-            />
-
-            <SocialIcon
-              type='facebook'
-              onPress={() => {
-                //Action to perform onPress of the Icon
-                Linking.openURL('https://www.facebook.com/untitledprojects20/');
-              }}
-            />
-
-
-          </View>
-
-
-          {//DESPRE CREATORI: 2 cadrane
-
-          }
-
-          <View style={[
-            containerStyle(100, 75), {
-             // backgroundColor: 'yellow',
-              flexDirection: 'column',
-              //s alignContent:'flex-start',
-
-            }]}>
-
-            {// CADRAN 1 subTITLU
-            }
-            <View style={[
-              containerStyle(100, 25), {
-              //  backgroundColor: 'red',
-                flexDirection: 'column',
-
-              }]}>
-
-            </View>
-
-            {//CADRAN 2 CREATORI
-            }
-            <View style={[
-              containerStyle(100, 75), {
-              //  backgroundColor: 'blue',
-                flexDirection: 'row',
-              }]}>
-
-              <FlatList
-                scrollEnabled={false}
-                keyExtractor={this.keyExtractor}
-                data={list}
-                renderItem={this.renderItem}
-              />
-
-            </View>
-
-
-
-          </View>
-
-        </View>
-
-
-
+        ]}>
         <View style={[
-          containerStyle(100, 15), {
-         //   backgroundColor: 'red',
-            justifyContent:"center",
-
-          }]}>
-          <Button icon={{name:'inbox', type:'font-awesome'}} onPress={() => Linking.openURL('mailto:untitledprojects20@gmail.com') }
-          title="Contacteaza-ne" />
+            containerStyle(80, 30), {}
+          ]}>
+          <Text style={styles.creditText}>All rights reserved to the authors of the songs and their record labels.</Text>
+          <Text style={styles.creditText}>{'\n'}Icons made by Freepik from flaticon.com</Text>
         </View>
-
+        <View style={[
+            containerStyle(100, 20), {
+              flexDirection: 'row'
+            }
+          ]}>
+          <SocialIcon type='instagram' onPress={() => {
+              //Action to perform onPress of the Icon
+              Linking.openURL('https://www.instagram.com/untitledprojectuleanu/');
+            }}/>
+          <SocialIcon type='facebook' onPress={() => {
+              //Action to perform onPress of the Icon
+              Linking.openURL('https://www.facebook.com/untitledprojects20/');
+            }}/>
+        </View>
+        <View style={[
+            containerStyle(100, 50), {
+              flexDirection: 'row'
+            }
+          ]}>
+          <FlatList style={{
+              height: '100%'
+            }} scrollEnabled={false} keyExtractor={this.keyExtractor} data={list} renderItem={this.renderItem}/>
+        </View>
       </View>
 
-    );
+      <View style={[
+          containerStyle(100, 10), {
+            justifyContent: "center"
+          }
+        ]}>
+        <Button style="style" icon={{
+            name: 'inbox',
+            type: 'font-awesome'
+          }} onPress={() => Linking.openURL('mailto:untitledprojects20@gmail.com')} title="Contacteaza-ne pentru sugestii"/>
+      </View>
+
+    </View>);
   }
 }
 
-function OptionButton({ icon, label, onPress, isLastOption }) {
-  return (
-    <RectButton style={[styles.option, isLastOption && styles.lastOption]} onPress={onPress}>
-      <View style={{ flexDirection: 'row' }}>
-        <View style={styles.optionIconContainer}>
-          <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)" />
-        </View>
-        <View style={styles.optionTextContainer}>
-          <Text style={styles.optionText}>{label}</Text>
-        </View>
+function OptionButton({icon, label, onPress, isLastOption}) {
+  return (<RectButton style={[
+      styles.option, isLastOption && styles.lastOption
+    ]} onPress={onPress}>
+    <View style={{
+        flexDirection: 'row'
+      }}>
+      <View style={styles.optionIconContainer}>
+        <Ionicons name={icon} size={22} color="rgba(0,0,0,0.35)"/>
       </View>
-    </RectButton>
-  );
+      <View style={styles.optionTextContainer}>
+        <Text style={styles.optionText}>{label}</Text>
+      </View>
+    </View>
+  </RectButton>);
 }
 
 const styles = StyleSheet.create({
@@ -226,15 +148,23 @@ const styles = StyleSheet.create({
     height: '60%',
     backgroundColor: 'transparent'
   },
+  creditText: {
+    color: 'white',
+    fontFamily: 'ArcadeClassic',
+    textAlign: 'center',
+    justifyContent:'center',
+    alignSelf:'center',
+    fontSize: 18
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fafafa',
+    backgroundColor: '#fafafa'
   },
   contentContainer: {
-    paddingTop: 15,
+    paddingTop: 15
   },
   optionIconContainer: {
-    marginRight: 12,
+    marginRight: 12
   },
   option: {
     backgroundColor: '#fdfdfd',
@@ -242,14 +172,14 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderWidth: StyleSheet.hairlineWidth,
     borderBottomWidth: 0,
-    borderColor: '#ededed',
+    borderColor: '#ededed'
   },
   lastOption: {
-    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth
   },
   optionText: {
     fontSize: 15,
     alignSelf: 'flex-start',
-    marginTop: 1,
-  },
+    marginTop: 1
+  }
 });

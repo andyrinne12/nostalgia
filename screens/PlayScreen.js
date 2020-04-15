@@ -79,15 +79,6 @@ export default class ChapterScreen extends React.Component {
     this.forceUpdate();
   }
 
-  async openRewardedAd() {
-    console.log('pressed');
-    try {
-      await AdMobRewarded.showAdAsync();
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   guessed() {
     global.songProgress[this.props.route.params.track.id].done = true;
     const score = SongLibrary().tracks.filter((song) => global.songProgress[song.id].done == true).length;
@@ -207,6 +198,8 @@ export default class ChapterScreen extends React.Component {
           onPress: () => {
             global.currency -= COST_PER_SONG_HINT;
             global.songProgress[this.props.route.params.track.id].done = true;
+            const score = SongLibrary().tracks.filter((song) => global.songProgress[song.id].done == true).length;
+            global.score = score;
             saveUserData();
             this.forceUpdate();
           }
@@ -315,17 +308,17 @@ export default class ChapterScreen extends React.Component {
         ]}>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton tip = '-' title='An' ammount={5} onPress={() => {
+          ]}><RewardButton tip='-' title='An' ammount={COST_PER_YEAR_HINT} onPress={() => {
         this.revealYear();
       }} used={global.songProgress[this.props.route.params.track.id].year || global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(34, 100), {}
-          ]}><RewardButton tip = '-' title='Piesa' ammount={20} onPress={() => {
+          ]}><RewardButton tip='-' title='Piesa' ammount={COST_PER_SONG_HINT} onPress={() => {
         this.revealSong();
       }} used={global.songProgress[this.props.route.params.track.id].done}/></View>
         <View style={[
             containerStyle(33, 100), {}
-          ]}><RewardButton tip = '-' title='Autor' ammount={10} onPress={() => {
+          ]}><RewardButton tip='-' title='Autor' ammount={COST_PER_AUTHOR_HINT} onPress={() => {
         this.revealAuthor();
       }} used={global.songProgress[this.props.route.params.track.id].author || global.songProgress[this.props.route.params.track.id].done}/></View>
       </View>
