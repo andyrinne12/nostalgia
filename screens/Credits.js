@@ -8,8 +8,6 @@ import * as Font from 'expo-font';
 import { Avatar, Button, SocialIcon, ListItem, Badge } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Linking } from 'expo';
-import subTitleGif from '../assets/images/sd.gif';
-import nerdAlert from '../assets/images/spongeBob.gif';
 import bmEdi from '../assets/images/edi.png';
 import bmVlad from '../assets/images/vlad.png';
 import bmAndrei from '../assets/images/solo.png'
@@ -105,7 +103,6 @@ export default class Credits extends React.Component {
               flexDirection: 'row',
 
             }]}>
-            <Image style={styles.title} source={subTitleGif} />
           </View>
 
 
@@ -160,7 +157,6 @@ export default class Credits extends React.Component {
 
               }]}>
 
-<Image style={styles.title} source={nerdAlert} />
             </View>
 
             {//CADRAN 2 CREATORI
