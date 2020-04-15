@@ -123,6 +123,11 @@ export default class ChapterScreen extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    AdMobInterstitial.removeAllListeners();
+    AdMobRewarded.removeAllListeners();
+  }
+
   AlbumList = ({rotation}) => {
     return (library.albums.map((album, index) => <AlbumThumbnail key={album.id} title={album.title} thumbnail={vinylImage} rotation={rotation} press={() => {
         this.albumClick(album.id);
