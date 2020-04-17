@@ -7,7 +7,7 @@ import {
   Dimensions,
   TouchableOpacity
 } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 import {containerStyle} from '../styles/Containers.js';
 import musicNoteImage from '../assets/images/musical-note.png';
 import moneyImage from '../assets/images/piggy-bank.png';
@@ -16,15 +16,20 @@ const screenWidth = Dimensions.get('window').width;
 const screenHeight = Dimensions.get('window').height;
 
 export default class GameStatusBar extends React.Component {
-
+  constructor(props) {
+    super(props);
+  }
+  
   render() {
+    
     return (<View style={styles.mainContainer}>
-      <View style={containerStyle(40, 100)}>
+      <View style={containerStyle(40, 110)}>
+
         <ScoreShow ammount={global.score}/>
       </View>
-      <View style={containerStyle(20, 100)}></View>
+      <View style={containerStyle(20, 110)}></View>
       <View style={[
-          containerStyle(40, 100), {}
+          containerStyle(40, 110), {}
         ]}>
         <CurrencyShow ammount={global.currency}/>
       </View>
@@ -46,7 +51,14 @@ function CurrencyShow({ammount}) {
 }
 
 function ScoreShow({ammount}) {
+  const navigation = useNavigation();
   return (<View style={styles.currencyContainer}>
+    <View style={containerStyle(25, 100)}>
+    <TouchableOpacity style={[
+              ]} onPress={() => navigation.pop(1)}>
+              <Text style={styles.backFont}> {'<'} </Text>
+     </TouchableOpacity>
+    </View>
     <View style={containerStyle(25, 100)}>
       <TouchableOpacity style={styles.currencyFontContainer}>
         <Text style={styles.currencyFont}>{ammount}</Text>
@@ -132,6 +144,13 @@ const styles = StyleSheet.create({
   currencyFont: {
     fontFamily: 'ArcadeClassic',
     color: 'white',
+    fontSize: screenWidth * 0.085,
+    //    backgroundColor: 'blue',
+    alignSelf: 'flex-end'
+  },
+  backFont: {
+    fontFamily: 'ArcadeClassic',
+    color: '#FF69B4',
     fontSize: screenWidth * 0.085,
     //    backgroundColor: 'blue',
     alignSelf: 'flex-end'

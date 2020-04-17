@@ -67,13 +67,17 @@ export default class Credits extends React.Component {
             fontSize: screenWidth * 0.15,
             fontFamily: 'ArcadeClassic',
             color: '#ed34b3'
-          }}>Despre noi</Text>
+          }}>{'\n'}Despre noi</Text>
       </View>
       <View style={[
           containerStyle(100, 70), {
             flexDirection: 'column'
           }
         ]}>
+          <TouchableOpacity style={[
+              ]} onPress={() => this.props.navigation.pop(1)}>
+              <Text style={styles.backFont}> {'<'} </Text>
+     </TouchableOpacity>
         <View style={[
             containerStyle(80, 30), {}
           ]}>
@@ -177,6 +181,13 @@ const styles = StyleSheet.create({
   lastOption: {
     borderBottomWidth: StyleSheet.hairlineWidth
   },
+  backFont: {
+    fontFamily: 'ArcadeClassic',
+    color: '#ed34b3',
+    fontSize: screenWidth * 0.085,
+    //    backgroundColor: 'blue',
+    alignSelf: 'flex-end'
+  }, 
   optionText: {
     fontSize: 15,
     alignSelf: 'flex-start',

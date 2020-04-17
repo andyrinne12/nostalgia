@@ -18,6 +18,7 @@ import {
   Share,
   Alert
 } from 'react-native';
+
 import {AdMobRewarded, AdMob} from 'expo-ads-admob';
 
 import vinylImage from '../assets/images/vinyl.png';
@@ -42,7 +43,8 @@ export default class ChapterScreen extends React.Component {
       albumThumbRotHolder: new Animated.Value(0),
       albumAnimationStop: false,
       currentAlbum: 0,
-      adLoaded: false
+      adLoaded: false,
+      isMounted: false
     }
   }
 
@@ -85,12 +87,13 @@ export default class ChapterScreen extends React.Component {
   };
 
   componentDidMount() {
+    
     if (Platform.OS === 'ios') {
       AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/3275562421');
     } else if (Platform.OS === 'android') {
       AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
     }
-
+    this.isMounted = true;
     //  AdMobRewarded.setAdUnitID('ca-app-pub-8698887398220178/4317181356');
     //  AdMobRewarded.setTestDeviceID("E45AB38F5846E4CA21DAE91BB9D7E4B1");
 
@@ -117,15 +120,25 @@ export default class ChapterScreen extends React.Component {
     AdMobRewarded.addEventListener('rewardedVideoDidFailToLoad', () => {
       AdMobRewarded.requestAdAsync();
     });
+
+    AdMobRewarded.addEventListener('rewardedVideoDidOpen', () => {
+    });
+
     AdMobRewarded.addEventListener('rewardedVideoDidClose', () => {
       this.setState({adLoaded: false});
       AdMobRewarded.requestAdAsync();
     });
+    AdMobRewarded.addEventListener('rewardedVideoDidStart', () => {
+    });
+    AdMobRewarded.addEventListener('rewardedVideoWillLeaveApplication', () => {});
+    
   }
 
-  componentWillUnmount() {
-    AdMobInterstitial.removeAllListeners();
-    AdMobRewarded.removeAllListeners();
+  componentWillUnmount() { 
+   // if(this.isMounted){
+      AdMobRewarded.removeAllListeners();
+      this.isMounted = false;
+   // }
   }
 
   AlbumList = ({rotation}) => {
@@ -224,15 +237,18 @@ export default class ChapterScreen extends React.Component {
 
       <View style={[
           containerStyle(100, 10), {
-            justifyContent: 'flex-start'
+            justifyContent: 'flex-start',
+            
           }
         ]}>
         <View style={[
             containerStyle(100, 100), {
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent', 
+              //backgroundColor: 'blue'
             }
           ]}>
-          <GameStatusBar/>
+            
+          <GameStatusBar />
         </View>
       </View>
 

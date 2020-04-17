@@ -8,7 +8,7 @@
       "android",
       "web"
     ],
-    "version": "1.0.2",
+    "version": "1.1.2",
     "orientation": "portrait",
     "icon": "./assets/images/iconApp.png",
     "scheme": "myapp",
@@ -26,14 +26,14 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.untitledprojects.nostalgia",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.1.0",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-8698887398220178~2796216129"
       }
     },
     "android": {
       "package": "com.untitledprojects.nostalgia",
-      "versionCode": 1.0,
+      "versionCode": 2.0,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-8698887398220178~3838120464"
       }

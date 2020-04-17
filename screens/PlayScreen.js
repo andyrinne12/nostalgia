@@ -55,6 +55,11 @@ export default class ChapterScreen extends React.Component {
     });
   };
 
+  /*componentWillUnmount() { 
+    AdMobRewarded.removeAllListeners();
+  }
+  */
+
   async loadSongFile() {
     const song = await loadSong(this.props.route.params.track.id);
     this.setState({songFile: song});
@@ -200,6 +205,7 @@ export default class ChapterScreen extends React.Component {
             global.songProgress[this.props.route.params.track.id].done = true;
             const score = SongLibrary().tracks.filter((song) => global.songProgress[song.id].done == true).length;
             global.score = score;
+            this.playSong();
             saveUserData();
             this.forceUpdate();
           }
