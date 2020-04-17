@@ -296,7 +296,7 @@ export default class ChapterScreen extends React.Component {
       </View>
       <View style={containerStyle(100, 15)}>
         {
-          global.songProgress[this.props.route.params.track.id].done == false && <TextInput style={styles.textInput} allowFontScalling={true} onChangeText={(text) => {
+          global.songProgress[this.props.route.params.track.id].done == false && <TextInput style={styles.textInput} allowFontScalling={false} onChangeText={(text) => {
                 this.updateText(text);
               }}/>
         }</View>

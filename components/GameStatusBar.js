@@ -29,7 +29,7 @@ export default class GameStatusBar extends React.Component {
       </View>
       <View style={containerStyle(20, 110)}></View>
       <View style={[
-          containerStyle(40, 110), {}
+          containerStyle(45, 110), {}
         ]}>
         <CurrencyShow ammount={global.currency}/>
       </View>
@@ -39,7 +39,7 @@ export default class GameStatusBar extends React.Component {
 
 function CurrencyShow({ammount}) {
   return (<View style={styles.currencyContainer}>
-    <View style={containerStyle(70, 100)}>
+    <View style={containerStyle(65, 100)}>
       <TouchableOpacity style={styles.currencyFontContainer}>
         <Text style={styles.currencyFont}>{ammount}</Text>
       </TouchableOpacity>
